@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Space_Grotesk, Space_Mono } from "next/font/google";
+import { Archivo, Space_Grotesk, Space_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 import { jsonLd } from "@/lib/site";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -26,6 +26,12 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
+});
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["700"],
   display: "swap",
 });
 
@@ -94,7 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceMono.variable} antialiased`}
+      className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${caveat.variable} antialiased`}
     >
       <head>
         <script

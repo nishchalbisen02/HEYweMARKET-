@@ -5,17 +5,7 @@ import { ArrowRight, Menu, X } from "lucide-react";
 import { cn } from "cn";
 import { NAV } from "@/lib/site";
 import { brutalButtonClass } from "@/components/brutal-button";
-
-function Wordmark({ className }: { className?: string }) {
-  return (
-    <a href="#hero" className={cn("inline-flex items-center gap-2 font-heading text-[19px] font-black uppercase tracking-[-0.02em]", className)}>
-      <span className="grid size-[26px] place-items-center border-2 border-ink bg-primary text-[14px] leading-none text-primary-foreground">
-        H
-      </span>
-      Hey We Market
-    </a>
-  );
-}
+import { SiteLogo } from "@/components/site-logo";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -62,7 +52,7 @@ export function SiteHeader() {
         )}
       >
         <div className="wrap flex h-[66px] items-center justify-between gap-4">
-          <Wordmark />
+          <SiteLogo />
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
             {NAV.map((n) => (
               <a

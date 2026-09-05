@@ -1,3 +1,5 @@
+import { SiteLogo } from "@/components/site-logo";
+
 const GROUPS = [
   { title: "Get Found", links: ["SEO & AEO", "Google Business Profile"] },
   { title: "Get Leads", links: ["Google Ads", "Meta Ads", "Analytics & CRO"] },
@@ -10,12 +12,7 @@ export function SiteFooter() {
     <footer className="border-t-[3px] border-ink bg-ink py-[clamp(48px,7vw,80px)] text-background">
       <div className="wrap">
         <div className="flex flex-wrap justify-between gap-7 border-b-2 border-background/20 pb-8">
-          <a href="#hero" className="inline-flex items-center gap-2 font-heading text-[19px] font-black uppercase tracking-[-0.02em] text-background">
-            <span className="grid size-[26px] place-items-center border-2 border-background bg-primary text-[14px] leading-none text-primary-foreground">
-              H
-            </span>
-            Hey We Market
-          </a>
+          <SiteLogo onDark className="text-background" />
           <div className="flex flex-wrap gap-9">
             {GROUPS.map((g) => (
               <div key={g.title} className="flex flex-col gap-2.5">
