@@ -12,6 +12,8 @@ import { ClientMarquee } from "@/components/client-marquee";
 import { getClients } from "@/lib/clients";
 import { WorkGallery } from "@/components/work-gallery";
 import { getWorkMedia } from "@/lib/work-media";
+import { CreativeMarquee } from "@/components/creative-marquee";
+import { getCreative } from "@/lib/creative";
 import { ProcessAccordion } from "@/components/process-accordion";
 import { GrowthAudit } from "@/components/growth-audit";
 import { Faq } from "@/components/faq";
@@ -103,6 +105,7 @@ function AnswerBlock({
 export default function Home() {
   const workMedia = getWorkMedia();
   const clients = getClients();
+  const creative = getCreative();
   return (
     <>
       <CinematicHero />
@@ -361,6 +364,17 @@ export default function Home() {
             Selected reels
           </p>
           <WorkGallery items={workMedia} />
+        </div>
+
+        {/* Design & branding — auto-scrolling showcase */}
+        <div className="mt-[clamp(44px,7vw,80px)] border-y-[3px] border-ink bg-muted py-[clamp(28px,4.5vw,52px)]">
+          <p className="mono-label wrap mb-6 flex w-fit border-2 border-ink bg-card px-3 py-1.5">
+            Design &amp; branding
+          </p>
+          <CreativeMarquee items={creative} />
+        </div>
+
+        <div className="wrap">
           <MiniLink href="#audit">Score your own setup</MiniLink>
         </div>
       </section>
