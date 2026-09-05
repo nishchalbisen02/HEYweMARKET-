@@ -148,8 +148,8 @@ export function GrowthAudit() {
             <div className="border-2 border-night-fg/20 p-5">
               <div className="relative mx-auto mb-5 w-[150px]">
                 <svg viewBox="0 0 120 120" aria-hidden="true" className="w-full -rotate-90">
-                  <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(253,242,248,.14)" strokeWidth="12" />
-                  <circle cx="60" cy="60" r="52" fill="none" stroke="#ec4899" strokeWidth="12" strokeDasharray="327" strokeDashoffset="120" />
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(246,242,250,.14)" strokeWidth="12" />
+                  <circle cx="60" cy="60" r="52" fill="none" stroke="#b3a2cc" strokeWidth="12" strokeDasharray="327" strokeDashoffset="120" />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <b className="font-heading text-[2.4rem] font-black leading-none">63</b>
@@ -219,13 +219,13 @@ export function GrowthAudit() {
           <div className="mb-8 grid items-center gap-[clamp(20px,4vw,40px)] sm:grid-cols-[150px_1fr]">
             <div className="relative w-[150px]">
               <svg viewBox="0 0 140 140" aria-hidden="true" className="w-full">
-                <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(253,242,248,.14)" strokeWidth="14" />
+                <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(246,242,250,.14)" strokeWidth="14" />
                 <circle
                   cx="70"
                   cy="70"
                   r="60"
                   fill="none"
-                  stroke="#ec4899"
+                  stroke="#b3a2cc"
                   strokeWidth="14"
                   strokeDasharray={RING_C}
                   strokeDashoffset={arcOffset}

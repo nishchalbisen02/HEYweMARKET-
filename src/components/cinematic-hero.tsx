@@ -61,7 +61,7 @@ export function CinematicHero() {
           )}
         </motion.div>
         {/* light wash so dark type stays legible over the video */}
-        <div className="absolute inset-0 bg-[rgba(253,242,248,0.4)]" />
+        <div className="absolute inset-0 bg-[rgba(246,242,250,0.4)]" />
 
         {/* content — transparent brutalist frame, video shows through */}
         <motion.div
@@ -69,7 +69,7 @@ export function CinematicHero() {
           style={reduced ? undefined : { opacity: panelOpacity }}
         >
           <motion.div
-            className="max-w-[600px] border-[3px] border-ink p-[clamp(18px,3.5vw,36px)] shadow-brutal [text-shadow:0_1px_14px_rgba(253,242,248,0.95),0_0_3px_rgba(253,242,248,0.8)]"
+            className="max-w-[600px] border-[3px] border-ink p-[clamp(18px,3.5vw,36px)] shadow-brutal [text-shadow:0_1px_14px_rgba(246,242,250,0.95),0_0_3px_rgba(246,242,250,0.8)]"
             style={reduced ? undefined : { y: panelY }}
           >
             <p className="mono-label inline-block border-2 border-ink bg-card px-3 py-1.5 [text-shadow:none]">

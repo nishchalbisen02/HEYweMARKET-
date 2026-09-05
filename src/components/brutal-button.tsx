@@ -11,7 +11,7 @@ const tones: Record<Tone, string> = {
   accent: "bg-accent text-accent-foreground",
   plain: "bg-card text-foreground",
   "on-dark":
-    "bg-accent text-accent-foreground border-night-fg shadow-brutal-pink hover:shadow-[4px_4px_0_#ec4899] active:shadow-none",
+    "bg-accent text-accent-foreground border-night-fg shadow-brutal-pink hover:shadow-[4px_4px_0_#b3a2cc] active:shadow-none",
 };
 
 export function brutalButtonClass(tone: Tone = "plain", extra?: string) {

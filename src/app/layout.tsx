@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Space_Grotesk, Space_Mono } from "next/font/google";
+import { Archivo, Space_Grotesk, Space_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { jsonLd } from "@/lib/site";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -26,6 +26,13 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
+});
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -86,7 +93,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#fdf2f8",
+  themeColor: "#f6f2fa",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -94,7 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceMono.variable} antialiased`}
+      className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${fraunces.variable} antialiased`}
     >
       <head>
         <script

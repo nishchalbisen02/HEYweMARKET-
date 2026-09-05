@@ -174,18 +174,18 @@ export function summaryReport(s: Scored, ans: (number | null)[]): string {
 @page{margin:18mm}
 body{font-family:Archivo,-apple-system,Segoe UI,Roboto,sans-serif;color:#0F172A;max-width:820px;margin:0 auto;padding:40px 24px;line-height:1.6}
 h1{font-size:30px;margin:0 0 6px;text-transform:uppercase;letter-spacing:-.02em}h2{font-size:19px;margin:32px 0 10px;padding-bottom:8px;border-bottom:3px solid #0F172A;text-transform:uppercase}
-.brand{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#831843}
-.score{display:flex;align-items:center;gap:20px;background:#EC4899;color:#000;border:3px solid #0F172A;box-shadow:6px 6px 0 #0F172A;padding:22px;margin:20px 0}
+.brand{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#3a2b52}
+.score{display:flex;align-items:center;gap:20px;background:#b3a2cc;color:#000;border:3px solid #0F172A;box-shadow:6px 6px 0 #0F172A;padding:22px;margin:20px 0}
 .score b{font-size:48px;line-height:1;font-weight:900}
 .score .g{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
 th,td{padding:9px 10px;border-bottom:2px solid #0F172A;text-align:left}
 th{background:#0F172A;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
-.f{background:#FDF2F8;border:2px solid #0F172A;border-left:6px solid #EC4899;padding:15px 18px;margin:10px 0}
+.f{background:#f6f2fa;border:2px solid #0F172A;border-left:6px solid #b3a2cc;padding:15px 18px;margin:10px 0}
 .f h3{margin:0 0 6px;font-size:15px}.f p{margin:0;font-size:13px}
 .f .m{margin-top:8px;font-size:12px;color:#475569}
-.gap{background:#FCE7F3;border:2px solid #EC4899;padding:16px;margin:14px 0}
-.gap b{font-size:18px;color:#831843;text-transform:uppercase}
+.gap{background:#efe9f7;border:2px solid #b3a2cc;padding:16px;margin:14px 0}
+.gap b{font-size:18px;color:#3a2b52;text-transform:uppercase}
 .note{font-size:11px;color:#64748B;margin-top:6px}
 .plan li{margin-bottom:8px;font-size:13px}
 footer{margin-top:38px;padding-top:16px;border-top:3px solid #0F172A;font-size:11px;color:#64748B}
@@ -253,10 +253,10 @@ body{font-family:Archivo,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-s
 h1{font-size:34px;margin:0 0 8px;line-height:1.05;text-transform:uppercase;letter-spacing:-.02em}
 h2{font-size:20px;margin:0;text-transform:uppercase;letter-spacing:-.01em}
 h3{font-size:16px;margin:0 0 6px}
-h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#831843;margin:22px 0 8px}
-.brand{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#831843}
+h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#3a2b52;margin:22px 0 8px}
+.brand{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#3a2b52}
 .meta{color:#475569;font-size:13px;margin-bottom:22px}
-.score{display:flex;align-items:center;gap:24px;background:#EC4899;color:#000;border:3px solid #0F172A;box-shadow:6px 6px 0 #0F172A;padding:24px;margin:22px 0}
+.score{display:flex;align-items:center;gap:24px;background:#b3a2cc;color:#000;border:3px solid #0F172A;box-shadow:6px 6px 0 #0F172A;padding:24px;margin:22px 0}
 .score .big{font-size:56px;line-height:1;font-weight:900}
 .score .g{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .score .sub{font-size:15px;margin-top:4px;font-weight:600}
@@ -268,21 +268,21 @@ th,td{padding:9px 10px;border-bottom:2px solid #0F172A;text-align:left;vertical-
 th{background:#0F172A;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
 ol.steps{padding-left:20px}ol.steps li{margin-bottom:9px}
 ul.kpi-list{padding-left:20px}ul.kpi-list li{margin-bottom:5px;color:#334155}
-.f{background:#FDF2F8;border:2px solid #0F172A;border-left:6px solid #EC4899;padding:15px 18px;margin:10px 0;page-break-inside:avoid}
+.f{background:#f6f2fa;border:2px solid #0F172A;border-left:6px solid #b3a2cc;padding:15px 18px;margin:10px 0;page-break-inside:avoid}
 .f .m{margin:8px 0 0;font-size:12px;color:#475569}
-.gap{background:#FCE7F3;border:2px solid #EC4899;padding:18px;margin:14px 0}
-.gap b.h{font-size:19px;color:#831843;display:block;margin-bottom:8px;text-transform:uppercase}
+.gap{background:#efe9f7;border:2px solid #b3a2cc;padding:18px;margin:14px 0}
+.gap b.h{font-size:19px;color:#3a2b52;display:block;margin-bottom:8px;text-transform:uppercase}
 .note{font-size:11px;color:#64748B;margin-top:8px;font-style:italic}
 .toc{background:#F1EEF5;border:2px solid #0F172A;padding:18px 24px}
 .toc ol{margin:8px 0 0;padding-left:20px}.toc li{margin-bottom:5px;font-size:13px}
 .phase{border:2px solid #0F172A;padding:16px 20px;margin:10px 0;page-break-inside:avoid}
-.phase h3{color:#831843;text-transform:uppercase}
+.phase h3{color:#3a2b52;text-transform:uppercase}
 .phase ul{padding-left:19px;margin:8px 0 0}.phase li{margin-bottom:6px;font-size:13px}
 footer{margin-top:44px;padding-top:16px;border-top:3px solid #0F172A;font-size:11px;color:#64748B}
 .pb{page-break-before:always}
 @media print{body{padding:0}.noprint{display:none}}
 .noprint{background:#0F172A;color:#fff;padding:14px 20px;margin-bottom:26px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.noprint button{background:#EC4899;border:2px solid #fff;color:#000;font-weight:800;padding:9px 18px;cursor:pointer;font-size:13px;text-transform:uppercase}
+.noprint button{background:#b3a2cc;border:2px solid #fff;color:#000;font-weight:800;padding:9px 18px;cursor:pointer;font-size:13px;text-transform:uppercase}
 </style></head><body>
 <div class="noprint"><span>This is your full report. Use the button to save it as a PDF.</span><button onclick="window.print()">Save as PDF</button></div>
 <div class="brand">Hey We Market &middot; 360 Digital Marketing Agency</div>

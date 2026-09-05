@@ -453,11 +453,11 @@ export default function Home() {
         <GooeyBlobs
           className="pointer-events-none absolute inset-0 z-0 [&>*]:pointer-events-auto"
           blobs={[
-            { size: 110, x: -2, y: 30, color: "#ec4899" },
+            { size: 110, x: -2, y: 30, color: "#b3a2cc" },
             { size: 85, x: 3, y: 52, color: "#0891b2" },
-            { size: 140, x: 82, y: 14, color: "#ec4899" },
+            { size: 140, x: 82, y: 14, color: "#b3a2cc" },
             { size: 95, x: 90, y: 40, color: "#0891b2" },
-            { size: 70, x: 78, y: 74, color: "#f472b6" },
+            { size: 70, x: 78, y: 74, color: "#cdbfe3" },
           ]}
         />
         <div className="wrap relative z-10">
