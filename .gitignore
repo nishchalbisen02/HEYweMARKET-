@@ -43,3 +43,6 @@ next-env.d.ts
 # project extras
 .claude/
 *.bak
+
+# extraction scratch
+scratch/
