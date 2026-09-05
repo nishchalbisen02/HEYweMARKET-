@@ -32,7 +32,7 @@ function MediaTile({ item, idx }: { item: WorkMedia; idx: number }) {
   const showVideo = item.kind === "video" && !reduced;
 
   return (
-    <div ref={wrap} className="group relative aspect-square overflow-hidden border-[3px] border-ink shadow-brutal">
+    <div ref={wrap} className="group relative aspect-[3/4] overflow-hidden border-[3px] border-ink shadow-brutal">
       {showVideo ? (
         <video
           ref={video}
@@ -69,7 +69,7 @@ function MediaTile({ item, idx }: { item: WorkMedia; idx: number }) {
 export function WorkGallery({ items }: { items: WorkMedia[] }) {
   if (!items.length) return null;
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" data-reveal="">
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4" data-reveal="">
       {items.map((it, i) => (
         <MediaTile key={it.key} item={it} idx={i} />
       ))}

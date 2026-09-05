@@ -2,5 +2,13 @@
   "w1": { "title": "Resort website — design & build", "tag": "Websites" },
   "w2": { "title": "Brand identity in motion", "tag": "Branding" },
   "w3": { "title": "The Kind — product film", "tag": "Content" },
-  "w4": { "title": "Campaign film", "tag": "Commercial shoots" }
+  "w4": { "title": "Campaign film", "tag": "Commercial" },
+  "w5": { "title": "DB-pride — brand film", "tag": "Commercial" },
+  "w6": { "title": "Viraat — showroom film", "tag": "Commercial" },
+  "w7": { "title": "Viraat — festive commercial", "tag": "Ad shoot" },
+  "w8": { "title": "BU Group — salon reel", "tag": "Content" },
+  "w9": { "title": "RADA — brand reel", "tag": "Content" },
+  "w10": { "title": "Amit Glass — product reel", "tag": "Content" },
+  "w11": { "title": "Titu Daipur — food film", "tag": "Content" },
+  "w12": { "title": "Say Hi — brand promo", "tag": "Content" }
 }

@@ -46,3 +46,6 @@ next-env.d.ts
 
 # extraction scratch
 scratch/
+
+# raw source assets (optimized copies live in public/)
+all assets/
