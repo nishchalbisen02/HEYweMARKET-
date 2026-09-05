@@ -1,7 +1,7 @@
 export function WhatsappFab() {
   return (
     <a
-      href="https://wa.me/91XXXXXXXXXX"
+      href="https://wa.me/919826026029"
       aria-label="Chat on WhatsApp"
       className="fixed bottom-4 right-4 z-[90] grid size-13 place-items-center border-[3px] border-ink bg-primary shadow-brutal-sm transition-[transform,box-shadow] duration-150 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--color-ink)]"
     >

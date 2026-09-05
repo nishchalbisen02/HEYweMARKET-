@@ -8,7 +8,10 @@ import {
 import { Reveal } from "@/components/reveal";
 import { CinematicHero } from "@/components/cinematic-hero";
 import { Ticker } from "@/components/ticker";
-import { WorkGrid } from "@/components/work-grid";
+import { ClientMarquee } from "@/components/client-marquee";
+import { getClients } from "@/lib/clients";
+import { WorkGallery } from "@/components/work-gallery";
+import { getWorkMedia } from "@/lib/work-media";
 import { ProcessAccordion } from "@/components/process-accordion";
 import { GrowthAudit } from "@/components/growth-audit";
 import { Faq } from "@/components/faq";
@@ -98,9 +101,12 @@ function AnswerBlock({
 }
 
 export default function Home() {
+  const workMedia = getWorkMedia();
+  const clients = getClients();
   return (
     <>
       <CinematicHero />
+      <ClientMarquee clients={clients} />
       <Ticker />
 
       {/* CH.01 — PROBLEM */}
@@ -348,7 +354,13 @@ export default function Home() {
               </a>
             ))}
           </Reveal>
-          <WorkGrid />
+          <p
+            className="mono-label mb-6 mt-[clamp(40px,6vw,64px)] inline-block border-2 border-ink bg-card px-3 py-1.5"
+            data-reveal=""
+          >
+            Selected reels
+          </p>
+          <WorkGallery items={workMedia} />
           <MiniLink href="#audit">Score your own setup</MiniLink>
         </div>
       </section>
@@ -496,7 +508,7 @@ export default function Home() {
           <Reveal delay={1} className="brutal-box">
             {[
               ["Email", <a key="e" href="mailto:hello@heywemarket.com" className="[overflow-wrap:anywhere]">hello@heywemarket.com</a>],
-              ["Phone", <span key="p">+91 XXXXX XXXXX</span>],
+              ["Phone", <a key="p" href="tel:+919826026029">+91 98260 26029</a>],
               ["Hours", <span key="h">Mon–Sat · 10 AM – 7 PM IST</span>],
               ["Audit", <a key="a" href="#audit">Run the free 360° growth audit &rarr;</a>],
             ].map(([label, val], i) => (
