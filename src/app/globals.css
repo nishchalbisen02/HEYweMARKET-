@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Hey We Market — Neubrutalist design system (ui-ux-pro-max output)
+  Palette: #EC4899 primary / #0891B2 accent / #FDF2F8 bg / #831843 fg / #0F172A ink
+  Hard borders, hard offset shadows, 0px radius, bold display type.
+*/
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* brutalist extras */
+  --color-ink: #0f172a;
+  --color-paper: #fdf2f8;
+  --color-night: #0f172a;
+  --color-night-fg: #fdf2f8;
+  --color-pink: #ec4899;
+  --color-cyan: #0891b2;
+
+  --font-sans: var(--font-space-grotesk);
+  --font-heading: var(--font-archivo);
+  --font-mono: var(--font-space-mono);
+
+  --shadow-brutal: 6px 6px 0 var(--color-ink);
+  --shadow-brutal-sm: 4px 4px 0 var(--color-ink);
+  --shadow-brutal-lg: 8px 8px 0 var(--color-ink);
+  --shadow-brutal-pink: 6px 6px 0 #ec4899;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+}
+
+:root {
+  --background: #fdf2f8;
+  --foreground: #831843;
+  --card: #ffffff;
+  --card-foreground: #831843;
+  --popover: #ffffff;
+  --popover-foreground: #831843;
+  --primary: #ec4899;
+  --primary-foreground: #000000;
+  --secondary: #f472b6;
+  --secondary-foreground: #0f172a;
+  --muted: #f1eef5;
+  --muted-foreground: #475569;
+  --accent: #0891b2;
+  --accent-foreground: #000000;
+  --destructive: #dc2626;
+  --border: #0f172a;
+  --input: #0f172a;
+  --ring: #0f172a;
+  --radius: 0px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 16px;
+    line-height: 1.6;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading), var(--font-sans), sans-serif;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  h1 { font-weight: 900; }
+  ::selection { background: var(--color-ink); color: var(--background); }
+  :focus-visible { outline: 3px solid var(--color-ink); outline-offset: 3px; }
+  a { color: inherit; text-decoration: none; }
+  ::placeholder { color: var(--muted-foreground); }
+}
+
+@layer components {
+  .wrap {
+    width: min(1280px, 100% - 2 * clamp(16px, 5vw, 64px));
+    margin-inline: auto;
+  }
+  .wrap-narrow {
+    width: min(920px, 100% - 2 * clamp(16px, 5vw, 64px));
+    margin-inline: auto;
+  }
+  .section-pad {
+    padding-block: clamp(64px, 10vw, 132px);
+  }
+}
+
+@layer utilities {
+  /* reveal-on-scroll — progressive enhancement (only hides when JS is active) */
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  html.js [data-reveal][data-inview="true"] {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+  }
+  html.js [data-reveal][data-delay="1"][data-inview="true"] { transition-delay: 0.05s; }
+  html.js [data-reveal][data-delay="2"][data-inview="true"] { transition-delay: 0.1s; }
+  html.js [data-reveal][data-delay="3"][data-inview="true"] { transition-delay: 0.15s; }
+
+  .mono-label {
+    font-family: var(--font-mono), monospace;
+    font-size: clamp(11px, 1.4vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .brutal-box {
+    border: 3px solid var(--color-ink);
+    box-shadow: var(--shadow-brutal);
+    background: var(--card);
+  }
+  .hl-pink {
+    background: #ec4899;
+    color: #000;
+    box-shadow: 0 0 0 4px #ec4899;
+  }
+  .hl-cyan {
+    background: #0891b2;
+    color: #000;
+    box-shadow: 0 0 0 4px #0891b2;
+  }
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
