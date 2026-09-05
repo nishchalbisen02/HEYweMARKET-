@@ -96,14 +96,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceMono.variable} antialiased`}
     >
-      <body className="flex min-h-svh flex-col">
-        <script
-          dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
-        />
+      <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()).replace(/</g, "\\u003c") }}
         />
+      </head>
+      <body className="flex min-h-svh flex-col">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[1000] focus:border-[3px] focus:border-ink focus:bg-ink focus:px-4 focus:py-3 focus:font-mono focus:text-[13px] focus:uppercase focus:text-background"
