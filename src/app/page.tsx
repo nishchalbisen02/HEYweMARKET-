@@ -13,6 +13,7 @@ import { ProcessAccordion } from "@/components/process-accordion";
 import { GrowthAudit } from "@/components/growth-audit";
 import { Faq } from "@/components/faq";
 import { brutalButtonClass } from "@/components/brutal-button";
+import { GooeyBlobs, SkiperGooeyFilterProvider } from "@/components/ui/skiper64";
 
 function ChapterHead({
   kicker,
@@ -435,9 +436,20 @@ export default function Home() {
       </section>
 
       {/* CLIMAX CTA */}
-      <section id="cta" className="section-pad border-y-[3px] border-ink bg-night text-night-fg">
-        <div className="wrap">
-          <Reveal as="p" className="mono-label inline-block w-fit border-2 border-night-fg/50 px-3 py-1.5">
+      <section id="cta" className="section-pad relative overflow-hidden border-y-[3px] border-ink bg-night text-night-fg">
+        <SkiperGooeyFilterProvider />
+        <GooeyBlobs
+          className="pointer-events-none absolute inset-0 z-0 [&>*]:pointer-events-auto"
+          blobs={[
+            { size: 110, x: -2, y: 30, color: "#ec4899" },
+            { size: 85, x: 3, y: 52, color: "#0891b2" },
+            { size: 140, x: 82, y: 14, color: "#ec4899" },
+            { size: 95, x: 90, y: 40, color: "#0891b2" },
+            { size: 70, x: 78, y: 74, color: "#f472b6" },
+          ]}
+        />
+        <div className="wrap relative z-10">
+          <Reveal as="p" className="mono-label inline-block w-fit border-2 border-night-fg/50 bg-night px-3 py-1.5">
             The Finale — Your Turn
           </Reveal>
           <Reveal as="h2" delay={1} className="mt-[22px] max-w-[16ch] text-balance text-[clamp(2.4rem,8vw,6rem)] font-black uppercase tracking-[-0.03em]">

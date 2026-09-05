@@ -6,42 +6,9 @@ import { ArrowRight, Play } from "lucide-react";
 import { STATS } from "@/lib/site";
 import { brutalButtonClass } from "@/components/brutal-button";
 
-function Poster() {
-  return (
-    <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
-      <rect width="1600" height="900" fill="#0f172a" />
-      {Array.from({ length: 9 }).map((_, i) => (
-        <line key={`v${i}`} x1={i * 200} y1="0" x2={i * 200} y2="900" stroke="#fdf2f8" strokeOpacity="0.06" strokeWidth="2" />
-      ))}
-      {Array.from({ length: 5 }).map((_, i) => (
-        <line key={`h${i}`} x1="0" y1={i * 225} x2="1600" y2={i * 225} stroke="#fdf2f8" strokeOpacity="0.06" strokeWidth="2" />
-      ))}
-      <rect x="1000" y="120" width="520" height="300" fill="#ec4899" fillOpacity="0.9" />
-      <rect x="1030" y="150" width="520" height="300" fill="none" stroke="#fdf2f8" strokeWidth="6" strokeOpacity="0.7" />
-      <rect x="120" y="520" width="460" height="300" fill="#0891b2" fillOpacity="0.9" />
-      <rect x="90" y="490" width="460" height="300" fill="none" stroke="#fdf2f8" strokeWidth="6" strokeOpacity="0.7" />
-      <circle cx="1330" cy="640" r="110" fill="none" stroke="#ec4899" strokeWidth="10" strokeOpacity="0.8" />
-      <text
-        x="50%"
-        y="54%"
-        textAnchor="middle"
-        fontFamily="Archivo, Arial Black, sans-serif"
-        fontWeight="900"
-        fontSize="190"
-        letterSpacing="-8"
-        fill="none"
-        stroke="#fdf2f8"
-        strokeWidth="3"
-        opacity="0.12"
-      >
-        HEY WE MARKET
-      </text>
-    </svg>
-  );
-}
-
 export function CinematicHero() {
   const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
@@ -56,10 +23,9 @@ export function CinematicHero() {
   const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.1]);
   const insetPct = useTransform(scrollYProgress, [0, 0.8], [6, 0]);
   const clip = useMotionTemplate`inset(${insetPct}% round 0px)`;
-  const posterY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-  const topY = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const bottomY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const contentOpacity = useTransform(scrollYProgress, [0.55, 0.95], [1, 0]);
+  const mediaY = useTransform(scrollYProgress, [0, 1], [-24, 28]);
+  const panelY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const panelOpacity = useTransform(scrollYProgress, [0.55, 0.95], [1, 0]);
 
   return (
     <section ref={ref} id="hero" aria-label="Introduction" className={reduced ? "relative" : "relative h-[180svh]"}>
@@ -69,60 +35,70 @@ export function CinematicHero() {
           (reduced ? "relative" : "sticky top-0 h-svh")
         }
       >
-        {/* full-bleed base so text is never on a light gap */}
-        <div className="absolute inset-0 bg-night" />
-        {/* poster (masked + scaled on scroll) */}
+        {/* video / poster */}
+        <div className="absolute inset-0 bg-paper" />
         <motion.div
           className="absolute inset-0"
-          style={reduced ? undefined : { scale, clipPath: clip, y: posterY, willChange: "transform" }}
+          style={reduced ? undefined : { scale, clipPath: clip, y: mediaY, willChange: "transform" }}
         >
-          <Poster />
+          {reduced ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img src="/hero-poster.jpg" alt="" className="size-full object-cover" />
+          ) : (
+            <video
+              ref={videoRef}
+              className="size-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/hero-poster.jpg"
+            >
+              <source src="/hero.webm" type="video/webm" />
+              <source src="/hero.mp4" type="video/mp4" />
+            </video>
+          )}
         </motion.div>
-        {/* scrim */}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.9)_0%,rgba(15,23,42,0.45)_42%,rgba(15,23,42,0.9)_100%)]" />
+        {/* light wash so dark type stays legible over the video */}
+        <div className="absolute inset-0 bg-[rgba(253,242,248,0.4)]" />
 
-        {/* content */}
+        {/* content — transparent brutalist frame, video shows through */}
         <motion.div
-          className="wrap relative z-10 flex h-svh flex-col justify-between gap-6 py-[calc(66px+clamp(20px,4vh,48px))] pb-[clamp(20px,4vh,48px)]"
-          style={reduced ? undefined : { opacity: contentOpacity }}
+          className="wrap relative z-10 flex h-svh flex-col justify-center py-[calc(66px+clamp(16px,4vh,40px))]"
+          style={reduced ? undefined : { opacity: panelOpacity }}
         >
-          <motion.div style={reduced ? undefined : { y: topY }}>
-            <p className="mono-label inline-block border-2 border-night-fg/50 px-3 py-1.5 text-night-fg">
+          <motion.div
+            className="max-w-[600px] border-[3px] border-ink p-[clamp(18px,3.5vw,36px)] shadow-brutal [text-shadow:0_1px_14px_rgba(253,242,248,0.95),0_0_3px_rgba(253,242,248,0.8)]"
+            style={reduced ? undefined : { y: panelY }}
+          >
+            <p className="mono-label inline-block border-2 border-ink bg-card px-3 py-1.5 [text-shadow:none]">
               Independent // 360&deg; // 100% In-House
             </p>
-            <h1 className="mt-5 max-w-[16ch] text-balance text-[clamp(2rem,6.6vw,5rem)] font-black uppercase leading-[0.95] tracking-[-0.03em] text-night-fg [text-shadow:0_2px_24px_rgba(15,23,42,0.7)]">
+            <h1 className="mt-4 max-w-[15ch] text-balance text-[clamp(1.9rem,5.6vw,3.6rem)] font-black uppercase leading-[0.95] tracking-[-0.03em]">
               We run every growth channel{" "}
-              <span className="hl-pink box-decoration-clone">from one room</span>
+              <span className="hl-pink box-decoration-clone [text-shadow:none]">from one room</span>
             </h1>
-          </motion.div>
-
-          <motion.div className="flex flex-wrap items-end justify-between gap-6" style={reduced ? undefined : { y: bottomY }}>
-            <p className="max-w-[44ch] text-[clamp(0.95rem,1.5vw,1.15rem)] font-medium leading-relaxed text-night-fg/85">
+            <p className="mt-4 max-w-[46ch] text-[clamp(0.9rem,1.4vw,1.05rem)] font-semibold leading-relaxed text-ink">
               SEO &amp; AEO, Google &amp; Meta Ads, Google Business Profile, content, social, commercial shoots, branding and
               web. One team. One strategy. One invoice.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3 [text-shadow:none]">
               <a href="#contact" className={brutalButtonClass("primary")}>
                 Start a project <ArrowRight />
               </a>
-              <a
-                href="#audit"
-                className={brutalButtonClass(
-                  "plain",
-                  "border-night-fg bg-transparent text-night-fg shadow-[6px_6px_0_#ec4899] hover:shadow-[4px_4px_0_#ec4899]"
-                )}
-              >
+              <a href="#audit" className={brutalButtonClass("plain")}>
                 Free growth audit
               </a>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* play button */}
+        {/* play button over the exposed video */}
         <a
           href="#work"
           aria-label="Watch the work"
-          className="absolute left-1/2 top-1/2 z-20 grid size-20 -translate-x-1/2 -translate-y-1/2 place-items-center border-[3px] border-night-fg bg-primary text-primary-foreground shadow-brutal-pink transition-transform duration-150 hover:scale-95 sm:size-24"
+          className="absolute bottom-[max(env(safe-area-inset-bottom),clamp(20px,6vh,64px))] right-[clamp(16px,5vw,64px)] z-20 grid size-20 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-brutal transition-transform duration-150 hover:scale-95 sm:size-24"
         >
           <Play className="size-7 translate-x-0.5 fill-current sm:size-9" />
         </a>
