@@ -37,6 +37,8 @@
   --color-night-fg: #f6f2fa;
   --color-pink: #b3a2cc;
   --color-cyan: #0891b2;
+  --color-orange: #f0641e;
+  --color-orange-ink: #7a2d09;
 
   --font-sans: var(--font-space-grotesk);
   --font-heading: var(--font-archivo);

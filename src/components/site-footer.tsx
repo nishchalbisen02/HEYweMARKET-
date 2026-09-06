@@ -39,7 +39,7 @@ const SOCIALS = [
   { label: "X", href: "#", Icon: XGlyph },
   { label: "Facebook", href: "#", Icon: Facebook },
   { label: "Newsletter", href: "#audit", Icon: Send },
-  { label: "Careers", href: "mailto:hello@heywemarket.com?subject=Careers", Icon: Briefcase },
+  { label: "Careers", href: "/careers", Icon: Briefcase },
 ];
 
 export function SiteFooter() {

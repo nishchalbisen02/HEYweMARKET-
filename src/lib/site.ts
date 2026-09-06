@@ -5,6 +5,7 @@ export const NAV = [
   { href: "#audit", label: "Free Audit" },
   { href: "#process", label: "Process" },
   { href: "#faq", label: "FAQ" },
+  { href: "/careers", label: "Careers" },
 ] as const;
 
 export const TICKER_ITEMS = [
