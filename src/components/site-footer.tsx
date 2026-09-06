@@ -25,33 +25,6 @@ function Facebook({ className }: IconProps) {
   );
 }
 
-/* Orange 👌 mark that closes the wordmark — matches the reference footer art */
-function OkHand({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" className={className} fill="none" aria-hidden="true">
-      <g fill="#E0A15A" stroke="#141019" strokeWidth="3" strokeLinejoin="round">
-        <rect x="46" y="16" width="10" height="34" rx="5" transform="rotate(-10 51 33)" />
-        <rect x="58" y="14" width="10" height="34" rx="5" transform="rotate(2 63 31)" />
-        <rect x="70" y="22" width="10" height="28" rx="5" transform="rotate(16 75 36)" />
-      </g>
-      <path
-        d="M45 40c-14 0-25 10-25 26s12 26 28 26 27-9 30-22c2-8-1-15-7-19 3-8-1-16-9-17-3 0-6 1-8 3-1-8-5-12-11-12s-9 6-9 14c0 3 1 6 2 8-5 1-9 4-11 8"
-        fill="#E0A15A"
-        stroke="#141019"
-        strokeWidth="3"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      <circle cx="44" cy="70" r="12" fill="#0B0A0F" stroke="#141019" strokeWidth="3" />
-      <g stroke="#93A83A" strokeWidth="3.5" strokeLinecap="round">
-        <path d="M23 45l-9-5" />
-        <path d="M31 33l-5-9" />
-        <path d="M20 60l-10 1" />
-      </g>
-    </svg>
-  );
-}
-
 function XGlyph({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
@@ -118,7 +91,7 @@ export function SiteFooter() {
       </div>
 
       {/* wordmark — stretched edge to edge, full-bleed */}
-      <div className="relative mt-[clamp(20px,4vw,52px)] px-[clamp(10px,1.8vw,24px)]">
+      <div className="mt-[clamp(20px,4vw,52px)] px-[clamp(10px,1.8vw,24px)]">
         <svg
           viewBox="0 0 1000 246"
           className="block w-full overflow-visible"
@@ -137,7 +110,6 @@ export function SiteFooter() {
             Hey We Market
           </text>
         </svg>
-        <OkHand className="pointer-events-none absolute right-[clamp(10px,1.8vw,24px)] top-[-4%] w-[clamp(2.25rem,6vw,5rem)]" />
       </div>
 
       <div className="wrap pb-[clamp(48px,8vw,96px)] pt-[clamp(30px,5vw,60px)]">
