@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useMotionTemplate } from "motion/react";
 import { ArrowRight, Play } from "lucide-react";
 import { STATS } from "@/lib/site";
 import { brutalButtonClass } from "@/components/brutal-button";
@@ -20,8 +20,10 @@ export function CinematicHero() {
   }, []);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1.2]);
-  const mediaY = useTransform(scrollYProgress, [0, 1], [-14, 18]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.1]);
+  const insetPct = useTransform(scrollYProgress, [0, 0.8], [6, 0]);
+  const clip = useMotionTemplate`inset(${insetPct}% round 0px)`;
+  const mediaY = useTransform(scrollYProgress, [0, 1], [-24, 28]);
   const panelY = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const panelOpacity = useTransform(scrollYProgress, [0.55, 0.95], [1, 0]);
 
@@ -37,7 +39,7 @@ export function CinematicHero() {
         <div className="absolute inset-0 bg-paper" />
         <motion.div
           className="absolute inset-0"
-          style={reduced ? undefined : { scale, y: mediaY, willChange: "transform" }}
+          style={reduced ? undefined : { scale, clipPath: clip, y: mediaY, willChange: "transform" }}
         >
           {reduced ? (
             /* eslint-disable-next-line @next/next/no-img-element */

@@ -32,7 +32,7 @@ export function ClientMarquee({ clients }: { clients: Client[] }) {
               <span
                 key={i}
                 title={c.name}
-                className="flex h-[68px] w-[152px] shrink-0 items-center justify-center overflow-hidden border-2 border-ink bg-white px-4 py-3"
+                className="flex h-[72px] w-[150px] shrink-0 items-center justify-center overflow-hidden border-2 border-ink bg-white px-2.5 py-1.5"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
