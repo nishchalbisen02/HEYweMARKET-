@@ -73,8 +73,8 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t-[3px] border-ink bg-[#0B0A0F] text-white">
-      <div className="wrap py-[clamp(48px,8vw,96px)]">
+    <footer className="overflow-hidden border-t-[3px] border-ink bg-[#0B0A0F] text-white">
+      <div className="wrap pt-[clamp(48px,8vw,96px)]">
         {/* new business + contact */}
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-[32ch]">
@@ -115,16 +115,34 @@ export function SiteFooter() {
           </p>
         </div>
 
-        {/* wordmark */}
-        <div className="mt-[clamp(44px,9vw,104px)] flex items-end gap-[0.12em] overflow-hidden">
-          <span className="whitespace-nowrap font-serif text-[clamp(2rem,11vw,8.5rem)] font-normal leading-[0.8] tracking-[-0.02em] text-white">
-            Hey We Market
-          </span>
-          <OkHand className="mb-[0.28em] w-[clamp(1.4rem,4.5vw,3rem)] shrink-0" />
-        </div>
+      </div>
 
+      {/* wordmark — stretched edge to edge, full-bleed */}
+      <div className="relative mt-[clamp(20px,4vw,52px)] px-[clamp(10px,1.8vw,24px)]">
+        <svg
+          viewBox="0 0 1000 246"
+          className="block w-full overflow-visible"
+          role="img"
+          aria-label="Hey We Market"
+        >
+          <text
+            x="0"
+            y="184"
+            textLength="1000"
+            lengthAdjust="spacingAndGlyphs"
+            fontSize="180"
+            fontWeight="400"
+            className="fill-white font-serif"
+          >
+            Hey We Market
+          </text>
+        </svg>
+        <OkHand className="pointer-events-none absolute right-[clamp(10px,1.8vw,24px)] top-[-4%] w-[clamp(2.25rem,6vw,5rem)]" />
+      </div>
+
+      <div className="wrap pb-[clamp(48px,8vw,96px)] pt-[clamp(30px,5vw,60px)]">
         {/* socials */}
-        <ul className="mt-[clamp(36px,6vw,60px)] flex flex-wrap gap-x-7 gap-y-3">
+        <ul className="flex flex-wrap gap-x-7 gap-y-3">
           {SOCIALS.map(({ label, href, Icon }) => (
             <li key={label}>
               <a
