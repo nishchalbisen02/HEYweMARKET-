@@ -8,6 +8,7 @@ import {
 import { Reveal } from "@/components/reveal";
 import { CinematicHero } from "@/components/cinematic-hero";
 import { Showreel } from "@/components/showreel";
+import { StudioClip } from "@/components/studio-clip";
 import { Ticker } from "@/components/ticker";
 import { ClientMarquee } from "@/components/client-marquee";
 import { getClients } from "@/lib/clients";
@@ -462,6 +463,9 @@ export default function Home() {
           <Faq />
         </div>
       </section>
+
+      {/* IN THE STUDIO — ambient craft clip */}
+      <StudioClip />
 
       {/* CLIMAX CTA */}
       <section id="cta" className="section-pad relative overflow-hidden border-y-[3px] border-ink bg-night text-night-fg">
