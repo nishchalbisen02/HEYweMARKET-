@@ -7,6 +7,7 @@ import {
 } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { CinematicHero } from "@/components/cinematic-hero";
+import { Showreel } from "@/components/showreel";
 import { Ticker } from "@/components/ticker";
 import { ClientMarquee } from "@/components/client-marquee";
 import { getClients } from "@/lib/clients";
@@ -110,6 +111,7 @@ export default function Home() {
     <>
       <CinematicHero />
       <ClientMarquee clients={clients} />
+      <Showreel />
       <Ticker />
 
       {/* CH.01 — PROBLEM */}
