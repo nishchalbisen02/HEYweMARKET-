@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionTemplate } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowRight, Play } from "lucide-react";
 import { STATS } from "@/lib/site";
 import { brutalButtonClass } from "@/components/brutal-button";
@@ -20,10 +20,8 @@ export function CinematicHero() {
   }, []);
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.1]);
-  const insetPct = useTransform(scrollYProgress, [0, 0.8], [6, 0]);
-  const clip = useMotionTemplate`inset(${insetPct}% round 0px)`;
-  const mediaY = useTransform(scrollYProgress, [0, 1], [-24, 28]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1.08, 1.2]);
+  const mediaY = useTransform(scrollYProgress, [0, 1], [-14, 18]);
   const panelY = useTransform(scrollYProgress, [0, 1], [0, -80]);
   const panelOpacity = useTransform(scrollYProgress, [0.55, 0.95], [1, 0]);
 
@@ -39,7 +37,7 @@ export function CinematicHero() {
         <div className="absolute inset-0 bg-paper" />
         <motion.div
           className="absolute inset-0"
-          style={reduced ? undefined : { scale, clipPath: clip, y: mediaY, willChange: "transform" }}
+          style={reduced ? undefined : { scale, y: mediaY, willChange: "transform" }}
         >
           {reduced ? (
             /* eslint-disable-next-line @next/next/no-img-element */
@@ -60,8 +58,6 @@ export function CinematicHero() {
             </video>
           )}
         </motion.div>
-        {/* light wash so dark type stays legible over the video */}
-        <div className="absolute inset-0 bg-[rgba(246,242,250,0.4)]" />
 
         {/* content — transparent brutalist frame, video shows through */}
         <motion.div
@@ -69,7 +65,7 @@ export function CinematicHero() {
           style={reduced ? undefined : { opacity: panelOpacity }}
         >
           <motion.div
-            className="max-w-[600px] border-[3px] border-ink p-[clamp(18px,3.5vw,36px)] shadow-brutal [text-shadow:0_1px_14px_rgba(246,242,250,0.95),0_0_3px_rgba(246,242,250,0.8)]"
+            className="max-w-[600px] border-[3px] border-ink p-[clamp(18px,3.5vw,36px)] shadow-brutal [text-shadow:0_2px_18px_rgba(246,242,250,1),0_0_8px_rgba(246,242,250,0.98),0_0_3px_rgba(246,242,250,0.95)]"
             style={reduced ? undefined : { y: panelY }}
           >
             <p className="mono-label inline-block border-2 border-ink bg-card px-3 py-1.5 [text-shadow:none]">

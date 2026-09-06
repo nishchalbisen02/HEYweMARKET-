@@ -25,14 +25,14 @@ export function ClientMarquee({ clients }: { clients: Client[] }) {
         </span>
         <div className="relative flex-1 overflow-hidden">
           <div
-            className="flex w-max items-center gap-3 py-2 motion-safe:animate-[marquee_38s_linear_infinite]"
+            className="flex w-max items-center gap-4 py-2.5 motion-safe:animate-[marquee_38s_linear_infinite]"
             style={paused ? { animationPlayState: "paused" } : undefined}
           >
             {run.map((c, i) => (
               <span
                 key={i}
                 title={c.name}
-                className="grid h-[54px] w-[120px] shrink-0 place-items-center border-2 border-ink bg-white p-2.5"
+                className="flex h-[68px] w-[152px] shrink-0 items-center justify-center overflow-hidden border-2 border-ink bg-white px-4 py-3"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
