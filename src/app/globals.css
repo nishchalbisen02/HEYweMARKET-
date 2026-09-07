@@ -50,9 +50,9 @@
   --color-cyan: var(--color-lilac);  /* alias */
 
   --font-sans: var(--font-space-grotesk);
-  --font-heading: var(--font-fraunces);
+  --font-heading: var(--font-bricolage);
   --font-mono: var(--font-space-mono);
-  --font-serif: var(--font-fraunces);
+  --font-serif: var(--font-bricolage);
 
   --shadow-soft: 0 1px 2px rgba(32, 27, 43, 0.06), 0 10px 30px -12px rgba(32, 27, 43, 0.22);
   --shadow-soft-lg: 0 2px 6px rgba(32, 27, 43, 0.08), 0 26px 60px -22px rgba(32, 27, 43, 0.32);
@@ -112,16 +112,16 @@
     overflow-x: hidden;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
+    font-family: var(--font-heading), "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
     text-transform: none;
   }
   h1 {
-    font-weight: 500;
-    letter-spacing: -0.022em;
-    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
   }
   ::selection { background: var(--color-lilac); color: #201b2b; }
   :focus-visible { outline: 2px solid var(--color-warm); outline-offset: 2px; border-radius: 3px; }

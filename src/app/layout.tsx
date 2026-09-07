@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Space_Grotesk, Space_Mono, Fraunces } from "next/font/google";
+import { Space_Grotesk, Space_Mono, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { jsonLd } from "@/lib/site";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -11,10 +11,10 @@ import { SiteBackdrop } from "@/components/site-backdrop";
 import { AuditPill } from "@/components/audit-pill";
 import { WhatsappFab } from "@/components/whatsapp-fab";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 const spaceGrotesk = Space_Grotesk({
@@ -27,13 +27,6 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   subsets: ["latin"],
   weight: ["400", "700"],
-  display: "swap",
-});
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -102,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${archivo.variable} ${spaceGrotesk.variable} ${spaceMono.variable} ${fraunces.variable} antialiased`}
+      className={`${bricolage.variable} ${spaceGrotesk.variable} ${spaceMono.variable} antialiased`}
     >
       <head>
         <script

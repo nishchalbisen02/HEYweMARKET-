@@ -100,12 +100,12 @@ export function SiteFooter() {
         >
           <text
             x="0"
-            y="184"
+            y="176"
             textLength="1000"
             lengthAdjust="spacingAndGlyphs"
-            fontSize="180"
-            fontWeight="400"
-            className="fill-white font-serif"
+            fontSize="164"
+            fontWeight="700"
+            className="fill-white font-heading"
           >
             Hey We Market
           </text>
