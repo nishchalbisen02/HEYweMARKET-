@@ -60,12 +60,12 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-col gap-3 text-[15px]">
             <span className="flex items-center gap-2.5 text-white/70">
-              <MapPin className="size-[18px] shrink-0 text-[#e0a15a]" />
+              <MapPin className="size-[18px] shrink-0 text-[#a892d6]" />
               Bhopal, MP, India
             </span>
             <a
               href="mailto:bhopal@heywemarket.in"
-              className="flex items-center gap-2.5 text-[#e0a15a] underline decoration-[#e0a15a]/50 underline-offset-4 transition-colors duration-150 hover:decoration-[#e0a15a]"
+              className="flex items-center gap-2.5 text-[#a892d6] underline decoration-[#a892d6]/50 underline-offset-4 transition-colors duration-150 hover:decoration-[#a892d6]"
             >
               <Mail className="size-[18px] shrink-0" />
               bhopal@heywemarket.in

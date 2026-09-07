@@ -5,11 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
-  Hey We Market — Warm premium / Indian-modern design system.
-  Palette: #C0673F terracotta (primary/warm) / #8F7FC0 lavender (secondary)
-           / #F7F3EC cream bg / #2A2320 warm charcoal fg / #E3DACB hairline.
-  Serif display (Fraunces), sentence case, hairline borders, soft warm shadows,
-  gentle radii, generous whitespace. Legible for a 30–60+ audience.
+  Hey We Market — "Soffit" system. The whole site sits over one fixed animated
+  WebGL2 lavender gradient (see <SiteBackdrop/>); every colour here is pulled
+  from that shader's palette so the UI and the ground read as one thing.
+  Shader stops: #2a2436 bg / #4e4468 / #8f7fc0 / #cfc4e8 / #f5eeff.
+  Serif display (Fraunces), sentence case, hairline borders, soft shadows,
+  gentle radii, generous whitespace, translucent panels. Built to stay legible
+  for a 30–60+ audience.
 */
 
 @theme inline {
@@ -33,30 +35,29 @@
   --color-ring: var(--ring);
 
   /* named extras kept so existing utilities keep resolving */
-  --color-ink: #2a2320;          /* warm charcoal — strong text / rare emphasis frame */
-  --color-paper: #f7f3ec;        /* = background */
-  --color-night: #241f1b;        /* warm near-black for the dark contrast bands */
-  --color-night-fg: #f7f3ec;
-  --color-hairline: #e3dacb;
-  --color-warm: #c0673f;         /* terracotta accent */
+  --color-ink: #241f2e;          /* near-black plum — strong text */
+  --color-paper: #f2ecfa;        /* light lavender panel */
+  --color-night: #201b2b;        /* deep plum — dark contrast bands */
+  --color-night-fg: #f5eeff;     /* shader colorD */
+  --color-hairline: #ddd2ee;
+  --color-warm: #6d59a6;         /* primary accent (deep lavender) */
   --color-warm-fg: #ffffff;
-  --color-warm-ink: #6f3417;
-  --color-lilac: #8f7fc0;
+  --color-warm-ink: #3a2d63;
+  --color-lilac: #8f7fc0;        /* shader colorB */
   --color-orange: var(--color-warm); /* alias — Careers page still references it */
   --color-orange-ink: var(--color-warm-ink);
-  --color-pink: var(--color-lilac);  /* alias — legacy refs */
-  --color-cyan: var(--color-lilac);  /* alias — cyan retired */
+  --color-pink: var(--color-warm);   /* alias — legacy refs */
+  --color-cyan: var(--color-lilac);  /* alias */
 
   --font-sans: var(--font-space-grotesk);
   --font-heading: var(--font-fraunces);
   --font-mono: var(--font-space-mono);
   --font-serif: var(--font-fraunces);
 
-  /* soft, warm-tinted elevation — the old shadow-brutal names now resolve here */
-  --shadow-soft: 0 1px 2px rgba(42, 35, 32, 0.05), 0 10px 28px -12px rgba(42, 35, 32, 0.14);
-  --shadow-soft-lg: 0 2px 6px rgba(42, 35, 32, 0.06), 0 24px 56px -20px rgba(42, 35, 32, 0.2);
+  --shadow-soft: 0 1px 2px rgba(32, 27, 43, 0.06), 0 10px 30px -12px rgba(32, 27, 43, 0.22);
+  --shadow-soft-lg: 0 2px 6px rgba(32, 27, 43, 0.08), 0 26px 60px -22px rgba(32, 27, 43, 0.32);
   --shadow-brutal: var(--shadow-soft);
-  --shadow-brutal-sm: 0 1px 2px rgba(42, 35, 32, 0.05), 0 6px 16px -10px rgba(42, 35, 32, 0.12);
+  --shadow-brutal-sm: 0 1px 2px rgba(32, 27, 43, 0.06), 0 6px 16px -10px rgba(32, 27, 43, 0.18);
   --shadow-brutal-lg: var(--shadow-soft-lg);
   --shadow-brutal-pink: var(--shadow-soft);
 
@@ -68,24 +69,24 @@
 }
 
 :root {
-  --background: #f7f3ec;
-  --foreground: #2a2320;
-  --card: #fffdf9;
-  --card-foreground: #2a2320;
-  --popover: #fffdf9;
-  --popover-foreground: #2a2320;
-  --primary: #c0673f;
+  --background: #f4eefb;
+  --foreground: #241f2e;
+  --card: #fbf8ff;
+  --card-foreground: #241f2e;
+  --popover: #fbf8ff;
+  --popover-foreground: #241f2e;
+  --primary: #6d59a6;
   --primary-foreground: #ffffff;
   --secondary: #8f7fc0;
   --secondary-foreground: #ffffff;
-  --muted: #efe9dd;
-  --muted-foreground: #6b5f54;
+  --muted: #ece4f6;
+  --muted-foreground: #574d68;
   --accent: #8f7fc0;
   --accent-foreground: #ffffff;
   --destructive: #b4402e;
-  --border: #e3dacb;
-  --input: #d9cfbd;
-  --ring: #c0673f;
+  --border: #ddd2ee;
+  --input: #cfc1e6;
+  --ring: #6d59a6;
   --radius: 12px;
 }
 
@@ -97,9 +98,12 @@
     font-family: var(--font-sans), system-ui, sans-serif;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* the shader's own base colour — shown until <SiteBackdrop/> paints */
+    background: #2a2436;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: transparent; /* the fixed shader canvas is the ground */
     font-size: 17px;
     line-height: 1.65;
     font-variant-numeric: tabular-nums;
@@ -119,7 +123,7 @@
     letter-spacing: -0.022em;
     line-height: 1.04;
   }
-  ::selection { background: var(--color-warm); color: #fff; }
+  ::selection { background: var(--color-lilac); color: #201b2b; }
   :focus-visible { outline: 2px solid var(--color-warm); outline-offset: 2px; border-radius: 3px; }
   a { color: inherit; text-decoration: none; }
   ::placeholder { color: var(--muted-foreground); }
@@ -138,13 +142,14 @@
     padding-block: clamp(72px, 12vw, 156px);
   }
 
-  /* the standard surface — replaces the old hard-bordered .brutal-box */
+  /* the standard surface — a translucent lavender sheet so the shader shows through */
   .brutal-box,
   .panel {
-    border: 1px solid var(--border);
+    border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-soft);
-    background: var(--card);
+    background: color-mix(in srgb, var(--card) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(1.15);
   }
 }
 
@@ -173,10 +178,9 @@
     color: var(--muted-foreground);
   }
 
-  /* text highlight — a soft warm wash behind a phrase, no hard ring */
   .hl-pink,
   .hl-warm {
-    background: color-mix(in srgb, var(--color-warm) 20%, transparent);
+    background: color-mix(in srgb, var(--color-warm) 22%, transparent);
     color: var(--color-warm-ink);
     padding: 0.02em 0.18em;
     border-radius: 4px;
@@ -184,8 +188,8 @@
   }
   .hl-cyan,
   .hl-lilac {
-    background: color-mix(in srgb, var(--color-lilac) 22%, transparent);
-    color: #3f356b;
+    background: color-mix(in srgb, var(--color-lilac) 26%, transparent);
+    color: #352b57;
     padding: 0.02em 0.18em;
     border-radius: 4px;
     box-decoration-break: clone;

@@ -113,7 +113,7 @@ export function GrowthAudit() {
       ref={rootRef}
       id="aud"
       data-reveal=""
-      className="mt-[clamp(30px,5vw,50px)] border border-night-fg/20 bg-night shadow-brutal-pink"
+      className="mt-[clamp(30px,5vw,50px)] border border-night-fg/15 bg-[color-mix(in_srgb,var(--color-night)_82%,transparent)] shadow-soft-lg backdrop-blur-md"
     >
       {/* INTRO */}
       {panel === "intro" && (

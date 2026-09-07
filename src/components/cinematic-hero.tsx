@@ -1,31 +1,12 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 import { STATS } from "@/lib/site";
 import { brutalButtonClass } from "@/components/brutal-button";
-import { HeroField } from "@/components/hero-field";
 
 export function CinematicHero() {
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduced(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
-
   return (
-    <section id="hero" aria-label="Introduction" className="relative overflow-hidden border-b border-border bg-paper">
-      {/* generative, scroll-reactive backdrop */}
-      <div className="pointer-events-none absolute inset-0">
-        <HeroField reduced={reduced} />
-      </div>
-
+    <section id="hero" aria-label="Introduction" className="relative border-b border-border/60">
       <div className="wrap relative z-10 flex min-h-[calc(100svh-66px)] flex-col justify-center py-[clamp(96px,16vh,180px)]">
-        <div className="max-w-[640px] rounded-[22px] border border-border bg-background/72 p-[clamp(24px,4vw,44px)] shadow-soft-lg backdrop-blur-md">
+        <div className="max-w-[660px] rounded-[22px] border border-white/25 bg-[color-mix(in_srgb,var(--card)_66%,transparent)] p-[clamp(24px,4vw,46px)] shadow-soft-lg backdrop-blur-xl">
           <p className="mono-label">Independent &middot; 360&deg; &middot; 100% in-house</p>
           <h1 className="mt-4 max-w-[16ch] text-balance text-[clamp(2.1rem,6vw,4rem)] leading-[1.05] tracking-[-0.02em]">
             Every growth channel, run from <span className="hl-warm">one room</span>
@@ -54,7 +35,7 @@ export function CinematicHero() {
       </a>
 
       {/* stats band */}
-      <div className="relative z-10 border-t border-border bg-card">
+      <div className="relative z-10 border-t border-border/60 bg-[color-mix(in_srgb,var(--card)_80%,transparent)] backdrop-blur-md">
         <div className="wrap grid grid-cols-2 sm:grid-cols-4">
           {STATS.map((s, i) => (
             <div

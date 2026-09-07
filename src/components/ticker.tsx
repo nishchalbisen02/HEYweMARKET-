@@ -27,7 +27,7 @@ export function Ticker() {
   );
 
   return (
-    <div className="flex items-center overflow-hidden border-b border-border bg-ink text-background">
+    <div className="flex items-center overflow-hidden border-b border-border bg-[color-mix(in_srgb,var(--color-ink)_86%,transparent)] text-background backdrop-blur-md">
       <div className="flex flex-1 overflow-hidden" aria-hidden="true">
         {row}
       </div>

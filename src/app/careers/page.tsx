@@ -25,7 +25,7 @@ export default function CareersPage() {
   return (
     <div id="top">
       {/* 1 — HERO */}
-      <section aria-label="Careers introduction" className="border-b border-border bg-ink text-background">
+      <section aria-label="Careers introduction" className="border-b border-border bg-[color-mix(in_srgb,var(--color-night)_90%,transparent)] text-background">
         <div className="wrap grid gap-[clamp(28px,5vw,64px)] py-[clamp(72px,10vw,120px)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
           <Reveal className="mx-auto w-full max-w-[420px] lg:mx-0">
             <div className="border border-orange shadow-soft-lg">
@@ -103,7 +103,7 @@ export default function CareersPage() {
       </section>
 
       {/* 3 — OPPORTUNITIES */}
-      <section id="opportunities" aria-label="Opportunities" className="section-pad border-b border-border bg-muted">
+      <section id="opportunities" aria-label="Opportunities" className="section-pad border-b border-border bg-[color-mix(in_srgb,var(--muted)_72%,transparent)] backdrop-blur-md">
         <div className="wrap">
           <Reveal as="p" className="mono-label inline-block border border-border bg-card px-3 py-1.5">
             Opportunities
@@ -149,7 +149,7 @@ export default function CareersPage() {
       </section>
 
       {/* 4 — FRESHERS */}
-      <section aria-label="For freshers" className="section-pad border-b border-border bg-ink text-background">
+      <section aria-label="For freshers" className="section-pad border-b border-border bg-[color-mix(in_srgb,var(--color-night)_90%,transparent)] text-background">
         <div className="wrap grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <Reveal as="h2" className="max-w-[16ch] text-[clamp(2rem,6vw,3.8rem)]  leading-[0.95]">

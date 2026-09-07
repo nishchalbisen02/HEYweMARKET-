@@ -51,7 +51,7 @@ export function Showreel() {
     <section
       id="showreel"
       aria-label="Showreel"
-      className="border-b border-border bg-night py-[clamp(44px,7vw,88px)] text-night-fg"
+      className="border-b border-border bg-[color-mix(in_srgb,var(--color-night)_84%,transparent)] py-[clamp(44px,7vw,88px)] text-night-fg backdrop-blur-md"
     >
       <div className="wrap">
         <p className="mono-label !text-night-fg/55">Showreel</p>

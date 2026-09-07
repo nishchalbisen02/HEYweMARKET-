@@ -364,7 +364,7 @@ export default function Home() {
         </div>
 
         {/* Design & branding — auto-scrolling showcase */}
-        <div className="mt-[clamp(44px,7vw,80px)] border-y border-border bg-muted py-[clamp(28px,4.5vw,52px)]">
+        <div className="mt-[clamp(44px,7vw,80px)] border-y border-border bg-[color-mix(in_srgb,var(--muted)_70%,transparent)] backdrop-blur-md py-[clamp(28px,4.5vw,52px)]">
           <p className="mono-label wrap mb-6 flex w-fit border border-border bg-card px-3 py-1.5">
             Design &amp; branding
           </p>
@@ -377,7 +377,7 @@ export default function Home() {
       </section>
 
       {/* CH.05 — AUDIT */}
-      <section id="audit" className="section-pad border-y border-border bg-night text-night-fg">
+      <section id="audit" className="section-pad border-y border-border bg-[color-mix(in_srgb,var(--color-night)_84%,transparent)] text-night-fg backdrop-blur-md">
         <div className="wrap">
           <ChapterHead
             dark
@@ -462,16 +462,16 @@ export default function Home() {
       <StudioClip />
 
       {/* CLIMAX CTA */}
-      <section id="cta" className="section-pad relative overflow-hidden border-y border-border bg-night text-night-fg">
+      <section id="cta" className="section-pad relative overflow-hidden border-y border-border bg-[color-mix(in_srgb,var(--color-night)_84%,transparent)] text-night-fg backdrop-blur-md">
         <SkiperGooeyFilterProvider />
         <GooeyBlobs
           className="pointer-events-none absolute inset-0 z-0 [&>*]:pointer-events-auto"
           blobs={[
             { size: 110, x: -2, y: 30, color: "#8f7fc0" },
-            { size: 85, x: 3, y: 52, color: "#c0673f" },
+            { size: 85, x: 3, y: 52, color: "#6d59a6" },
             { size: 140, x: 82, y: 14, color: "#8f7fc0" },
-            { size: 95, x: 90, y: 40, color: "#c0673f" },
-            { size: 70, x: 78, y: 74, color: "#d9b7a0" },
+            { size: 95, x: 90, y: 40, color: "#6d59a6" },
+            { size: 70, x: 78, y: 74, color: "#cfc4e8" },
           ]}
         />
         <div className="wrap relative z-10">

@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react";
 
 /**
- * "Soffit" — an animated WebGL2 gradient. Plain WebGL2: one fullscreen triangle,
- * one GLSL ES 3.00 fragment shader, no libraries. Every transform happens in the
- * shader; per frame the CPU only lerps the pointer, uploads two uniforms and
- * issues one drawArrays. DPR is capped at 1. Renders a single still frame under
+ * "Soffit" — the site-wide animated WebGL2 gradient. One fixed, full-viewport
+ * fullscreen-triangle fragment shader (GLSL ES 3.00), no libraries. It sits
+ * behind every page; content scrolls over it. Per frame the CPU only lerps the
+ * pointer (two-pole follow), uploads iTime + iMouse and issues one drawArrays.
+ * The clock accumulates from a clamped frame interval so a backgrounded tab
+ * pauses instead of lurching. DPR capped at 1. Renders one still frame under
  * prefers-reduced-motion.
  */
 
@@ -181,23 +183,19 @@ function hexToVec3(hex: string): [number, number, number] {
   const h = hex.replace("#", "");
   const n = parseInt(
     h.length === 3
-      ? h
-          .split("")
-          .map((c) => c + c)
-          .join("")
+      ? h.split("").map((c) => c + c).join("")
       : h,
     16
   );
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
 }
 
-export function HeroField({ reduced = false }: { reduced?: boolean }) {
+export function SiteBackdrop() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const host = canvas?.parentElement;
-    if (!canvas || !host) return;
+    if (!canvas) return;
 
     const gl = canvas.getContext("webgl2", {
       alpha: false,
@@ -233,11 +231,10 @@ export function HeroField({ reduced = false }: { reduced?: boolean }) {
       gl.uniform3f(loc(n), c[0], c[1], c[2]);
     };
 
-    let dpr = 1;
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, CONFIG.maxDpr);
-      const w = Math.max(1, Math.round(host.clientWidth * dpr));
-      const h = Math.max(1, Math.round(host.clientHeight * dpr));
+      const dpr = Math.min(window.devicePixelRatio || 1, CONFIG.maxDpr);
+      const w = Math.max(1, Math.round(window.innerWidth * dpr));
+      const h = Math.max(1, Math.round(window.innerHeight * dpr));
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
@@ -300,8 +297,6 @@ export function HeroField({ reduced = false }: { reduced?: boolean }) {
       });
     };
     window.addEventListener("resize", onResize, { passive: true });
-    const ro = new ResizeObserver(onResize);
-    ro.observe(host);
 
     const mouse = { x: 0, y: 0, ax: 0, ay: 0, tx: 0, ty: 0, rx: 0, ry: 0, seeded: false };
     const aim = (e: PointerEvent) => {
@@ -312,20 +307,15 @@ export function HeroField({ reduced = false }: { reduced?: boolean }) {
     window.addEventListener("pointermove", aim, { passive: true });
     window.addEventListener("pointerdown", aim, { passive: true });
 
-    let visible = true;
-    const io = new IntersectionObserver((es) => (visible = es[0].isIntersecting), { threshold: 0 });
-    io.observe(host);
-
     applyConfig();
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
       return () => {
         window.removeEventListener("resize", onResize);
         window.removeEventListener("pointermove", aim);
         window.removeEventListener("pointerdown", aim);
-        ro.disconnect();
-        io.disconnect();
       };
     }
 
@@ -336,7 +326,7 @@ export function HeroField({ reduced = false }: { reduced?: boolean }) {
       raf = requestAnimationFrame(frame);
       const raw = now - prevT;
       prevT = now;
-      if (!visible || document.hidden) return;
+      if (document.hidden) return;
       const ms = raw > 50 ? 50 : raw < 4.167 ? 4.167 : raw;
       const s = ms > 36.7 ? 2.2 : ms * 0.06;
       clock += ms * 0.001;
@@ -368,10 +358,14 @@ export function HeroField({ reduced = false }: { reduced?: boolean }) {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", aim);
       window.removeEventListener("pointerdown", aim);
-      ro.disconnect();
-      io.disconnect();
     };
-  }, [reduced]);
+  }, []);
 
-  return <canvas ref={canvasRef} aria-hidden className="absolute inset-0 block size-full" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 -z-10 block h-[100dvh] w-screen"
+    />
+  );
 }

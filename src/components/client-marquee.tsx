@@ -17,7 +17,7 @@ export function ClientMarquee({ clients }: { clients: Client[] }) {
   return (
     <section
       aria-label="Clients"
-      className="overflow-hidden border-b border-border bg-card"
+      className="overflow-hidden border-b border-border bg-[color-mix(in_srgb,var(--card)_76%,transparent)] backdrop-blur-md"
     >
       <div className="wrap flex items-center gap-4 py-3">
         <span className="shrink-0 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">

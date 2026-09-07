@@ -7,6 +7,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { RevealObserver } from "@/components/reveal-observer";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteBackdrop } from "@/components/site-backdrop";
 import { AuditPill } from "@/components/audit-pill";
 import { WhatsappFab } from "@/components/whatsapp-fab";
 
@@ -93,7 +94,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#f6f2fa",
+  themeColor: "#2a2436",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -110,9 +111,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="flex min-h-svh flex-col">
+        <SiteBackdrop />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[1000] focus:border focus:border-background focus:bg-ink focus:px-4 focus:py-3 focus:font-mono focus:text-[13px] focus:uppercase focus:text-background"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[1000] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-3 focus:font-mono focus:text-[13px] focus:text-background"
         >
           Skip to content
         </a>
