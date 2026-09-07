@@ -25,7 +25,7 @@ export function CinematicHero() {
       </div>
 
       <div className="wrap relative z-10 flex min-h-[calc(100svh-66px)] flex-col justify-center py-[clamp(90px,16vh,180px)]">
-        <div className="max-w-[600px] border-[3px] border-ink bg-paper/60 p-[clamp(18px,3.5vw,36px)] shadow-brutal backdrop-blur-[3px] [text-shadow:0_1px_10px_rgba(246,242,250,0.9)]">
+        <div className="max-w-[600px] border-[3px] border-ink bg-paper/78 p-[clamp(18px,3.5vw,36px)] shadow-brutal backdrop-blur-[4px] [text-shadow:0_1px_10px_rgba(246,242,250,0.9)]">
           <p className="mono-label inline-block border-2 border-ink bg-card px-3 py-1.5 [text-shadow:none]">
             Independent // 360&deg; // 100% In-House
           </p>
