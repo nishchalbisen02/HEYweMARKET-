@@ -47,37 +47,40 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-[100] border-b-[3px] border-ink bg-background transition-shadow duration-150",
-          scrolled && "shadow-[0_6px_0_rgba(15,23,42,0.14)]"
+          "fixed inset-x-0 top-0 z-[100] border-b border-border bg-background/80 backdrop-blur-md transition-shadow duration-200",
+          scrolled && "shadow-soft"
         )}
       >
         <div className="wrap flex h-[66px] items-center justify-between gap-4">
           <SiteLogo />
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
             {NAV.map((n) => (
               <a
                 key={n.href}
                 href={n.href}
                 className={cn(
-                  "border-2 border-transparent px-2.5 py-2 font-mono text-[12.5px] font-bold uppercase tracking-[0.06em] transition-colors duration-150 hover:border-ink hover:bg-primary hover:text-primary-foreground",
-                  active === n.href.slice(1) && "border-ink bg-primary text-primary-foreground"
+                  "text-[14px] font-medium text-foreground/70 transition-colors duration-150 hover:text-primary",
+                  active === n.href.slice(1) && "text-primary"
                 )}
               >
                 {n.label}
               </a>
             ))}
-            <a href="#contact" className="ml-1.5 inline-flex items-center gap-2 border-2 border-ink bg-ink px-3 py-2 font-mono text-[12.5px] font-bold uppercase tracking-[0.06em] text-background transition-colors duration-150 hover:bg-accent hover:text-accent-foreground">
+            <a
+              href="#contact"
+              className={brutalButtonClass("primary", "min-h-0 rounded-full px-4 py-2 text-[13px]")}
+            >
               Start a project <ArrowRight className="size-3.5" />
             </a>
           </nav>
           <button
-            className="grid size-12 place-items-center border-[3px] border-ink bg-card lg:hidden"
+            className="grid size-11 place-items-center rounded-lg border border-input bg-card lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <X className="size-6" strokeWidth={3} /> : <Menu className="size-6" strokeWidth={3} />}
+            {open ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
         </div>
       </header>
@@ -86,7 +89,7 @@ export function SiteHeader() {
         id="mobile-nav"
         aria-label="Mobile"
         className={cn(
-          "fixed inset-x-0 bottom-0 top-[66px] z-[110] flex flex-col overflow-y-auto border-t-[3px] border-ink bg-background p-[clamp(16px,5vw,64px)] transition-transform duration-200 lg:hidden",
+          "fixed inset-x-0 bottom-0 top-[66px] z-[110] flex flex-col overflow-y-auto border-t border-border bg-background p-[clamp(20px,7vw,56px)] transition-transform duration-300 lg:hidden",
           open ? "translate-x-0" : "invisible translate-x-full"
         )}
       >
@@ -96,8 +99,8 @@ export function SiteHeader() {
             href={n.href}
             onClick={() => setOpen(false)}
             className={cn(
-              "border-b-2 border-ink py-[18px] font-heading text-[clamp(1.4rem,7vw,2.2rem)] font-extrabold uppercase",
-              i === 0 && "border-t-2"
+              "border-b border-border py-5 font-heading text-[clamp(1.6rem,7vw,2.4rem)] font-normal tracking-[-0.01em]",
+              i === 0 && "border-t"
             )}
           >
             {n.label}
@@ -106,7 +109,7 @@ export function SiteHeader() {
         <a
           href="#contact"
           onClick={() => setOpen(false)}
-          className={brutalButtonClass("primary", "mt-6 w-full")}
+          className={brutalButtonClass("primary", "mt-8 w-full")}
         >
           Start a project <ArrowRight />
         </a>

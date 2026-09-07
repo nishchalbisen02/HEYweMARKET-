@@ -35,13 +35,13 @@ export function StudioClip() {
   }, [reduced]);
 
   return (
-    <section id="studio" aria-label="In the studio" className="section-pad border-t-[3px] border-ink">
+    <section id="studio" aria-label="In the studio" className="section-pad border-t border-border">
       <div className="wrap">
-        <p className="mono-label inline-block border-2 border-ink bg-card px-3 py-1.5" data-reveal="">
+        <p className="mono-label" data-reveal="">
           In the studio
         </p>
         <h2
-          className="mb-[clamp(20px,3vw,36px)] mt-4 max-w-[20ch] text-balance text-[clamp(1.7rem,5vw,3rem)] font-extrabold uppercase"
+          className="mb-[clamp(20px,3vw,36px)] mt-4 max-w-[20ch] text-balance text-[clamp(1.7rem,5vw,3rem)] "
           data-reveal=""
           data-delay="1"
         >
@@ -50,7 +50,7 @@ export function StudioClip() {
 
         <div
           ref={wrapRef}
-          className="relative aspect-video w-full overflow-hidden border-[3px] border-ink shadow-brutal"
+          className="relative aspect-video w-full overflow-hidden rounded-xl border border-border shadow-soft-lg"
           data-reveal=""
           data-delay="2"
         >

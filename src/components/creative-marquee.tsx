@@ -24,7 +24,7 @@ export function CreativeMarquee({ items }: { items: CreativeItem[] }) {
           {run.map((it, i) => (
             <li
               key={i}
-              className="relative h-[clamp(220px,42vw,430px)] shrink-0 overflow-hidden border-[3px] border-ink bg-card shadow-brutal"
+              className="relative h-[clamp(220px,42vw,430px)] shrink-0 overflow-hidden border border-border bg-card shadow-brutal"
               style={{ aspectRatio: it.ratio }}
               aria-hidden={i >= items.length ? true : undefined}
             >
@@ -38,7 +38,7 @@ export function CreativeMarquee({ items }: { items: CreativeItem[] }) {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               </picture>
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 border-t-[3px] border-ink bg-ink px-3 py-2 text-background">
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 border-t border-border bg-ink px-3 py-2 text-background">
                 <span className="truncate font-mono text-[10px] font-bold uppercase tracking-[0.08em]">
                   {it.title}
                 </span>
@@ -54,7 +54,7 @@ export function CreativeMarquee({ items }: { items: CreativeItem[] }) {
         <button
           onClick={() => setPaused((v) => !v)}
           aria-label={paused ? "Resume loop" : "Pause loop"}
-          className="border-2 border-ink px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.06em] transition-colors duration-150 hover:bg-ink hover:text-background"
+          className="border border-border px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.06em] transition-colors duration-150 hover:bg-ink hover:text-background"
         >
           {paused ? "Play loop" : "Pause loop"}
         </button>

@@ -51,17 +51,17 @@ export function Showreel() {
     <section
       id="showreel"
       aria-label="Showreel"
-      className="border-b-[3px] border-ink bg-night py-[clamp(44px,7vw,88px)] text-night-fg"
+      className="border-b border-border bg-night py-[clamp(44px,7vw,88px)] text-night-fg"
     >
       <div className="wrap">
-        <p className="mono-label text-night-fg/55">Showreel</p>
-        <h2 className="mb-[clamp(20px,3vw,32px)] mt-3 max-w-[18ch] text-balance text-[clamp(1.7rem,5vw,3.2rem)] font-extrabold uppercase">
+        <p className="mono-label !text-night-fg/55">Showreel</p>
+        <h2 className="mb-[clamp(20px,3vw,32px)] mt-3 max-w-[18ch] text-balance text-[clamp(1.7rem,5vw,3.2rem)] ">
           Watch the work
         </h2>
 
         <div
           ref={wrapRef}
-          className="relative aspect-video w-full overflow-hidden border-[3px] border-night-fg shadow-brutal-pink"
+          className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/12 shadow-soft-lg"
         >
           {reduced ? (
             <video
@@ -95,7 +95,7 @@ export function Showreel() {
                   type="button"
                   onClick={togglePlay}
                   aria-label={playing ? "Pause showreel" : "Play showreel"}
-                  className="grid size-11 place-items-center border-[3px] border-ink bg-background text-foreground shadow-brutal-sm transition-transform duration-150 hover:scale-95 sm:size-12"
+                  className="grid size-11 place-items-center rounded-lg border border-white/20 bg-background text-foreground shadow-brutal-sm transition-transform duration-150 hover:scale-95 sm:size-12"
                 >
                   {playing ? (
                     <Pause className="size-4 fill-current sm:size-5" />
@@ -108,7 +108,7 @@ export function Showreel() {
                   onClick={toggleMute}
                   aria-label={muted ? "Unmute showreel" : "Mute showreel"}
                   aria-pressed={!muted}
-                  className="grid size-11 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-brutal-sm transition-transform duration-150 hover:scale-95 sm:size-12"
+                  className="grid size-11 place-items-center rounded-lg border border-white/20 bg-primary text-primary-foreground shadow-brutal-sm transition-transform duration-150 hover:scale-95 sm:size-12"
                 >
                   {muted ? (
                     <VolumeX className="size-4 sm:size-5" />

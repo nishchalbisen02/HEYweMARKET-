@@ -32,7 +32,7 @@ function MediaTile({ item, idx }: { item: WorkMedia; idx: number }) {
   const showVideo = item.kind === "video" && !reduced;
 
   return (
-    <div ref={wrap} className="group relative aspect-[3/4] overflow-hidden border-[3px] border-ink shadow-brutal">
+    <div ref={wrap} className="group relative aspect-[3/4] overflow-hidden border border-border shadow-brutal">
       {showVideo ? (
         <video
           ref={video}
@@ -57,7 +57,7 @@ function MediaTile({ item, idx }: { item: WorkMedia; idx: number }) {
         />
       )}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 border-t-2 border-background bg-ink px-3.5 py-3 text-background">
-        <b className="font-heading text-[13px] font-extrabold uppercase leading-[1.1]">{item.title}</b>
+        <b className="font-heading text-[13px]  leading-[1.1]">{item.title}</b>
         <span className="shrink-0 font-mono text-[9px] font-bold uppercase tracking-[0.06em] text-primary">
           {String(idx + 1).padStart(2, "0")} / {item.tag}
         </span>

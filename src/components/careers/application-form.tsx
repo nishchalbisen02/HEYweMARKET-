@@ -23,7 +23,7 @@ type Status = "idle" | "submitting" | "success" | "error";
 type Errors = Partial<Record<keyof ApplicationFields | "resume" | "samples", string>>;
 
 const inputBase =
-  "w-full border-2 border-ink bg-white px-3.5 py-2.5 text-[15px] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange focus-visible:ring-offset-2 focus-visible:ring-offset-card aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-500/40";
+  "w-full border border-border bg-white px-3.5 py-2.5 text-[15px] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange focus-visible:ring-offset-2 focus-visible:ring-offset-card aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-500/40";
 const labelBase = "mono-label mb-1.5 block text-[11px] text-foreground";
 
 function fileError(file: File | null, mimes: string[], max: number, label: string, required: boolean) {
@@ -121,14 +121,14 @@ export function ApplicationForm() {
 
   if (status === "success") {
     return (
-      <div className="brutal-box border-[3px] p-8 text-center sm:p-14" data-reveal="">
-        <span className="mx-auto grid size-16 place-items-center border-[3px] border-ink bg-orange text-ink">
+      <div className="brutal-box p-8 text-center sm:p-14" data-reveal="">
+        <span className="mx-auto grid size-16 place-items-center border border-border bg-orange text-ink">
           <Check className="size-9" strokeWidth={3} />
         </span>
         <h3
           ref={successRef}
           tabIndex={-1}
-          className="mt-6 text-[clamp(1.6rem,4vw,2.4rem)] font-extrabold uppercase outline-none"
+          className="mt-6 text-[clamp(1.6rem,4vw,2.4rem)]  outline-none"
         >
           Application Received <span className="text-orange">✓</span>
         </h3>
@@ -138,7 +138,7 @@ export function ApplicationForm() {
         <a
           href="#top"
           onClick={() => setStatus("idle")}
-          className="mt-7 inline-flex items-center gap-2 border-[3px] border-ink bg-card px-6 py-3.5 font-heading text-[14px] font-extrabold uppercase tracking-[0.02em] shadow-brutal transition-transform duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm"
+          className="mt-7 inline-flex items-center gap-2 border border-border bg-card px-6 py-3.5 font-heading text-[14px]  tracking-[0.02em] shadow-brutal transition-transform duration-150 hover:-translate-y-[2px] hover:shadow-soft-lg"
         >
           Back to Careers
         </a>
@@ -268,7 +268,7 @@ export function ApplicationForm() {
 
       <div aria-live="polite" className="min-h-[1.25rem]">
         {formError && (
-          <p className="border-2 border-red-600 bg-red-50 px-4 py-3 text-[14px] font-medium text-red-800">
+          <p className="border border-red-600 bg-red-50 px-4 py-3 text-[14px] font-medium text-red-800">
             {formError}
           </p>
         )}
@@ -277,7 +277,7 @@ export function ApplicationForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center justify-center gap-2.5 border-[3px] border-ink bg-orange px-8 py-4 font-heading text-[15px] font-extrabold uppercase tracking-[0.02em] text-ink shadow-brutal transition-transform duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm active:translate-x-[6px] active:translate-y-[6px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-70"
+        className="inline-flex items-center justify-center gap-2.5 border border-border bg-orange px-8 py-4 font-heading text-[15px]  tracking-[0.02em] text-ink shadow-brutal transition-transform duration-150 hover:-translate-y-[2px] hover:shadow-soft-lg disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "submitting" ? (
           <>
@@ -318,8 +318,8 @@ function bind(
 
 function Group({ title, hint, children }: { title: string; hint?: string; children: ReactNode }) {
   return (
-    <fieldset className="grid gap-4 border-[3px] border-ink bg-card p-5 shadow-brutal-sm sm:p-7">
-      <legend className="mono-label -mx-1 border-2 border-ink bg-ink px-3 py-1 text-[11px] text-background">
+    <fieldset className="grid gap-4 border border-border bg-card p-5 shadow-brutal-sm sm:p-7">
+      <legend className="mono-label -mx-1 border border-border bg-ink px-3 py-1 text-[11px] text-background">
         {title}
       </legend>
       {hint && <p className="-mt-1 text-[13px] text-muted-foreground">{hint}</p>}
@@ -385,7 +385,7 @@ function FileZone({
       </span>
 
       {file ? (
-        <div className="flex items-center gap-3 border-2 border-ink bg-white p-3">
+        <div className="flex items-center gap-3 border border-border bg-white p-3">
           <FileText className="size-6 shrink-0 text-orange" />
           <span className="min-w-0 flex-1">
             <span className="block truncate text-[14px] font-semibold">{file.name}</span>
@@ -395,7 +395,7 @@ function FileZone({
             type="button"
             onClick={() => onFile(null)}
             aria-label={`Remove ${label}`}
-            className="grid size-8 shrink-0 place-items-center border-2 border-ink bg-card transition-colors hover:bg-ink hover:text-background"
+            className="grid size-8 shrink-0 place-items-center border border-border bg-card transition-colors hover:bg-ink hover:text-background"
           >
             <X className="size-4" />
           </button>
@@ -415,7 +415,7 @@ function FileZone({
             if (f) onFile(f);
           }}
           className={
-            "flex cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed border-ink px-4 py-8 text-center transition-colors " +
+            "flex cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed border-input px-4 py-8 text-center transition-colors " +
             (drag ? "bg-orange/15" : "bg-white hover:bg-muted")
           }
         >

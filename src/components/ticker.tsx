@@ -18,7 +18,7 @@ export function Ticker() {
       {[...TICKER_ITEMS, ...TICKER_ITEMS].map((t, i) => (
         <span
           key={i}
-          className="flex items-center gap-[52px] px-[26px] font-mono text-[14px] font-bold uppercase tracking-[0.1em] after:font-bold after:text-primary after:content-['/']"
+          className="flex items-center gap-[52px] px-[26px] font-mono text-[14px] font-medium uppercase tracking-[0.14em] after:font-bold after:text-primary after:content-['/']"
         >
           {t}
         </span>
@@ -27,14 +27,14 @@ export function Ticker() {
   );
 
   return (
-    <div className="flex items-center overflow-hidden border-b-[3px] border-ink bg-ink text-background">
+    <div className="flex items-center overflow-hidden border-b border-border bg-ink text-background">
       <div className="flex flex-1 overflow-hidden" aria-hidden="true">
         {row}
       </div>
       <button
         onClick={() => setPaused((v) => !v)}
         aria-label={paused ? "Resume scrolling text" : "Pause scrolling text"}
-        className="shrink-0 self-stretch border-l-[3px] border-background bg-primary px-4 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-primary-foreground"
+        className="shrink-0 self-stretch border-l border-background/40 bg-primary px-4 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-primary-foreground"
       >
         {paused ? "Play" : "Pause"}
       </button>

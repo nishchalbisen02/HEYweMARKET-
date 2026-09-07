@@ -34,21 +34,15 @@ function ChapterHead({
   dark?: boolean;
 }) {
   return (
-    <div className="mb-[clamp(36px,6vw,72px)] flex flex-col gap-[22px]">
-      <Reveal
-        as="p"
-        className={
-          "mono-label inline-block w-fit border-2 px-3 py-1.5 " +
-          (dark ? "border-night-fg/50 text-night-fg" : "border-ink bg-card text-foreground")
-        }
-      >
+    <div className="mb-[clamp(36px,6vw,72px)] flex flex-col gap-5">
+      <Reveal as="p" className={"mono-label " + (dark ? "!text-night-fg/60" : "")}>
         {kicker}
       </Reveal>
       <Reveal
         as="h2"
         delay={1}
         className={
-          "max-w-[16ch] text-balance text-[clamp(2rem,6.4vw,4.6rem)] font-extrabold uppercase " +
+          "max-w-[18ch] text-balance text-[clamp(2rem,5.6vw,4rem)] leading-[1.06] " +
           (dark ? "text-night-fg" : "")
         }
       >
@@ -59,8 +53,8 @@ function ChapterHead({
           as="p"
           delay={2}
           className={
-            "max-w-[60ch] text-[clamp(1rem,1.6vw,1.2rem)] font-medium leading-[1.6] " +
-            (dark ? "text-night-fg/70" : "text-foreground")
+            "max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.22rem)] leading-relaxed " +
+            (dark ? "text-night-fg/72" : "text-foreground/85")
           }
         >
           {lead}
@@ -72,12 +66,12 @@ function ChapterHead({
 
 function MiniLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Reveal as="p" className="mt-[clamp(28px,4vw,44px)]">
+    <Reveal as="p" className="mt-[clamp(28px,4vw,48px)]">
       <a
         href={href}
-        className="group inline-flex items-center gap-2.5 border-b-[3px] border-ink pb-1 font-mono text-[14px] font-bold uppercase tracking-[0.08em] transition-[gap,background-color] duration-150 hover:gap-4 hover:bg-primary"
+        className="group inline-flex items-center gap-2 text-[15px] font-semibold text-primary transition-[gap] duration-200 hover:gap-3"
       >
-        {children} <ArrowRight className="size-4.5" />
+        {children} <ArrowRight className="size-[18px]" />
       </a>
     </Reveal>
   );
@@ -96,8 +90,8 @@ function AnswerBlock({
 }) {
   return (
     <Reveal className={"mt-[clamp(26px,4vw,40px)] " + (wide ? "max-w-none" : "max-w-[70ch]")} delay={delay}>
-      <h3 className="mb-3 text-[clamp(1.15rem,2.2vw,1.6rem)] font-normal normal-case tracking-[-0.01em]">{q}</h3>
-      <div className="font-normal leading-[1.7] [&_b]:bg-muted [&_b]:shadow-[0_0_0_2px_var(--color-muted)]">
+      <h3 className="mb-3 text-[clamp(1.25rem,2.2vw,1.7rem)] tracking-[-0.01em]">{q}</h3>
+      <div className="text-[1.05rem] leading-[1.75] text-foreground/85 [&_b]:box-decoration-clone [&_b]:rounded [&_b]:bg-[color-mix(in_srgb,var(--color-warm)_15%,transparent)] [&_b]:px-[0.15em] [&_b]:font-semibold [&_b]:text-[var(--color-warm-ink)]">
         {children}
       </div>
     </Reveal>
@@ -125,7 +119,7 @@ export default function Home() {
           />
           <div className="mt-2 grid gap-[clamp(16px,3vw,28px)] md:grid-cols-2">
             <Reveal className="brutal-box p-[clamp(20px,3vw,32px)]">
-              <h3 className="mb-4 border-b-[3px] border-current pb-3.5 text-[clamp(1rem,2vw,1.35rem)] font-extrabold uppercase">
+              <h3 className="mb-4 border-b border-current pb-3.5 text-[clamp(1rem,2vw,1.35rem)] ">
                 Before Hey We Market
               </h3>
               <ul className="flex flex-col gap-3">
@@ -144,7 +138,7 @@ export default function Home() {
               </ul>
             </Reveal>
             <Reveal delay={1} className="brutal-box bg-primary p-[clamp(20px,3vw,32px)] text-primary-foreground">
-              <h3 className="mb-4 border-b-[3px] border-current pb-3.5 text-[clamp(1rem,2vw,1.35rem)] font-extrabold uppercase">
+              <h3 className="mb-4 border-b border-current pb-3.5 text-[clamp(1rem,2vw,1.35rem)] ">
                 After Hey We Market
               </h3>
               <ul className="flex flex-col gap-3">
@@ -168,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* CH.02 — APPROACH */}
-      <section id="approach" className="section-pad border-t-[3px] border-ink">
+      <section id="approach" className="section-pad border-t border-border">
         <div className="wrap">
           <ChapterHead
             kicker="Chapter 02 — What 360° Actually Means"
@@ -206,14 +200,14 @@ export default function Home() {
             <p className="max-w-[62ch]">
               Short answer: most businesses need both, in different proportions. Here&rsquo;s how they actually differ.
             </p>
-            <div className="mt-7 overflow-x-auto border-[3px] border-ink bg-card shadow-brutal">
+            <div className="mt-7 overflow-x-auto border border-border bg-card shadow-brutal">
               <table className="w-full min-w-[640px] border-collapse text-[14px]">
                 <thead>
                   <tr>
                     {["Factor", "Google Ads", "Meta Ads (FB & Instagram)"].map((h) => (
                       <th
                         key={h}
-                        className="border-b-2 border-ink bg-ink px-4 py-3.5 text-left font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-background"
+                        className="border-b border-border bg-ink px-4 py-3.5 text-left font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-background"
                       >
                         {h}
                       </th>
@@ -231,11 +225,11 @@ export default function Home() {
                     ["Typical starting split", "~60% of budget", "~40% of budget"],
                   ].map((row, ri) => (
                     <tr key={ri} className="last:[&_td]:border-b-0 last:[&_th]:border-b-0">
-                      <th className="w-[22%] border-b-2 border-ink bg-muted px-4 py-3.5 text-left align-top font-heading text-[12px] font-bold uppercase tracking-[0.02em]">
+                      <th className="w-[22%] border-b border-border bg-muted px-4 py-3.5 text-left align-top font-heading text-[12px] font-bold uppercase tracking-[0.02em]">
                         {row[0]}
                       </th>
-                      <td className="border-b-2 border-ink px-4 py-3.5 align-top font-normal leading-snug">{row[1]}</td>
-                      <td className="border-b-2 border-ink px-4 py-3.5 align-top font-normal leading-snug">{row[2]}</td>
+                      <td className="border-b border-border px-4 py-3.5 align-top font-normal leading-snug">{row[1]}</td>
+                      <td className="border-b border-border px-4 py-3.5 align-top font-normal leading-snug">{row[2]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -251,7 +245,7 @@ export default function Home() {
                 ["16%", "of local ranking weight sits in review signals alone — quantity, velocity, diversity and sentiment.", "Local ranking factor studies, 2026"],
               ].map(([n, p, s]) => (
                 <div key={n} className="brutal-box shadow-brutal-sm p-5">
-                  <b className="block font-heading text-[clamp(2rem,4vw,2.8rem)] font-black leading-none text-primary [-webkit-text-stroke:1.5px_var(--color-ink)]">
+                  <b className="block font-heading text-[clamp(2rem,4vw,2.8rem)] font-semibold leading-none text-primary ">
                     {n}
                   </b>
                   <p className="mt-3 text-[14px] font-normal leading-snug">{p}</p>
@@ -280,7 +274,7 @@ export default function Home() {
       </section>
 
       {/* CH.03 — SERVICES */}
-      <section id="services" className="section-pad border-t-[3px] border-ink">
+      <section id="services" className="section-pad border-t border-border">
         <div className="wrap">
           <ChapterHead
             kicker="Chapter 03 — Everything Under One Roof"
@@ -292,15 +286,15 @@ export default function Home() {
               <Reveal key={g.key} className="brutal-box">
                 <div className="flex items-baseline gap-3.5 bg-ink px-[clamp(16px,2.5vw,28px)] py-4 text-background">
                   <span className="font-mono text-[12px] font-bold text-primary">{g.key}</span>
-                  <h3 className="text-[clamp(1.1rem,2.4vw,1.8rem)] font-extrabold uppercase">{g.name}</h3>
+                  <h3 className="text-[clamp(1.1rem,2.4vw,1.8rem)] ">{g.name}</h3>
                 </div>
                 {g.services.map((s) => (
                   <div
                     key={s.idx}
-                    className="grid gap-[clamp(14px,3vw,36px)] border-t-2 border-ink px-[clamp(16px,2.5vw,28px)] py-[clamp(20px,3vw,30px)] md:grid-cols-[56px_1.1fr_1.6fr]"
+                    className="grid gap-[clamp(14px,3vw,36px)] border-t border-border px-[clamp(16px,2.5vw,28px)] py-[clamp(20px,3vw,30px)] md:grid-cols-[56px_1.1fr_1.6fr]"
                   >
                     <div className="font-mono text-[14px] font-bold text-muted-foreground">{s.idx}</div>
-                    <h4 className="text-[clamp(1rem,1.9vw,1.35rem)] font-extrabold uppercase leading-[1.15]">
+                    <h4 className="text-[clamp(1rem,1.9vw,1.35rem)]  leading-[1.15]">
                       {s.title}{" "}
                       <span className="hl-pink box-decoration-clone">{s.underline}</span>
                     </h4>
@@ -310,7 +304,7 @@ export default function Home() {
                         {s.tags.map((t) => (
                           <span
                             key={t}
-                            className="border-2 border-ink bg-muted px-2.5 py-[5px] font-mono text-[10.5px] uppercase tracking-[0.04em]"
+                            className="border border-border bg-muted px-2.5 py-[5px] font-mono text-[10.5px] uppercase tracking-[0.04em]"
                           >
                             {t}
                           </span>
@@ -327,7 +321,7 @@ export default function Home() {
       </section>
 
       {/* CH.04 — WORK */}
-      <section id="work" className="section-pad border-t-[3px] border-ink">
+      <section id="work" className="section-pad border-t border-border">
         <div className="wrap">
           <ChapterHead
             kicker="Chapter 04 — Campaigns That Delivered Numbers"
@@ -338,16 +332,16 @@ export default function Home() {
               <a
                 key={c.title}
                 href="#contact"
-                className="group grid items-center gap-[clamp(14px,3vw,32px)] border-t-2 border-ink px-[clamp(16px,2.5vw,28px)] py-[clamp(20px,3vw,30px)] transition-colors duration-150 first:border-t-0 hover:bg-muted lg:grid-cols-[minmax(0,180px)_minmax(0,1fr)_minmax(0,280px)_44px]"
+                className="group grid items-center gap-[clamp(14px,3vw,32px)] border-t border-border px-[clamp(16px,2.5vw,28px)] py-[clamp(20px,3vw,30px)] transition-colors duration-150 first:border-t-0 hover:bg-muted lg:grid-cols-[minmax(0,180px)_minmax(0,1fr)_minmax(0,280px)_44px]"
               >
                 <span className="font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-accent">{c.cat}</span>
-                <h3 className="text-[clamp(1.05rem,2.1vw,1.5rem)] font-normal normal-case leading-[1.15] tracking-[-0.01em]">
+                <h3 className="text-[clamp(1.05rem,2.1vw,1.5rem)] font-normal leading-[1.15] tracking-[-0.01em]">
                   {c.title}
                 </h3>
                 <span className="flex gap-5">
                   {c.metrics.map((m) => (
                     <span key={m.l}>
-                      <b className="block font-heading text-[1.5rem] font-black leading-none text-primary [-webkit-text-stroke:1px_var(--color-ink)]">
+                      <b className="block font-heading text-[1.5rem] font-semibold leading-none text-primary ">
                         {m.v}
                       </b>
                       <small className="font-mono text-[9.5px] uppercase tracking-[0.03em] text-muted-foreground">{m.l}</small>
@@ -361,7 +355,7 @@ export default function Home() {
             ))}
           </Reveal>
           <p
-            className="mono-label mb-6 mt-[clamp(40px,6vw,64px)] inline-block border-2 border-ink bg-card px-3 py-1.5"
+            className="mono-label mb-6 mt-[clamp(40px,6vw,64px)] inline-block border border-border bg-card px-3 py-1.5"
             data-reveal=""
           >
             Selected reels
@@ -370,8 +364,8 @@ export default function Home() {
         </div>
 
         {/* Design & branding — auto-scrolling showcase */}
-        <div className="mt-[clamp(44px,7vw,80px)] border-y-[3px] border-ink bg-muted py-[clamp(28px,4.5vw,52px)]">
-          <p className="mono-label wrap mb-6 flex w-fit border-2 border-ink bg-card px-3 py-1.5">
+        <div className="mt-[clamp(44px,7vw,80px)] border-y border-border bg-muted py-[clamp(28px,4.5vw,52px)]">
+          <p className="mono-label wrap mb-6 flex w-fit border border-border bg-card px-3 py-1.5">
             Design &amp; branding
           </p>
           <CreativeMarquee items={creative} />
@@ -383,7 +377,7 @@ export default function Home() {
       </section>
 
       {/* CH.05 — AUDIT */}
-      <section id="audit" className="section-pad border-y-[3px] border-ink bg-night text-night-fg">
+      <section id="audit" className="section-pad border-y border-border bg-night text-night-fg">
         <div className="wrap">
           <ChapterHead
             dark
@@ -402,7 +396,7 @@ export default function Home() {
       </section>
 
       {/* CH.06 — METHOD */}
-      <section id="process" className="section-pad border-t-[3px] border-ink">
+      <section id="process" className="section-pad border-t border-border">
         <div className="wrap">
           <ChapterHead kicker="Chapter 06 — Simple Process, Powerful Results" title="Five steps. No mystery." />
           <ProcessAccordion />
@@ -414,14 +408,14 @@ export default function Home() {
                 <div
                   key={w.n}
                   className={
-                    "border-ink p-[clamp(20px,3vw,30px)] " +
-                    "border-t-2 sm:[&:nth-child(-n+2)]:border-t-0 lg:[&:nth-child(-n+3)]:border-t-0 " +
-                    "sm:border-l-2 sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(3n+1)]:border-l-0 " +
+                    "border-border p-[clamp(22px,3vw,32px)] " +
+                    "border-t sm:[&:nth-child(-n+2)]:border-t-0 lg:[&:nth-child(-n+3)]:border-t-0 " +
+                    "sm:border-l sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(3n+1)]:border-l-0 " +
                     (i === 0 ? "border-t-0" : "")
                   }
                 >
                   <span className="mb-3 block font-mono text-[13px] font-bold text-primary">{w.n}</span>
-                  <h3 className="mb-2 text-[clamp(1rem,1.9vw,1.3rem)] font-extrabold uppercase tracking-[-0.01em]">{w.title}</h3>
+                  <h3 className="mb-2 text-[clamp(1rem,1.9vw,1.3rem)]  tracking-[-0.01em]">{w.title}</h3>
                   <p className="text-[14px] font-normal leading-[1.6] text-muted-foreground">{w.body}</p>
                 </div>
               ))}
@@ -433,7 +427,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section id="testi" className="section-pad border-t-[3px] border-ink">
+      <section id="testi" className="section-pad border-t border-border">
         <div className="wrap">
           <ChapterHead kicker="In Their Words" title="Real words. Real results." />
           <div className="grid gap-[clamp(16px,2.5vw,24px)] md:grid-cols-3">
@@ -444,10 +438,10 @@ export default function Home() {
                     <Star key={k} className="size-4.5 fill-primary stroke-ink" strokeWidth={1.5} />
                   ))}
                 </div>
-                <p className="flex-1 font-heading text-[clamp(1rem,1.8vw,1.2rem)] font-bold normal-case leading-[1.3] tracking-[-0.01em]">
+                <p className="flex-1 font-heading text-[clamp(1rem,1.8vw,1.2rem)] font-bold leading-[1.3] tracking-[-0.01em]">
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <small className="mt-5 border-t-2 border-ink pt-4 font-mono text-[10.5px] uppercase tracking-[0.05em] text-muted-foreground">
+                <small className="mt-5 border-t border-border pt-4 font-mono text-[10.5px] uppercase tracking-[0.05em] text-muted-foreground">
                   {t.who}
                 </small>
               </Reveal>
@@ -457,7 +451,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="section-pad border-t-[3px] border-ink">
+      <section id="faq" className="section-pad border-t border-border">
         <div className="wrap-narrow">
           <ChapterHead kicker="FAQ" title="Questions, answered properly" />
           <Faq />
@@ -468,29 +462,29 @@ export default function Home() {
       <StudioClip />
 
       {/* CLIMAX CTA */}
-      <section id="cta" className="section-pad relative overflow-hidden border-y-[3px] border-ink bg-night text-night-fg">
+      <section id="cta" className="section-pad relative overflow-hidden border-y border-border bg-night text-night-fg">
         <SkiperGooeyFilterProvider />
         <GooeyBlobs
           className="pointer-events-none absolute inset-0 z-0 [&>*]:pointer-events-auto"
           blobs={[
-            { size: 110, x: -2, y: 30, color: "#b3a2cc" },
-            { size: 85, x: 3, y: 52, color: "#0891b2" },
-            { size: 140, x: 82, y: 14, color: "#b3a2cc" },
-            { size: 95, x: 90, y: 40, color: "#0891b2" },
-            { size: 70, x: 78, y: 74, color: "#cdbfe3" },
+            { size: 110, x: -2, y: 30, color: "#8f7fc0" },
+            { size: 85, x: 3, y: 52, color: "#c0673f" },
+            { size: 140, x: 82, y: 14, color: "#8f7fc0" },
+            { size: 95, x: 90, y: 40, color: "#c0673f" },
+            { size: 70, x: 78, y: 74, color: "#d9b7a0" },
           ]}
         />
         <div className="wrap relative z-10">
-          <Reveal as="p" className="mono-label inline-block w-fit border-2 border-night-fg/50 bg-night px-3 py-1.5">
-            The Finale — Your Turn
+          <Reveal as="p" className="mono-label !text-night-fg/55">
+            The finale — your turn
           </Reveal>
-          <Reveal as="h2" delay={1} className="mt-[22px] max-w-[16ch] text-balance text-[clamp(2.4rem,8vw,6rem)] font-black uppercase tracking-[-0.03em]">
-            Ready to build something people <span className="hl-pink box-decoration-clone">remember?</span>
+          <Reveal as="h2" delay={1} className="mt-5 max-w-[18ch] text-balance text-[clamp(2.4rem,7vw,5rem)] leading-[1.04] tracking-[-0.02em]">
+            Ready to build something people <span className="hl-warm">remember?</span>
           </Reveal>
-          <Reveal delay={2} className="mt-[26px] font-mono text-[clamp(0.9rem,1.8vw,1.15rem)] font-bold uppercase leading-[2] text-night-fg/65">
-            Content people <b className="hl-cyan box-decoration-clone">save</b>.<br />
-            Campaigns people <b className="hl-cyan box-decoration-clone">click</b>.<br />
-            Brands people <b className="hl-cyan box-decoration-clone">trust</b>.
+          <Reveal delay={2} className="mt-7 text-[clamp(1.05rem,1.8vw,1.3rem)] leading-[2] text-night-fg/70">
+            Content people <b className="font-semibold text-night-fg">save</b>.<br />
+            Campaigns people <b className="font-semibold text-night-fg">click</b>.<br />
+            Brands people <b className="font-semibold text-night-fg">trust</b>.
           </Reveal>
           <Reveal delay={3} className="mt-9">
             <a href="#contact" className={brutalButtonClass("primary")}>
@@ -504,10 +498,10 @@ export default function Home() {
       <section id="contact" className="section-pad">
         <div className="wrap grid gap-[clamp(28px,5vw,64px)] md:grid-cols-2">
           <div>
-            <Reveal as="p" className="mono-label inline-block w-fit border-2 border-ink bg-card px-3 py-1.5">
+            <Reveal as="p" className="mono-label inline-block w-fit border border-border bg-card px-3 py-1.5">
               Contact
             </Reveal>
-            <Reveal as="h2" delay={1} className="mb-[18px] mt-[18px] text-[clamp(2rem,5.5vw,3.6rem)] font-extrabold uppercase">
+            <Reveal as="h2" delay={1} className="mb-[18px] mt-[18px] text-[clamp(2rem,5.5vw,3.6rem)] ">
               Let&rsquo;s connect
             </Reveal>
             <Reveal delay={2} className="max-w-[44ch] font-normal leading-[1.6]">
@@ -518,7 +512,7 @@ export default function Home() {
                 <a
                   key={s}
                   href="#"
-                  className="inline-flex min-h-10 items-center border-2 border-ink bg-card px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.05em] transition-colors duration-150 hover:bg-ink hover:text-background"
+                  className="inline-flex min-h-10 items-center border border-border bg-card px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.05em] transition-colors duration-150 hover:bg-ink hover:text-background"
                 >
                   {s}
                 </a>
@@ -534,7 +528,7 @@ export default function Home() {
             ].map(([label, val], i) => (
               <div
                 key={i}
-                className="flex items-baseline gap-4 border-t-2 border-ink px-[clamp(16px,2.5vw,24px)] py-[18px] text-[15px] font-medium first:border-t-0"
+                className="flex items-baseline gap-4 border-t border-border px-[clamp(16px,2.5vw,24px)] py-[18px] text-[15px] font-medium first:border-t-0"
               >
                 <span className="w-16 shrink-0 font-mono text-[10.5px] font-bold uppercase tracking-[0.06em] text-muted-foreground">
                   {label as string}

@@ -17,7 +17,7 @@ export function ClientMarquee({ clients }: { clients: Client[] }) {
   return (
     <section
       aria-label="Clients"
-      className="overflow-hidden border-b-[3px] border-ink bg-card"
+      className="overflow-hidden border-b border-border bg-card"
     >
       <div className="wrap flex items-center gap-4 py-3">
         <span className="shrink-0 font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
@@ -32,7 +32,7 @@ export function ClientMarquee({ clients }: { clients: Client[] }) {
               <span
                 key={i}
                 title={c.name}
-                className="flex h-[72px] w-[150px] shrink-0 items-center justify-center overflow-hidden border-2 border-ink bg-white px-2.5 py-1.5"
+                className="flex h-[72px] w-[150px] shrink-0 items-center justify-center overflow-hidden border border-border bg-white px-2.5 py-1.5"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -48,7 +48,7 @@ export function ClientMarquee({ clients }: { clients: Client[] }) {
         <button
           onClick={() => setPaused((v) => !v)}
           aria-label={paused ? "Resume" : "Pause"}
-          className="shrink-0 border-2 border-ink px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.06em] transition-colors duration-150 hover:bg-ink hover:text-background"
+          className="shrink-0 border border-border px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.06em] transition-colors duration-150 hover:bg-ink hover:text-background"
         >
           {paused ? "Play" : "Pause"}
         </button>

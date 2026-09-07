@@ -27,7 +27,7 @@ export function ProcessAccordion() {
               </span>
               <span
                 className={cn(
-                  "font-heading text-[clamp(1.3rem,3.4vw,2.4rem)] font-extrabold uppercase transition-colors duration-150",
+                  "font-heading text-[clamp(1.3rem,3.4vw,2.4rem)]  transition-colors duration-150",
                   isOpen ? "text-primary-foreground" : "text-muted-foreground"
                 )}
               >

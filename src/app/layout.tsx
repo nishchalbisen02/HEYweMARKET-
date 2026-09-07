@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-svh flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[1000] focus:border-[3px] focus:border-ink focus:bg-ink focus:px-4 focus:py-3 focus:font-mono focus:text-[13px] focus:uppercase focus:text-background"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-[1000] focus:border focus:border-background focus:bg-ink focus:px-4 focus:py-3 focus:font-mono focus:text-[13px] focus:uppercase focus:text-background"
         >
           Skip to content
         </a>

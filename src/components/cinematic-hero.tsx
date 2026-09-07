@@ -18,31 +18,28 @@ export function CinematicHero() {
   }, []);
 
   return (
-    <section id="hero" aria-label="Introduction" className="relative overflow-hidden border-b-[3px] border-ink bg-paper">
+    <section id="hero" aria-label="Introduction" className="relative overflow-hidden border-b border-border bg-paper">
       {/* generative, scroll-reactive backdrop */}
       <div className="pointer-events-none absolute inset-0">
         <HeroField reduced={reduced} />
       </div>
 
-      <div className="wrap relative z-10 flex min-h-[calc(100svh-66px)] flex-col justify-center py-[clamp(90px,16vh,180px)]">
-        <div className="max-w-[600px] border-[3px] border-ink bg-paper/78 p-[clamp(18px,3.5vw,36px)] shadow-brutal backdrop-blur-[4px] [text-shadow:0_1px_10px_rgba(246,242,250,0.9)]">
-          <p className="mono-label inline-block border-2 border-ink bg-card px-3 py-1.5 [text-shadow:none]">
-            Independent // 360&deg; // 100% In-House
-          </p>
-          <h1 className="mt-4 max-w-[15ch] text-balance text-[clamp(1.9rem,5.6vw,3.6rem)] font-black uppercase leading-[0.95] tracking-[-0.03em]">
-            We run every growth channel{" "}
-            <span className="hl-pink box-decoration-clone [text-shadow:none]">from one room</span>
+      <div className="wrap relative z-10 flex min-h-[calc(100svh-66px)] flex-col justify-center py-[clamp(96px,16vh,180px)]">
+        <div className="max-w-[640px] rounded-[22px] border border-border bg-background/72 p-[clamp(24px,4vw,44px)] shadow-soft-lg backdrop-blur-md">
+          <p className="mono-label">Independent &middot; 360&deg; &middot; 100% in-house</p>
+          <h1 className="mt-4 max-w-[16ch] text-balance text-[clamp(2.1rem,6vw,4rem)] leading-[1.05] tracking-[-0.02em]">
+            Every growth channel, run from <span className="hl-warm">one room</span>
           </h1>
-          <p className="mt-4 max-w-[46ch] text-[clamp(0.9rem,1.4vw,1.05rem)] font-semibold leading-relaxed text-ink">
-            SEO &amp; AEO, Google &amp; Meta Ads, Google Business Profile, content, social, commercial shoots, branding and
-            web. One team. One strategy. One invoice.
+          <p className="mt-5 max-w-[48ch] text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-foreground/80">
+            SEO &amp; AEO, Google &amp; Meta Ads, Google Business Profile, content, social media, commercial shoots,
+            branding and websites. One team. One strategy. One invoice.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 [text-shadow:none]">
+          <div className="mt-7 flex flex-wrap gap-3">
             <a href="#contact" className={brutalButtonClass("primary")}>
               Start a project <ArrowRight />
             </a>
             <a href="#audit" className={brutalButtonClass("plain")}>
-              Free growth audit
+              Get a free growth audit
             </a>
           </div>
         </div>
@@ -51,28 +48,26 @@ export function CinematicHero() {
       <a
         href="#showreel"
         aria-label="Watch the showreel"
-        className="absolute bottom-[max(env(safe-area-inset-bottom),clamp(20px,6vh,64px))] right-[clamp(16px,5vw,64px)] z-20 grid size-20 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-brutal transition-transform duration-150 hover:scale-95 sm:size-24"
+        className="absolute bottom-[max(env(safe-area-inset-bottom),clamp(20px,6vh,56px))] right-[clamp(16px,5vw,56px)] z-20 grid size-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-soft-lg backdrop-blur transition-transform duration-200 hover:-translate-y-1 sm:size-20"
       >
-        <Play className="size-7 translate-x-0.5 fill-current sm:size-9" />
+        <Play className="size-6 translate-x-0.5 fill-current sm:size-7" />
       </a>
 
       {/* stats band */}
-      <div className="relative z-10 border-t-[3px] border-ink bg-card">
+      <div className="relative z-10 border-t border-border bg-card">
         <div className="wrap grid grid-cols-2 sm:grid-cols-4">
           {STATS.map((s, i) => (
             <div
               key={s.label}
               className={
-                "px-4 py-6 sm:px-6 " +
-                (i % 2 === 1 ? "border-l-[3px] border-ink " : "") +
-                (i >= 2 ? "border-t-[3px] border-ink sm:border-t-0 " : "") +
-                (i % 4 !== 0 ? "sm:border-l-[3px] sm:border-ink" : "")
+                "px-5 py-8 sm:px-7 " +
+                (i % 2 === 1 ? "border-l border-border " : "") +
+                (i >= 2 ? "border-t border-border sm:border-t-0 " : "") +
+                (i % 4 !== 0 ? "sm:border-l sm:border-border" : "")
               }
             >
-              <b className="block font-heading text-[clamp(1.8rem,4vw,3rem)] font-black leading-none">{s.value}</b>
-              <span className="mt-2 block font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
-                {s.label}
-              </span>
+              <b className="block font-heading text-[clamp(2rem,4vw,3rem)] font-medium leading-none">{s.value}</b>
+              <span className="mono-label mt-2.5 block">{s.label}</span>
             </div>
           ))}
         </div>

@@ -21,7 +21,7 @@ export function ApplyButton({ role, className }: { role: string; className?: str
       }}
       className={
         className ??
-        "inline-flex items-center gap-2 border-[3px] border-ink bg-orange px-5 py-3 font-heading text-[13px] font-extrabold uppercase tracking-[0.02em] text-ink shadow-brutal-sm transition-transform duration-150 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none"
+        "inline-flex items-center gap-2 border border-border bg-orange px-5 py-3 font-heading text-[13px]  tracking-[0.02em] text-ink shadow-brutal-sm transition-transform duration-150 hover:-translate-y-[2px] hover:shadow-none"
       }
     >
       Apply Now <ArrowRight className="size-4" />

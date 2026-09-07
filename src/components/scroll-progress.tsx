@@ -34,7 +34,7 @@ export function ScrollProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-x-0 top-0 z-[120] h-[5px] border-b-2 border-ink bg-pink"
+      className="fixed inset-x-0 top-0 z-[120] h-[3px] bg-primary"
       style={{ transform: "scaleX(0)", transformOrigin: "0 50%" }}
       ref={bar}
     />

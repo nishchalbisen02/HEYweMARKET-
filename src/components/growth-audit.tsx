@@ -113,17 +113,17 @@ export function GrowthAudit() {
       ref={rootRef}
       id="aud"
       data-reveal=""
-      className="mt-[clamp(30px,5vw,50px)] border-[3px] border-night-fg bg-[#161d2e] shadow-brutal-pink"
+      className="mt-[clamp(30px,5vw,50px)] border border-night-fg/20 bg-night shadow-brutal-pink"
     >
       {/* INTRO */}
       {panel === "intro" && (
         <div className="p-[clamp(20px,4vw,44px)]">
           <div className="grid items-start gap-[clamp(24px,4vw,44px)] lg:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <span className="mb-[18px] inline-block border-2 border-night-fg bg-accent px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-night">
+              <span className="mb-[18px] inline-block border border-night-fg/20 bg-accent px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-night">
                 12 questions // 90 seconds
               </span>
-              <h3 className="mb-4 text-[clamp(1.3rem,3vw,2rem)] font-extrabold uppercase">What you&rsquo;ll get</h3>
+              <h3 className="mb-4 text-[clamp(1.3rem,3vw,2rem)] ">What you&rsquo;ll get</h3>
               <ul className="mb-6 flex list-none flex-col gap-2.5">
                 {[
                   ["Growth Score /100", " — benchmarked against businesses in your category"],
@@ -145,14 +145,14 @@ export function GrowthAudit() {
                 Runs entirely in your browser. Nothing is sent anywhere unless you ask us to.
               </p>
             </div>
-            <div className="border-2 border-night-fg/20 p-5">
+            <div className="border border-night-fg/20/20 p-5">
               <div className="relative mx-auto mb-5 w-[150px]">
                 <svg viewBox="0 0 120 120" aria-hidden="true" className="w-full -rotate-90">
                   <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(246,242,250,.14)" strokeWidth="12" />
                   <circle cx="60" cy="60" r="52" fill="none" stroke="#b3a2cc" strokeWidth="12" strokeDasharray="327" strokeDashoffset="120" />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <b className="font-heading text-[2.4rem] font-black leading-none">63</b>
+                  <b className="font-heading text-[2.4rem] font-semibold leading-none">63</b>
                   <small className="font-mono text-[9px] tracking-[0.1em] text-night-fg/50">SAMPLE</small>
                 </div>
               </div>
@@ -178,23 +178,23 @@ export function GrowthAudit() {
       {/* QUIZ */}
       {panel === "quiz" && (
         <div className="p-[clamp(20px,4vw,44px)]">
-          <div aria-hidden="true" className="mb-[18px] h-2 overflow-hidden border-2 border-night-fg/20 bg-[#0b1120]">
+          <div aria-hidden="true" className="mb-[18px] h-2 overflow-hidden border border-night-fg/20/20 bg-white/[0.03]">
             <i className="block h-full bg-primary transition-[width] duration-150" style={{ width: `${(i / QUESTIONS.length) * 100}%` }} />
           </div>
           <div className="mb-4 flex justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.05em] text-night-fg/55">
             <span>Question {i + 1} of {QUESTIONS.length}</span>
             <span>{PILLARS[q.p]}</span>
           </div>
-          <h3 className="mb-3 text-[clamp(1.15rem,2.6vw,1.7rem)] font-extrabold uppercase leading-[1.15]">{q.q}</h3>
+          <h3 className="mb-3 text-[clamp(1.15rem,2.6vw,1.7rem)]  leading-[1.15]">{q.q}</h3>
           <p className="mb-[22px] max-w-[60ch] text-[13.5px] font-normal leading-[1.55] text-night-fg/60">{q.why}</p>
           <div className="flex flex-col gap-2.5">
             {q.o.map(([label, v], n) => (
               <button
                 key={label}
                 onClick={() => answer(v)}
-                className="flex min-h-12 w-full items-center gap-3.5 border-2 border-night-fg/20 bg-[#0b1120] px-4 py-[15px] text-left text-[15px] transition-colors duration-150 hover:border-primary hover:bg-[#12203a]"
+                className="flex min-h-12 w-full items-center gap-3.5 border border-night-fg/20/20 bg-white/[0.03] px-4 py-[15px] text-left text-[15px] transition-colors duration-150 hover:border-primary hover:bg-white/[0.04]"
               >
-                <span className="grid size-7 shrink-0 place-items-center border-2 border-night-fg/20 font-mono text-[12px] font-bold text-primary">
+                <span className="grid size-7 shrink-0 place-items-center border border-night-fg/20/20 font-mono text-[12px] font-bold text-primary">
                   {String.fromCharCode(65 + n)}
                 </span>
                 <span>{label}</span>
@@ -234,18 +234,18 @@ export function GrowthAudit() {
                 />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <b className="font-heading text-[2.6rem] font-black leading-none">{displayScore}</b>
+                <b className="font-heading text-[2.6rem] font-semibold leading-none">{displayScore}</b>
                 <small className="font-mono text-[10px] text-night-fg/50">/100</small>
               </div>
             </div>
             <div>
               <span className="font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-accent">{result.grade[0]}</span>
-              <h3 className="my-2.5 text-[clamp(1.3rem,3vw,2rem)] font-extrabold uppercase">Your Growth Score is {result.total}/100</h3>
+              <h3 className="my-2.5 text-[clamp(1.3rem,3vw,2rem)] ">Your Growth Score is {result.total}/100</h3>
               <p className="max-w-[56ch] text-[14px] font-normal leading-[1.55] text-night-fg/70">
                 {result.grade[1]} Below is where the score comes from and what to fix first.
               </p>
               <div className="mt-[18px]">
-                <div className="relative h-2.5 border-2 border-night-fg/20 bg-[#0b1120]">
+                <div className="relative h-2.5 border border-night-fg/20/20 bg-white/[0.03]">
                   <i className="absolute -top-0.5 h-2.5 w-1.5 bg-primary" style={{ left: `${result.total}%` }} />
                   <i className="absolute -top-0.5 h-2.5 w-1.5 bg-night-fg/50" style={{ left: "54%" }} />
                 </div>
@@ -265,10 +265,10 @@ export function GrowthAudit() {
               const v = result.p[k];
               const c = pillarColor(v);
               return (
-                <div key={k} className="border-2 border-night-fg/20 p-3.5">
+                <div key={k} className="border border-night-fg/20/20 p-3.5">
                   <div className="min-h-[2.8em] font-mono text-[9.5px] uppercase leading-[1.4] tracking-[0.03em] text-night-fg/50">{PILLARS[k]}</div>
-                  <div className="my-1.5 font-heading text-[1.9rem] font-black" style={{ color: c }}>{v}</div>
-                  <div className="h-1.5 overflow-hidden border border-night-fg/20 bg-[#0b1120]">
+                  <div className="my-1.5 font-heading text-[1.9rem] font-semibold" style={{ color: c }}>{v}</div>
+                  <div className="h-1.5 overflow-hidden border border-night-fg/20 bg-white/[0.03]">
                     <i className="block h-full transition-[width] duration-500 ease-out" style={{ width: `${barWidths[k] ?? 0}%`, background: c }} />
                   </div>
                   <div className="mt-2 font-mono text-[9.5px] uppercase tracking-[0.03em]" style={{ color: c }}>{pillarStatus(v)}</div>
@@ -277,8 +277,8 @@ export function GrowthAudit() {
             })}
           </div>
 
-          <div className="mb-[30px] border-2 border-primary bg-[#12203a] p-5">
-            <b className="mb-2 block font-heading text-[1.05rem] font-extrabold uppercase text-night-fg">
+          <div className="mb-[30px] border border-primary bg-white/[0.04] p-5">
+            <b className="mb-2 block font-heading text-[1.05rem]  text-night-fg">
               {result.band[0]} of your reachable demand is likely going to competitors
             </b>
             <p className="text-[13.5px] font-normal leading-[1.55] text-night-fg/72">
@@ -294,8 +294,8 @@ export function GrowthAudit() {
           <h4 className="mb-3.5 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-night-fg/50">Your 5 highest-impact fixes</h4>
           <div className="mb-[34px] flex flex-col gap-2.5">
             {result.fixes.map(([pk, f], n) => (
-              <div key={n} className="grid grid-cols-[34px_1fr] gap-3.5 border-2 border-night-fg/20 p-4">
-                <span className="font-heading text-[1.4rem] font-black text-primary">{n + 1}</span>
+              <div key={n} className="grid grid-cols-[34px_1fr] gap-3.5 border border-night-fg/20/20 p-4">
+                <span className="font-heading text-[1.4rem] font-semibold text-primary">{n + 1}</span>
                 <div>
                   <b className="mb-1.5 block text-[15px] font-bold">{f[0]}</b>
                   <p className="text-[13px] font-normal leading-[1.55] text-night-fg/68">{f[1]}</p>
@@ -323,17 +323,17 @@ export function GrowthAudit() {
           </div>
 
           <div>
-            <h4 className="mb-1.5 font-heading text-[1.15rem] font-extrabold uppercase">Take your report with you</h4>
+            <h4 className="mb-1.5 font-heading text-[1.15rem] ">Take your report with you</h4>
             <p className="mb-[18px] text-[13px] text-night-fg/50">
               Both are generated instantly in your browser and are yours to keep — no email, no strings.
             </p>
             <div className="grid gap-3 sm:grid-cols-2">
               <button
                 onClick={() => downloadHtml(summaryReport(result, ans), "Summary-360-Growth-Audit-Hey-We-Market.html")}
-                className="flex flex-col gap-2 border-2 border-night-fg/20 bg-[#0b1120] p-5 text-left transition-colors duration-150 hover:border-primary"
+                className="flex flex-col gap-2 border border-night-fg/20/20 bg-white/[0.03] p-5 text-left transition-colors duration-150 hover:border-primary"
               >
                 <span className="self-start border border-night-fg/20 px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.06em] text-night-fg/55">Quick</span>
-                <b className="font-heading text-[1rem] font-extrabold uppercase">Summary Report</b>
+                <b className="font-heading text-[1rem] ">Summary Report</b>
                 <small className="text-[12px] font-normal leading-[1.5] text-night-fg/60">
                   1–2 pages. Your score, pillar breakdown, top 5 fixes and the 90-day outline.
                 </small>
@@ -341,10 +341,10 @@ export function GrowthAudit() {
               </button>
               <button
                 onClick={() => downloadHtml(detailedReport(result, ans), "Detailed-360-Growth-Audit-Hey-We-Market.html")}
-                className="flex flex-col gap-2 border-2 border-accent bg-[#0b1120] p-5 text-left transition-colors duration-150 hover:border-primary"
+                className="flex flex-col gap-2 border border-accent bg-white/[0.03] p-5 text-left transition-colors duration-150 hover:border-primary"
               >
                 <span className="self-start border border-accent bg-accent px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.06em] text-night">Recommended</span>
-                <b className="font-heading text-[1rem] font-extrabold uppercase">Detailed Report</b>
+                <b className="font-heading text-[1rem] ">Detailed Report</b>
                 <small className="text-[12px] font-normal leading-[1.5] text-night-fg/60">
                   Full multi-page deep dive: a section per pillar, our exact implementation steps, KPIs, your answer-by-answer breakdown, a phased 90-day plan and a glossary.
                 </small>

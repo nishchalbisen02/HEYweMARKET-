@@ -46,13 +46,13 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="overflow-hidden border-t-[3px] border-ink bg-[#0B0A0F] text-white">
-      <div className="wrap pt-[clamp(48px,8vw,96px)]">
+    <footer className="overflow-hidden border-t border-border bg-night text-white">
+      <div className="wrap pt-[clamp(56px,9vw,104px)]">
         {/* new business + contact */}
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-[32ch]">
-            <h2 className="font-heading text-[clamp(1.35rem,2.4vw,1.9rem)] font-black uppercase tracking-[-0.01em] text-white">
-              New Business Inquiries
+            <h2 className="font-heading text-[clamp(1.5rem,2.6vw,2.1rem)] font-normal tracking-[-0.01em] text-white">
+              New business inquiries
             </h2>
             <p className="mt-3 text-[15px] leading-relaxed text-white/60">
               Let&rsquo;s build something bigger together. We&rsquo;d love to hear from you.
@@ -60,12 +60,12 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-col gap-3 text-[15px]">
             <span className="flex items-center gap-2.5 text-white/70">
-              <MapPin className="size-[18px] shrink-0 text-[#E0A15A]" />
+              <MapPin className="size-[18px] shrink-0 text-[#e0a15a]" />
               Bhopal, MP, India
             </span>
             <a
               href="mailto:bhopal@heywemarket.in"
-              className="flex items-center gap-2.5 text-[#E0A15A] underline decoration-[#E0A15A]/50 underline-offset-4 transition-colors duration-150 hover:decoration-[#E0A15A]"
+              className="flex items-center gap-2.5 text-[#e0a15a] underline decoration-[#e0a15a]/50 underline-offset-4 transition-colors duration-150 hover:decoration-[#e0a15a]"
             >
               <Mail className="size-[18px] shrink-0" />
               bhopal@heywemarket.in
@@ -73,13 +73,13 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <hr className="my-[clamp(36px,6vw,64px)] border-0 border-t border-white/15" />
+        <hr className="my-[clamp(36px,6vw,64px)] border-0 border-t border-white/12" />
 
         {/* about */}
         <div className="max-w-[64ch]">
-          <p className="mono-label text-white/40">About</p>
-          <p className="mt-4 font-heading text-[clamp(1.15rem,2vw,1.6rem)] font-black uppercase leading-tight text-white">
-            AI First Marketplace for a Smarter Tomorrow.
+          <p className="mono-label !text-white/40">About</p>
+          <p className="mt-4 font-heading text-[clamp(1.3rem,2.2vw,1.8rem)] font-normal leading-snug text-white">
+            AI-first marketplace for a smarter tomorrow.
           </p>
           <p className="mt-4 text-[15px] leading-relaxed text-white/55">
             Hey We Market is an AI-first marketplace, where people, products, and possibilities come together. We combine

@@ -22,7 +22,7 @@ export function SiteLogo({
         alt="Hey We Market"
         width={442}
         height={404}
-        className={cn("h-10 w-auto border-2", onDark ? "border-background" : "border-ink")}
+        className={cn("h-9 w-auto border", onDark ? "border-background" : "border-ink")}
       />
     </a>
   );
