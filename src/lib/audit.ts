@@ -213,7 +213,7 @@ footer{margin-top:38px;padding-top:16px;border-top:3px solid #0F172A;font-size:1
 <table><tr><th>Question</th><th style="text-align:right">Score</th></tr>${qa}</table>
 <h2>What Happens Next</h2>
 <p style="font-size:13px">This report is yours to keep and act on — with your own team or any agency you choose. If you would like us to walk through it with you, we offer a free strategy call: no pitch, we go through your weakest pillar and tell you exactly what we would do first.</p>
-<p style="font-size:13px"><b>hello@heywemarket.com</b></p>
+<p style="font-size:13px"><b>info@heywemarket.com</b></p>
 <footer>Hey We Market — 360 Digital Marketing Agency. SEO &amp; AEO &middot; Google Business Profile &middot; Google Ads &middot; Meta Ads &middot; Content &amp; Production &middot; Social Media &middot; Commercial Shoots &middot; Branding &middot; Web Development &middot; Analytics &amp; CRO.<br>This audit is a self-assessment tool. Scores reflect the answers provided and published industry ranking-factor research; they are directional guidance, not a guarantee of results.</footer>
 </body></html>`;
 }
@@ -343,7 +343,7 @@ ${deep}
 <div class="sec"><div class="sec-head"><h2>What happens next</h2></div>
 <p>This report is yours to keep and act on — with your own team, a freelancer, or any agency you choose. Nothing in it is locked to us.</p>
 <p>If you would like a second opinion on it, we offer a free strategy call. We take your weakest pillar, tell you specifically what we would do first, and you leave with that regardless of whether you work with us.</p>
-<p style="font-size:16px;margin-top:14px"><b>hello@heywemarket.com</b></p></div>
+<p style="font-size:16px;margin-top:14px"><b>info@heywemarket.com</b></p></div>
 <footer><b>Hey We Market</b> — 360 Digital Marketing Agency.<br>
 SEO &amp; Answer Engine Optimisation &middot; Google Business Profile &amp; Local SEO &middot; Google Ads &middot; Meta Ads &middot; Analytics, CRO &amp; Reporting &middot; Content Creation &amp; Production &middot; Social Media Management &middot; Commercial Ad Shoots &middot; Branding &amp; Design &middot; Website Design &amp; Development.<br><br>
 <b>About this assessment.</b> This report is generated from a 12-point self-assessment. Scores reflect the answers provided, weighted using published industry ranking-factor research. Figures cited for local and AI search ranking weights are drawn from publicly available 2026 industry studies. All outputs are directional guidance intended to help prioritise effort, and are not a guarantee of results.</footer>

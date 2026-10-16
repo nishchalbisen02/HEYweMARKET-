@@ -7,7 +7,7 @@ export function CinematicHero() {
     <section id="hero" aria-label="Introduction" className="relative border-b border-border/60">
       <div className="wrap relative z-10 flex min-h-[calc(100svh-66px)] flex-col justify-center py-[clamp(96px,16vh,180px)]">
         <div className="max-w-[660px] rounded-[22px] border border-white/25 bg-[color-mix(in_srgb,var(--card)_66%,transparent)] p-[clamp(24px,4vw,46px)] shadow-soft-lg backdrop-blur-xl">
-          <p className="mono-label">Independent &middot; 360&deg; &middot; 100% in-house</p>
+          <p className="mono-label">Digital marketing agency &middot; Bhopal, Madhya Pradesh</p>
           <h1 className="mt-4 max-w-[16ch] text-balance text-[clamp(2.1rem,6vw,4rem)] leading-[1.05] tracking-[-0.02em]">
             Every growth channel, run from <span className="hl-warm">one room</span>
           </h1>

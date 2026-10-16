@@ -11,11 +11,12 @@ import {
   type ApplicationFields,
 } from "@/lib/careers";
 import { deliverApplication, isWhatsappConfigured } from "@/lib/whatsapp";
+import { CONTACT } from "@/lib/site";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CONTACT_FALLBACK = "hello@heywemarket.com";
+const CONTACT_FALLBACK = CONTACT.email;
 
 function checkFile(
   file: File | null,

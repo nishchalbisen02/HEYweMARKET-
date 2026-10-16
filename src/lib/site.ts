@@ -1,4 +1,5 @@
 export const NAV = [
+  { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#approach", label: "Approach" },
   { href: "#work", label: "Work" },
@@ -7,6 +8,26 @@ export const NAV = [
   { href: "#faq", label: "FAQ" },
   { href: "/careers", label: "Careers" },
 ] as const;
+
+/** Single source of truth for contact + identity — used by the footer, contact
+ *  section, JSON-LD and the careers fallback so they can never drift apart. */
+export const CONTACT = {
+  email: "info@heywemarket.com",
+  phoneDisplay: "+91 98260 26029",
+  phoneTel: "+919826026029",
+  whatsappUrl: "https://wa.me/919826026029",
+  instagram: "https://www.instagram.com/heywemarket",
+  parent: { name: "Innovativebiz Technologies", url: "https://innovativebiz.in/" },
+  address: {
+    street: "3rd Floor, Gurbakshish Arcade, Bawadiya Kalan, Pallavi Nagar",
+    locality: "Bhopal",
+    region: "Madhya Pradesh",
+    postalCode: "462039",
+    country: "IN",
+  },
+  addressLine:
+    "3rd Floor, Gurbakshish Arcade, Bawadiya Kalan, Pallavi Nagar, Bhopal, Madhya Pradesh 462039",
+} as const;
 
 export const TICKER_ITEMS = [
   "Content Creation",
@@ -223,32 +244,53 @@ export const TESTIMONIALS = [
 
 export const FAQS: { q: string; a: string }[] = [
   { q: "What is a 360-degree digital marketing agency?", a: "A 360-degree digital marketing agency handles every channel a brand needs from one place: search (SEO and AEO), paid advertising (Google Ads and Meta Ads), local search (Google Business Profile), organic social media, content and video production, branding, and the website itself. The advantage is that strategy, creative and media buying stay aligned instead of being split across separate vendors with conflicting priorities." },
+  { q: "Where is Hey We Market located?", a: "Hey We Market is based in Bhopal, Madhya Pradesh, and works with businesses across India through both in person and remote collaboration." },
   { q: "What services does Hey We Market offer?", a: "Ten services across four groups: Get Found (SEO & AEO, Google Business Profile & local SEO), Get Leads (Google Ads, Meta Ads, analytics & CRO), Get Noticed (content creation, social media management, commercial ad shoots), and Get Built (branding & design, website development). All work is delivered by a 100% in-house team." },
+  { q: "How is Hey We Market different from other digital marketing agencies?", a: "Hey We Market focuses on understanding each business deeply before creating content or campaigns, rather than applying templated marketing packages. The agency also prioritizes honest reporting and long term strategy over vanity metrics." },
   { q: "How is Google Ads different from Meta Ads, and which should a business use?", a: "Google Ads captures existing demand — someone is already searching for what you sell, so intent is high and cost per lead is usually higher but conversion is faster. Meta Ads creates demand — you interrupt people on Instagram and Facebook with creative, so reach is cheaper but the buying journey is longer. Most businesses need both. A typical starting split is 60% Google for bottom-funnel search and 40% Meta for awareness and retargeting, rebalanced monthly based on actual cost per qualified lead." },
   { q: "How long does SEO take to show results?", a: "Technical fixes and on-page optimization typically show movement in 4–8 weeks. Competitive keyword rankings usually take 4–6 months of consistent content and link building. Google Business Profile and local SEO move fastest, often producing more calls and direction requests within 30–60 days — which is why we usually start there while longer-term SEO compounds." },
   { q: "Why does Google Business Profile matter so much for local businesses?", a: "Google Business Profile signals carry roughly 32% of Local Pack ranking weight — the single largest share of any factor group — and review signals add about another 16%. Around 46% of all Google searches now carry local intent. For restaurants, clinics, salons, showrooms and any business with a physical location, an optimized profile with the correct primary category, regular posts, fresh photos and a steady flow of reviews is usually the highest-return marketing work available." },
   { q: "What is AEO and how is it different from SEO?", a: "SEO optimizes for a ranking position that a person clicks. AEO — answer engine optimization — optimizes to be the source an AI system cites when it writes an answer in ChatGPT, Perplexity, Google AI Overviews, Gemini or Copilot. It relies on structured data, question-shaped headings, self-contained 40–60 word answer blocks, verifiable statistics and third-party mentions. It matters because a large share of searches now end without a click, so a brand can lose visibility even while its rankings stay flat." },
+  { q: "Does Hey We Market help with AI search visibility?", a: "Yes. Hey We Market helps businesses optimize their online presence for AI search tools such as ChatGPT, Perplexity, and Gemini, in addition to traditional Google search visibility." },
   { q: "What kind of businesses does Hey We Market work with?", a: "Restaurants, cafés, hotels, resorts, healthcare providers and clinics, fashion and D2C brands, real estate developers, education institutes, creators, startups and local service businesses across India. We've worked with 100+ brands and delivered 500+ projects." },
   { q: "How does Hey We Market's process work?", a: "Five steps: Discover (business, audience and channel audit), Strategy (customized roadmap and KPIs), Create (all content and creative produced in-house), Launch (campaigns live with full conversion tracking), and Scale (weekly optimization and monthly plain-language reporting)." },
   { q: "How is ad performance tracked and reported?", a: "Every engagement starts with GA4 and Google Tag Manager configured, Meta Pixel and Conversions API connected, and call and form tracking in place — so each lead can be traced to the campaign, ad set and creative that produced it. Reporting is monthly and in plain language: what was spent, what it returned, what's being changed next month." },
   { q: "What results has Hey We Market delivered for clients?", a: "Representative outcomes include 3.2x weekend footfall and 41% lower cost per lead for a café, 2.4M video views and 58% more direct bookings for a resort, 4.7x qualified enquiries for a real estate developer, and 2.9x appointment requests for a healthcare brand." },
   { q: "Does Hey We Market require a long-term contract?", a: "Retainers typically run on a three-month minimum, because paid campaigns need roughly 30–45 days of data before optimization decisions are reliable, and SEO and GMB compound over months. One-off projects — brand identity, a commercial shoot, a website build — are scoped and priced as standalone engagements." },
-  { q: "How do I get started with Hey We Market?", a: "Book a free strategy call through the website or email hello@heywemarket.com. We respond within 24 hours with a channel-by-channel view of what's working, what's missing, and what would move first." },
+  { q: "How do I get started with Hey We Market?", a: `Book a free strategy call through the website or email ${CONTACT.email}. We respond within 24 hours with a channel-by-channel view of what's working, what's missing, and what would move first.` },
 ];
 
 export function jsonLd() {
+  const a = CONTACT.address;
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "LocalBusiness"],
         "@id": "https://heywemarket.com/#org",
         name: "Hey We Market",
+        alternateName: "Hey We Market!",
         url: "https://heywemarket.com/",
+        logo: { "@type": "ImageObject", url: "https://heywemarket.com/logo.jpg", width: 442, height: 404 },
         description:
-          "Independent 360° digital marketing agency covering SEO & AEO, Google Ads, Meta Ads, Google Business Profile & local SEO, content creation, social media management, commercial ad shoots, branding and web development.",
-        email: "hello@heywemarket.com",
-        areaServed: "IN",
+          "Hey We Market is a full service digital marketing agency in Bhopal, Madhya Pradesh — an independent 360° team covering SEO & AEO, Google Ads, Meta Ads, Google Business Profile & local SEO, content creation, social media management, commercial ad shoots, branding and web development.",
+        email: CONTACT.email,
+        telephone: CONTACT.phoneDisplay,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: a.street,
+          addressLocality: a.locality,
+          addressRegion: a.region,
+          postalCode: a.postalCode,
+          addressCountry: a.country,
+        },
+        areaServed: [
+          { "@type": "City", name: "Bhopal" },
+          { "@type": "State", name: "Madhya Pradesh" },
+          { "@type": "Country", name: "India" },
+        ],
+        sameAs: [CONTACT.instagram],
+        parentOrganization: { "@type": "Organization", name: CONTACT.parent.name, url: CONTACT.parent.url },
         knowsAbout: [
           "Search Engine Optimization",
           "Answer Engine Optimization",
@@ -264,11 +306,42 @@ export function jsonLd() {
         ],
       },
       {
+        "@type": "ProfessionalService",
+        "@id": "https://heywemarket.com/#service",
+        name: "Hey We Market",
+        url: "https://heywemarket.com/",
+        parentOrganization: { "@id": "https://heywemarket.com/#org" },
+        priceRange: "₹₹",
+        areaServed: { "@type": "Country", name: "India" },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Digital Marketing Services",
+          itemListElement: SERVICE_GROUPS.flatMap((g) =>
+            g.services.map((s) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: `${s.title} ${s.underline}`.trim(), description: s.body },
+            }))
+          ),
+        },
+      },
+      {
         "@type": "WebSite",
         "@id": "https://heywemarket.com/#website",
         url: "https://heywemarket.com/",
         name: "Hey We Market",
         publisher: { "@id": "https://heywemarket.com/#org" },
+        inLanguage: "en-IN",
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://heywemarket.com/#webpage",
+        url: "https://heywemarket.com/",
+        name: "Hey We Market | Digital Marketing Agency in Bhopal, Madhya Pradesh",
+        isPartOf: { "@id": "https://heywemarket.com/#website" },
+        about: { "@id": "https://heywemarket.com/#org" },
+        dateModified: new Date().toISOString().slice(0, 10),
+        description:
+          "Strategy-led digital marketing services in Bhopal including social media, paid advertising, content creation, SEO, branding, and website optimization.",
       },
       {
         "@type": "FAQPage",

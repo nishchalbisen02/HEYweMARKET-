@@ -50,3 +50,6 @@ scratch/
 
 # raw source assets (optimized copies live in public/)
 all assets/
+
+# archives of the raw source assets (366MB — never commit)
+all assets*.zip

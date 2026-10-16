@@ -1,4 +1,5 @@
-import { MapPin, Mail, Send, Briefcase } from "lucide-react";
+import { MapPin, Mail, Phone, Send, Briefcase } from "lucide-react";
+import { CONTACT } from "@/lib/site";
 
 type IconProps = { className?: string };
 
@@ -34,7 +35,7 @@ function XGlyph({ className }: { className?: string }) {
 }
 
 const SOCIALS = [
-  { label: "Instagram", href: "#", Icon: Instagram },
+  { label: "Instagram", href: CONTACT.instagram, Icon: Instagram },
   { label: "LinkedIn", href: "#", Icon: Linkedin },
   { label: "X", href: "#", Icon: XGlyph },
   { label: "Facebook", href: "#", Icon: Facebook },
@@ -58,17 +59,24 @@ export function SiteFooter() {
               Let&rsquo;s build something bigger together. We&rsquo;d love to hear from you.
             </p>
           </div>
-          <div className="flex flex-col gap-3 text-[15px]">
-            <span className="flex items-center gap-2.5 text-white/70">
-              <MapPin className="size-[18px] shrink-0 text-[#a892d6]" />
-              Bhopal, MP, India
-            </span>
+          <div className="flex max-w-[38ch] flex-col gap-3.5 text-[15px]">
+            <address className="flex items-start gap-2.5 not-italic leading-snug text-white/75">
+              <MapPin className="mt-0.5 size-[18px] shrink-0 text-[#a892d6]" />
+              {CONTACT.addressLine}
+            </address>
             <a
-              href="mailto:bhopal@heywemarket.in"
+              href={`tel:${CONTACT.phoneTel}`}
+              className="flex items-center gap-2.5 text-white/85 transition-colors duration-150 hover:text-white"
+            >
+              <Phone className="size-[18px] shrink-0 text-[#a892d6]" />
+              {CONTACT.phoneDisplay}
+            </a>
+            <a
+              href={`mailto:${CONTACT.email}`}
               className="flex items-center gap-2.5 text-[#a892d6] underline decoration-[#a892d6]/50 underline-offset-4 transition-colors duration-150 hover:decoration-[#a892d6]"
             >
               <Mail className="size-[18px] shrink-0" />
-              bhopal@heywemarket.in
+              {CONTACT.email}
             </a>
           </div>
         </div>
@@ -135,6 +143,16 @@ export function SiteFooter() {
           </a>
           <span className="mx-3 text-white/25">|</span>
           &copy; 2024 &ndash; {year} Hey We Market
+          <span className="mx-3 text-white/25">|</span>
+          A part of{" "}
+          <a
+            href={CONTACT.parent.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-white/30 underline-offset-4 transition-colors duration-150 hover:text-white/70"
+          >
+            {CONTACT.parent.name}
+          </a>
         </p>
       </div>
     </footer>

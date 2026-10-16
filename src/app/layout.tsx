@@ -32,11 +32,15 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://heywemarket.com"),
-  title:
-    "Hey We Market — Independent 360° Digital Marketing Agency | SEO, Google & Meta Ads, GMB, Content",
+  title: "Hey We Market | Digital Marketing Agency in Bhopal, Madhya Pradesh",
   description:
-    "Hey We Market is an independent 360° digital marketing agency running every growth channel from one room — SEO & AEO, Google Ads, Meta Ads, Google Business Profile & local SEO, content, social media, commercial ad shoots, branding and web. 100+ brands, 500+ projects, 25M+ views.",
+    "Hey We Market is a full service digital marketing agency in Bhopal, Madhya Pradesh — strategy-led SEO & AI search visibility, Google & Meta Ads, content, social media, commercial ad shoots, branding and websites. 100+ brands, 25M+ views. Get a free consultation.",
   keywords: [
+    "digital marketing agency in Bhopal",
+    "digital marketing company Madhya Pradesh",
+    "social media marketing agency Bhopal",
+    "best digital marketing agency Bhopal",
+    "marketing agency near me",
     "360 degree digital marketing agency",
     "full service digital marketing agency India",
     "performance marketing agency",
@@ -59,18 +63,18 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Hey We Market",
-    title: "Hey We Market — Independent 360° Digital Marketing Agency",
+    title: "Hey We Market | Digital Marketing Agency in Bhopal",
     description:
-      "One agency for every growth channel: SEO & AEO, Google Ads, Meta Ads, Google Business Profile, content, social, shoots, branding and web. 100+ brands. 25M+ views.",
+      "Strategy-led social media, advertising, content, SEO, and AI search visibility for businesses in Bhopal and across Madhya Pradesh. 100+ brands. 25M+ views.",
     url: "https://heywemarket.com/",
     locale: "en_IN",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Hey We Market — digital marketing agency in Bhopal" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hey We Market — 360° Digital Marketing Agency",
+    title: "Hey We Market | Digital Marketing Agency in Bhopal",
     description:
-      "360° digital marketing: SEO & AEO, Google Ads, Meta Ads, GMB, content, social, shoots & branding. 100+ brands, 25M+ views.",
+      "Strategy-led social media, advertising, content, SEO, and AI search visibility for businesses in Bhopal and across Madhya Pradesh.",
     images: ["/og-image.jpg"],
   },
   robots: {

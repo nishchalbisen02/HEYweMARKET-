@@ -53,7 +53,7 @@ export function SiteHeader() {
       >
         <div className="wrap flex h-[66px] items-center justify-between gap-4">
           <SiteLogo />
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
             {NAV.map((n) => (
               <a
                 key={n.href}

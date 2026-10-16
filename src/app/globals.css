@@ -80,7 +80,7 @@
   --secondary: #8f7fc0;
   --secondary-foreground: #ffffff;
   --muted: #ece4f6;
-  --muted-foreground: #574d68;
+  --muted-foreground: #43395a;
   --accent: #8f7fc0;
   --accent-foreground: #ffffff;
   --destructive: #b4402e;
@@ -138,8 +138,15 @@
     width: min(880px, 100% - 2 * clamp(20px, 6vw, 72px));
     margin-inline: auto;
   }
+  /* Content sections carry a light veil over the shader ground. Without it the
+     shader's dark vignette zones sit directly behind dark text and fail contrast
+     (measured ~3.8:1 for muted text). At 74% the worst case is ≥ 5:1 for muted
+     text and ≥ 8:1 for body — and the gradient still reads through. Dark bands
+     override this with their own bg-[…] utility. The hero is not .section-pad,
+     so the shader shows at full strength there. */
   .section-pad {
     padding-block: clamp(72px, 12vw, 156px);
+    background: color-mix(in srgb, var(--background) 74%, transparent);
   }
 
   /* the standard surface — a translucent lavender sheet so the shader shows through */

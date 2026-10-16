@@ -4,9 +4,11 @@ import {
   CASES,
   WHY,
   TESTIMONIALS,
+  CONTACT,
 } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
 import { CinematicHero } from "@/components/cinematic-hero";
+import { AboutSections } from "@/components/about-sections";
 import { Showreel } from "@/components/showreel";
 import { StudioClip } from "@/components/studio-clip";
 import { Ticker } from "@/components/ticker";
@@ -108,6 +110,9 @@ export default function Home() {
       <ClientMarquee clients={clients} />
       <Showreel />
       <Ticker />
+
+      {/* WHO WE ARE · VISION · PROMISE · FOUNDERS */}
+      <AboutSections />
 
       {/* CH.01 — PROBLEM */}
       <section id="problem" className="section-pad">
@@ -498,41 +503,45 @@ export default function Home() {
       <section id="contact" className="section-pad">
         <div className="wrap grid gap-[clamp(28px,5vw,64px)] md:grid-cols-2">
           <div>
-            <Reveal as="p" className="mono-label inline-block w-fit border border-border bg-card px-3 py-1.5">
+            <Reveal as="p" className="mono-label">
               Contact
             </Reveal>
             <Reveal as="h2" delay={1} className="mb-[18px] mt-[18px] text-[clamp(2rem,5.5vw,3.6rem)] ">
               Let&rsquo;s connect
             </Reveal>
-            <Reveal delay={2} className="max-w-[44ch] font-normal leading-[1.6]">
+            <Reveal delay={2} className="max-w-[44ch] text-[1.1rem] leading-[1.7] text-foreground/85">
               Tell us about your brand and we&rsquo;ll get back within 24 hours with ideas, not a sales pitch.
             </Reveal>
-            <Reveal delay={3} className="mt-[26px] flex flex-wrap gap-2">
-              {["Instagram", "Facebook", "LinkedIn", "WhatsApp"].map((s) => (
+            <Reveal delay={3} className="mt-[26px] flex flex-wrap gap-3">
+              {[
+                { label: "Instagram", href: CONTACT.instagram },
+                { label: "WhatsApp", href: CONTACT.whatsappUrl },
+              ].map((s) => (
                 <a
-                  key={s}
-                  href="#"
-                  className="inline-flex min-h-10 items-center border border-border bg-card px-4 py-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.05em] transition-colors duration-150 hover:bg-ink hover:text-background"
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center rounded-full border border-input bg-card px-5 py-2.5 text-[0.95rem] font-semibold transition-colors duration-150 hover:bg-primary hover:text-primary-foreground"
                 >
-                  {s}
+                  {s.label}
                 </a>
               ))}
             </Reveal>
           </div>
           <Reveal delay={1} className="brutal-box">
             {[
-              ["Email", <a key="e" href="mailto:hello@heywemarket.com" className="[overflow-wrap:anywhere]">hello@heywemarket.com</a>],
-              ["Phone", <a key="p" href="tel:+919826026029">+91 98260 26029</a>],
+              ["Email", <a key="e" href={`mailto:${CONTACT.email}`} className="[overflow-wrap:anywhere]">{CONTACT.email}</a>],
+              ["Phone", <a key="p" href={`tel:${CONTACT.phoneTel}`}>{CONTACT.phoneDisplay}</a>],
+              ["Visit", <address key="v" className="not-italic leading-[1.5]">{CONTACT.addressLine}</address>],
               ["Hours", <span key="h">Mon–Sat · 10 AM – 7 PM IST</span>],
               ["Audit", <a key="a" href="#audit">Run the free 360° growth audit &rarr;</a>],
             ].map(([label, val], i) => (
               <div
                 key={i}
-                className="flex items-baseline gap-4 border-t border-border px-[clamp(16px,2.5vw,24px)] py-[18px] text-[15px] font-medium first:border-t-0"
+                className="flex items-baseline gap-4 border-t border-border px-[clamp(18px,2.5vw,28px)] py-[18px] text-[1.02rem] font-medium first:border-t-0"
               >
-                <span className="w-16 shrink-0 font-mono text-[10.5px] font-bold uppercase tracking-[0.06em] text-muted-foreground">
-                  {label as string}
-                </span>
+                <span className="mono-label w-14 shrink-0">{label as string}</span>
                 {val}
               </div>
             ))}

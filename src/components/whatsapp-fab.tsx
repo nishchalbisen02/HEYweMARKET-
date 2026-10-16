@@ -1,7 +1,9 @@
+import { CONTACT } from "@/lib/site";
+
 export function WhatsappFab() {
   return (
     <a
-      href="https://wa.me/919826026029"
+      href={CONTACT.whatsappUrl}
       aria-label="Chat on WhatsApp"
       className="fixed bottom-4 right-4 z-[90] grid size-14 place-items-center rounded-full bg-primary shadow-soft-lg transition-transform duration-200 hover:-translate-y-1"
     >

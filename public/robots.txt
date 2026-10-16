@@ -1,0 +1,30 @@
+# Hey We Market — robots.txt
+# Allow all search + AI answer engines (AEO)
+
+User-agent: *
+Allow: /
+
+# Careers applications post to the API — keep crawlers out of it
+Disallow: /api/
+
+# AI answer/search bots — explicitly allowed so AI platforms can cite us
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://heywemarket.com/sitemap.xml
