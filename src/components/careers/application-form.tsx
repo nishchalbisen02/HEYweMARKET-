@@ -22,9 +22,8 @@ import {
 type Status = "idle" | "submitting" | "success" | "error";
 type Errors = Partial<Record<keyof ApplicationFields | "resume" | "samples", string>>;
 
-const inputBase =
-  "w-full border border-border bg-white px-3.5 py-2.5 text-[15px] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange focus-visible:ring-offset-2 focus-visible:ring-offset-card aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-500/40";
-const labelBase = "mono-label mb-1.5 block text-[11px] text-foreground";
+const inputBase = "k-input";
+const labelBase = "k-label";
 
 function fileError(file: File | null, mimes: string[], max: number, label: string, required: boolean) {
   if (!file) return required ? `${label} is required.` : null;
@@ -121,8 +120,8 @@ export function ApplicationForm() {
 
   if (status === "success") {
     return (
-      <div className="brutal-box p-8 text-center sm:p-14" data-reveal="">
-        <span className="mx-auto grid size-16 place-items-center border border-border bg-orange text-ink">
+      <div className="k-card p-8 text-center sm:p-14">
+        <span className="mx-auto grid size-16 place-items-center rounded-full bg-[var(--lime)] text-black">
           <Check className="size-9" strokeWidth={3} />
         </span>
         <h3
@@ -130,24 +129,24 @@ export function ApplicationForm() {
           tabIndex={-1}
           className="mt-6 text-[clamp(1.6rem,4vw,2.4rem)]  outline-none"
         >
-          Application Received <span className="text-orange">✓</span>
+          Application Received <span className="text-accent">✓</span>
         </h3>
-        <p className="mx-auto mt-3 max-w-[46ch] text-[15px] leading-relaxed text-muted-foreground">
+        <p className="mx-auto mt-3 max-w-[46ch] text-[15px] leading-relaxed text-mute">
           Thanks for reaching out to Hey We Market. We’ve received your application and our team will review it.
         </p>
         <a
           href="#top"
           onClick={() => setStatus("idle")}
-          className="mt-7 inline-flex items-center gap-2 border border-border bg-card px-6 py-3.5 font-heading text-[14px]  tracking-[0.02em] shadow-brutal transition-transform duration-150 hover:-translate-y-[2px] hover:shadow-soft-lg"
+          className="btn btn-primary mt-7"
         >
-          Back to Careers
+          <span>Back to Careers</span>
         </a>
       </div>
     );
   }
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="grid gap-8" data-reveal="">
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="rv grid gap-8">
       {/* honeypot */}
       <input
         type="text"
@@ -173,7 +172,7 @@ export function ApplicationForm() {
             <input {...bind("city", fields, set, errors)} autoComplete="address-level2" placeholder="Where you’re based" />
           </Field>
           <Field label="Date of birth" name="dob" hint="optional" error={errors.dob}>
-            <input {...bind("dob", fields, set, errors)} type="date" className={inputBase + " [color-scheme:light]"} />
+            <input {...bind("dob", fields, set, errors)} type="date" className={inputBase} />
           </Field>
         </div>
       </Group>
@@ -268,7 +267,7 @@ export function ApplicationForm() {
 
       <div aria-live="polite" className="min-h-[1.25rem]">
         {formError && (
-          <p className="border border-red-600 bg-red-50 px-4 py-3 text-[14px] font-medium text-red-800">
+          <p className="rounded-2xl border border-[var(--error-line)] bg-[var(--error-bg)] px-4 py-3 text-[14px] font-medium text-[var(--error-fg)]">
             {formError}
           </p>
         )}
@@ -277,19 +276,21 @@ export function ApplicationForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex items-center justify-center gap-2.5 border border-border bg-orange px-8 py-4 font-heading text-[15px]  tracking-[0.02em] text-ink shadow-brutal transition-transform duration-150 hover:-translate-y-[2px] hover:shadow-soft-lg disabled:cursor-not-allowed disabled:opacity-70"
+        className="btn btn-primary w-full justify-center sm:w-fit disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {status === "submitting" ? (
-          <>
-            <Loader2 className="size-5 animate-spin" /> Sending…
-          </>
-        ) : (
-          <>
-            Submit application <ArrowRight className="size-5" />
-          </>
-        )}
+        <span className="inline-flex items-center gap-2.5">
+          {status === "submitting" ? (
+            <>
+              <Loader2 className="size-5 animate-spin" aria-hidden="true" /> Sending…
+            </>
+          ) : (
+            <>
+              Submit application <ArrowRight className="size-5" aria-hidden="true" />
+            </>
+          )}
+        </span>
       </button>
-      <p className="text-[12.5px] leading-relaxed text-muted-foreground">
+      <p className="text-[12.5px] leading-relaxed text-mute">
         By submitting, you agree that we may contact you about this application. Your files are shared only with the
         Hey We Market hiring team.
       </p>
@@ -318,11 +319,11 @@ function bind(
 
 function Group({ title, hint, children }: { title: string; hint?: string; children: ReactNode }) {
   return (
-    <fieldset className="grid gap-4 border border-border bg-card p-5 shadow-brutal-sm sm:p-7">
-      <legend className="mono-label -mx-1 border border-border bg-ink px-3 py-1 text-[11px] text-background">
+    <fieldset className="k-card grid gap-4 p-5 sm:p-8">
+      <legend className="rounded-full bg-[var(--band)] px-4 py-1.5 font-[family-name:var(--font-baloo)] text-[12px] font-bold uppercase tracking-[0.14em] text-[var(--band-accent)]">
         {title}
       </legend>
-      {hint && <p className="-mt-1 text-[13px] text-muted-foreground">{hint}</p>}
+      {hint && <p className="-mt-1 text-[13px] text-mute">{hint}</p>}
       {children}
     </fieldset>
   );
@@ -346,11 +347,11 @@ function Field({
   return (
     <div className="min-w-0">
       <label htmlFor={`f-${name}`} className={labelBase}>
-        {label} {required ? <span className="text-orange">*</span> : hint ? <span className="text-muted-foreground normal-case tracking-normal">({hint})</span> : null}
+        {label} {required ? <span className="text-accent">*</span> : hint ? <span className="text-mute normal-case tracking-normal">({hint})</span> : null}
       </label>
       {children}
       {error && (
-        <p id={`e-${name}`} className="mt-1.5 text-[13px] font-medium text-red-700">
+        <p id={`e-${name}`} className="mt-1.5 text-[13px] font-medium text-[var(--error-fg)]">
           {error}
         </p>
       )}
@@ -381,21 +382,21 @@ function FileZone({
   return (
     <div>
       <span className={labelBase}>
-        {label} {required ? <span className="text-orange">*</span> : <span className="text-muted-foreground normal-case tracking-normal">(optional)</span>}
+        {label} {required ? <span className="text-accent">*</span> : <span className="text-mute normal-case tracking-normal">(optional)</span>}
       </span>
 
       {file ? (
-        <div className="flex items-center gap-3 border border-border bg-white p-3">
-          <FileText className="size-6 shrink-0 text-orange" />
+        <div className="flex items-center gap-3 rounded-2xl border border-line bg-[var(--surface)] p-3">
+          <FileText className="size-6 shrink-0 text-accent" />
           <span className="min-w-0 flex-1">
             <span className="block truncate text-[14px] font-semibold">{file.name}</span>
-            <span className="text-[12px] text-muted-foreground">{humanFileSize(file.size)}</span>
+            <span className="text-[12px] text-mute">{humanFileSize(file.size)}</span>
           </span>
           <button
             type="button"
             onClick={() => onFile(null)}
             aria-label={`Remove ${label}`}
-            className="grid size-8 shrink-0 place-items-center border border-border bg-card transition-colors hover:bg-ink hover:text-background"
+            className="grid size-8 shrink-0 place-items-center rounded-full border border-line bg-[var(--surface)] transition-colors hover:bg-[var(--btn-bg)] hover:text-[var(--btn-fg)]"
           >
             <X className="size-4" />
           </button>
@@ -415,13 +416,13 @@ function FileZone({
             if (f) onFile(f);
           }}
           className={
-            "flex cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed border-input px-4 py-8 text-center transition-colors " +
-            (drag ? "bg-orange/15" : "bg-white hover:bg-muted")
+            "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-[18px] border-2 border-dashed border-[rgb(var(--ink-rgb)/0.28)] px-4 py-8 text-center transition-colors " +
+            (drag ? "bg-accent/15" : "bg-[var(--surface)] hover:bg-[var(--bg)]")
           }
         >
           <UploadCloud className="size-7 text-ink" />
           <span className="text-[14px] font-semibold">Drag &amp; drop, or click to browse</span>
-          <span className="text-[12px] text-muted-foreground">{hint}</span>
+          <span className="text-[12px] text-mute">{hint}</span>
           <input
             id={id}
             type="file"
@@ -431,7 +432,7 @@ function FileZone({
           />
         </label>
       )}
-      {error && <p className="mt-1.5 text-[13px] font-medium text-red-700">{error}</p>}
+      {error && <p className="mt-1.5 text-[13px] font-medium text-[var(--error-fg)]">{error}</p>}
     </div>
   );
 }

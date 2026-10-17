@@ -1,22 +1,39 @@
-export const NAV = [
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#approach", label: "Approach" },
-  { href: "#work", label: "Work" },
-  { href: "#audit", label: "Free Audit" },
-  { href: "#process", label: "Process" },
-  { href: "#faq", label: "FAQ" },
-  { href: "/careers", label: "Careers" },
-] as const;
+/**
+ * Single source of truth for Hey We Market's identity and on-page copy.
+ *
+ * Everything that appears BOTH in the visible UI and in machine-readable
+ * surfaces (JSON-LD, llms.txt, FAQ answers) lives here, so the page and its
+ * structured data can never drift apart — which is what search engines and AI
+ * answer engines penalise when they cross-check a page against its schema.
+ */
 
-/** Single source of truth for contact + identity — used by the footer, contact
- *  section, JSON-LD and the careers fallback so they can never drift apart. */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://heywemarket.com").replace(/\/+$/, "");
+export const SITE_NAME = "Hey We Market";
+/** Bump when page content materially changes — feeds sitemap lastmod and schema dateModified. */
+export const CONTENT_UPDATED = "2026-10-17";
+export const SITE_TITLE = "Hey We Market | Digital Marketing Agency in Bhopal, Madhya Pradesh";
+export const SITE_DESCRIPTION =
+  "Hey We Market is a full service digital marketing agency in Bhopal helping businesses grow through strategy led social media, ads, content, and search visibility. Get in touch for a free consultation.";
+
+/** Default social-share image (1200×630) — layout and per-page metadata both reference it. */
+export const OG_IMAGE = {
+  url: "/og-image.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Hey We Market — digital marketing agency in Bhopal",
+} as const;
+
+/** Contact + identity — used by the header, footer, contact section, WhatsApp
+ *  button, JSON-LD, llms.txt and the careers fallback. Change it here only. */
 export const CONTACT = {
   email: "info@heywemarket.com",
   phoneDisplay: "+91 98260 26029",
   phoneTel: "+919826026029",
   whatsappUrl: "https://wa.me/919826026029",
+  whatsappMessage: "Hello Hey We Market, I would like to discuss a project.",
   instagram: "https://www.instagram.com/heywemarket",
+  /** Taken from the original site's structured data. Used for schema sameAs only — NOT linked in the UI until confirmed. */
+  otherProfiles: ["https://www.facebook.com/heywemarket", "https://www.linkedin.com/company/heywemarket"],
   parent: { name: "Innovativebiz Technologies", url: "https://innovativebiz.in/" },
   address: {
     street: "3rd Floor, Gurbakshish Arcade, Bawadiya Kalan, Pallavi Nagar",
@@ -29,329 +46,210 @@ export const CONTACT = {
     "3rd Floor, Gurbakshish Arcade, Bawadiya Kalan, Pallavi Nagar, Bhopal, Madhya Pradesh 462039",
 } as const;
 
-export const TICKER_ITEMS = [
-  "Content Creation",
-  "Performance Marketing",
-  "Social Media Management",
-  "Commercial Ad Shoots",
-  "Branding & Design",
-  "Photography",
-  "Website Development",
+/** wa.me link with the pre-filled enquiry message used across the site. */
+export const WHATSAPP_HREF = `${CONTACT.whatsappUrl}?text=${encodeURIComponent(CONTACT.whatsappMessage)}`;
+
+export const NAV = [
+  { href: "/#about", label: "About" },
+  { href: "/#vision", label: "Vision" },
+  { href: "/#founders", label: "Founders" },
+  { href: "/#services", label: "Services" },
+  { href: "/#work", label: "Work" },
+  { href: "/#process", label: "Process" },
+  { href: "/#testimonials", label: "Our Clients" },
+  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
+] as const;
+
+export const CAREERS_LINK = { href: "/careers", label: "Careers" } as const;
+
+/** Long-form copy shared by the page sections and the machine-readable surfaces (llms.txt). */
+export const COPY = {
+  heroTitle: "Digital Marketing Agency in Bhopal Built Around Your Business",
+  heroSub:
+    "Hey We Market is a full service digital marketing agency in Bhopal, Madhya Pradesh helping businesses grow through strategy, content, and campaigns designed around how they actually work, not generic templates dressed up to look custom.",
+  about: {
+    title: "Not Just Another Digital Marketing Agency",
+    p1: "Hey We Market is a full service digital marketing agency in Bhopal, Madhya Pradesh. Most marketing feels the same after a while: the same captions, reel formats, and promises. We started Hey We Market because businesses deserve better than that.",
+    p2: "We work as an extension of your team, not a vendor ticking off deliverables. Strategy first, execution second, always with a reason behind every post, every campaign, and every decision.",
+    cardTitle: "Built around what makes you different.",
+    cardBody:
+      "Backed by Innovativebiz Technologies, our strategists, designers, video editors, content writers, and performance marketers work as one accountable team.",
+  },
+  vision: {
+    title: "Our Vision",
+    p1: "I did not start Hey We Market to run another agency. I started it because I kept seeing good businesses get reduced to a templated post or a generic package that could have belonged to anyone.",
+    p2: "A business is not a category. It is years of someone's effort, risk, and belief, and it deserves marketing that actually understands that. We built Hey We Market around a simple idea: get close enough to a business to genuinely understand it, then build everything around what makes it different.",
+    headedTitle: "Where We Are Headed",
+    p3: "We are growing on purpose. We are going deeper, building real systems, staying ahead of where attention is moving across search and AI tools, and growing our team with intent.",
+  },
+  promise: {
+    title: "Our Promise",
+    body: "Working with us should feel different from working with an agency. We think before we act, tell you the truth when something is not working, protect your voice and story, and say no when we cannot genuinely do the work justice.",
+  },
+} as const;
+
+/** Chips in the scrolling strip under the showreel. */
+export const SERVICE_CHIPS = [
+  { icon: "🎥", label: "Content Creation" },
+  { icon: "📈", label: "Performance Marketing" },
+  { icon: "💬", label: "Social Media Management" },
+  { icon: "🎬", label: "Commercial Ad Shoots" },
+  { icon: "✦", label: "Branding & Design" },
+  { icon: "📷", label: "Photography" },
+  { icon: "🖥", label: "Website Development" },
+] as const;
+
+export const SERVICES = [
+  {
+    idx: "01",
+    title: "Social Media Management",
+    body: "Strategy, content calendars, design, and day to day management across platforms, built around what your audience actually responds to.",
+  },
+  {
+    idx: "02",
+    title: "Paid Advertising",
+    body: "Meta and Google Ads campaigns planned around real business goals, not just impressions and vanity metrics.",
+  },
+  {
+    idx: "03",
+    title: "Content Creation",
+    body: "Photography, video, reels, and copywriting that sounds like your brand, not a template.",
+  },
+  {
+    idx: "04",
+    title: "SEO and AI Search Visibility",
+    body: "Local SEO, Google Business Profile optimization, and visibility across AI search tools like ChatGPT, Perplexity, and Gemini.",
+  },
+  {
+    idx: "05",
+    title: "Branding and Positioning",
+    body: "Helping businesses define how they want to be seen, then building every piece of content around that.",
+  },
+  {
+    idx: "06",
+    title: "Website and Digital Presence",
+    body: "Building and optimizing digital touchpoints that convert visitors into leads, not just traffic.",
+  },
+] as const;
+
+export const WHY = [
+  {
+    n: "01",
+    title: "Dedicated Team",
+    body: "A dedicated team across strategy, design, content, and performance, not one generalist juggling everything.",
+  },
+  { n: "02", title: "Built Around Your Goals", body: "Marketing built around your actual business goals, not recycled templates." },
+  { n: "03", title: "Honest Reporting", body: "Clear communication and reporting, with no vanity metrics dressed up as results." },
+  { n: "04", title: "Long-Term Partnership", body: "A partner that grows with you, not just a vendor delivering a fixed package." },
+  {
+    n: "05",
+    title: "Strategy First",
+    body: "We think before we act, so every post, campaign, and decision has a reason behind it.",
+  },
+  {
+    n: "06",
+    title: "Protecting Your Voice",
+    body: "We build around your voice, brand, and story instead of overriding what makes you different.",
+  },
+] as const;
+
+export const PROCESS = [
+  { n: "01", title: "Discover", body: "We understand your business, audience, and goals." },
+  { n: "02", title: "Strategy", body: "We create a customized marketing roadmap." },
+  { n: "03", title: "Create", body: "Professional content, creatives, and campaigns." },
+  { n: "04", title: "Launch", body: "Ads go live. Content gets published." },
+  { n: "05", title: "Scale", body: "We optimize, improve, and grow your business." },
 ] as const;
 
 export const STATS = [
-  { value: "100+", label: "Brands" },
-  { value: "500+", label: "Projects" },
-  { value: "25M+", label: "Content views" },
-  { value: "100%", label: "In-house team" },
+  { target: 100, suffix: "+", label: "Brands Worked With" },
+  { target: 500, suffix: "+", label: "Projects Delivered" },
+  { target: 25, suffix: "M+", label: "Content Views" },
+  { target: 5, suffix: "★", label: "Client Satisfaction" },
 ] as const;
 
-export type ServiceGroup = {
-  key: string;
-  name: string;
-  services: { idx: string; title: string; underline: string; body: string; tags: string[] }[];
-};
-
-export const SERVICE_GROUPS: ServiceGroup[] = [
+export const FOUNDERS = [
   {
-    key: "A",
-    name: "Get Found",
-    services: [
-      {
-        idx: "01",
-        title: "SEO & Answer Engine",
-        underline: "Optimization",
-        body: "Technical SEO, on-page optimization, keyword and topic clusters, schema markup and Core Web Vitals — plus AEO so your brand gets cited inside ChatGPT, Perplexity and Google AI Overviews, not just ranked below them.",
-        tags: ["Technical audit & fixes", "Keyword + topic strategy", "Schema / structured data", "AI Overview & LLM citation"],
-      },
-      {
-        idx: "02",
-        title: "Google Business Profile &",
-        underline: "Local SEO",
-        body: "GBP signals carry roughly 32% of Local Pack ranking weight — the biggest single lever a local business has. We fix categories, publish geo-tagged posts and photos weekly, run review generation and keep NAP citations consistent.",
-        tags: ["Category & service optimization", "Weekly posts + photos", "Review generation", "Local Pack rank tracking"],
-      },
-    ],
+    name: "Ankita Singh",
+    role: "Co Founder · Strategy & Creative",
+    jobTitle: "Co Founder, Strategy & Creative",
+    bio: "Co founded Hey We Market to build marketing that is strategic first and creative second, helping businesses grow with clarity, consistency, and work that moves the needle.",
   },
   {
-    key: "B",
-    name: "Get Leads",
-    services: [
-      {
-        idx: "03",
-        title: "Google Ads",
-        underline: "Management",
-        body: "Search, Performance Max, YouTube, Display and Shopping. We chase cost per qualified lead, not clicks — with negative keyword hygiene, proper conversion tracking and landing pages that match the ad promise.",
-        tags: ["Search & Performance Max", "YouTube & Display", "Conversion tracking", "Negative keyword hygiene"],
-      },
-      {
-        idx: "04",
-        title: "Meta Ads —",
-        underline: "Facebook & Instagram",
-        body: "Advantage+ campaigns, structured creative testing, lookalike and custom audiences, and full-funnel retargeting. Pixel and Conversions API configured properly so iOS signal loss doesn't blind the account.",
-        tags: ["Advantage+ & manual", "Creative testing frameworks", "Retargeting funnels", "Pixel + Conversions API"],
-      },
-      {
-        idx: "05",
-        title: "Analytics, CRO &",
-        underline: "Reporting",
-        body: "GA4, Google Tag Manager, call and form tracking, and lead attribution dashboards — so you know which campaign, ad set and creative produced each enquiry. Monthly reports in plain language, not screenshots.",
-        tags: ["GA4 + GTM setup", "Call & form tracking", "Landing page A/B tests", "Plain-language reports"],
-      },
-    ],
+    name: "Divyansh Singh",
+    role: "Co Founder · Brand & Growth",
+    jobTitle: "Co Founder, Brand & Growth",
+    bio: "Works at the intersection of marketing, brand strategy, and business growth.",
   },
-  {
-    key: "C",
-    name: "Get Noticed",
-    services: [
-      {
-        idx: "06",
-        title: "Content Creation &",
-        underline: "Production",
-        body: "Reels, product and lifestyle photography, brand films, founder interviews, corporate videos, launches and event coverage — shot and edited by our own team, to your brand guidelines, not stock templates.",
-        tags: ["Instagram Reels series", "Product & lifestyle photography", "Brand films & interviews", "Event & launch coverage"],
-      },
-      {
-        idx: "07",
-        title: "Social Media",
-        underline: "Management",
-        body: "Instagram, Facebook, LinkedIn and YouTube. Monthly calendars planned in advance, captions and hashtags written for reach, community managed daily, growth reported against business metrics — not vanity follows.",
-        tags: ["Monthly content calendars", "Captions, hashtags & posting", "Community management", "Growth & engagement reporting"],
-      },
-      {
-        idx: "08",
-        title: "Commercial",
-        underline: "Ad Shoots",
-        body: "Premium advertisement films, product commercials, restaurant and resort shoots, corporate films and multi-day brand campaigns — the cinematic layer that makes a brand look bigger than it is.",
-        tags: ["Advertisement films", "Product commercials", "Restaurant & resort shoots", "Multi-day campaigns"],
-      },
-    ],
-  },
-  {
-    key: "D",
-    name: "Get Built",
-    services: [
-      {
-        idx: "09",
-        title: "Branding &",
-        underline: "Design",
-        body: "Logo systems, complete brand identity, packaging, social creative templates, print design and marketing collateral — so every touchpoint looks like it came from the same company.",
-        tags: ["Logo & identity systems", "Packaging design", "Creative templates", "Print & collateral"],
-      },
-      {
-        idx: "10",
-        title: "Website Design &",
-        underline: "Development",
-        body: "Conversion-focused sites and landing pages with fast Core Web Vitals, schema markup baked in, analytics and CRM wired up. Built to turn traffic into enquiries, not just to look good.",
-        tags: ["Websites & landing pages", "Core Web Vitals performance", "Schema + technical SEO", "Analytics & CRM integration"],
-      },
-    ],
-  },
-];
-
-export const CASES = [
-  {
-    cat: "Restaurants & Cafés",
-    title: "Turned a quiet café page into a weekend booking engine",
-    desc: "Weekly reel series, food photography refresh and a geo-targeted Meta Ads funnel aimed at diners within 8km.",
-    metrics: [
-      { v: "3.2×", l: "Weekend footfall" },
-      { v: "−41%", l: "Cost per lead" },
-    ],
-  },
-  {
-    cat: "Hotels & Resorts",
-    title: "A resort brand film that filled the off-season calendar",
-    desc: "Cinematic property shoot, a 60-second brand film and a direct-booking campaign built to bypass OTA commissions.",
-    metrics: [
-      { v: "2.4M", l: "Video views" },
-      { v: "+58%", l: "Direct bookings" },
-    ],
-  },
-  {
-    cat: "Real Estate",
-    title: "Qualified site visits instead of junk enquiries",
-    desc: "Walkthrough content, a lead-scoring form and a remarketing sequence that only chased genuinely warm buyers.",
-    metrics: [
-      { v: "4.7×", l: "Qualified enquiries" },
-      { v: "−36%", l: "Ad spend waste" },
-    ],
-  },
-  {
-    cat: "Healthcare",
-    title: "Built trust first, appointments followed",
-    desc: "Doctor-led explainer content, patient story videos and a clean appointment landing page replacing a dated site.",
-    metrics: [
-      { v: "2.9×", l: "Appointment requests" },
-      { v: "−68%", l: "Page load time" },
-    ],
-  },
-];
-
-export const WORK_FILTERS = [
-  { f: "all", label: "All" },
-  { f: "content", label: "Content" },
-  { f: "commercial", label: "Commercial shoots" },
-  { f: "photo", label: "Photography" },
-  { f: "brand", label: "Branding" },
-  { f: "social", label: "Social media" },
-  { f: "web", label: "Websites" },
 ] as const;
 
-export const WORK_TILES: { cat: string; label: string; title: string }[] = [
-  { cat: "content", label: "Content", title: "Cafe Reel Series" },
-  { cat: "content", label: "Content", title: "Viral Product Reel" },
-  { cat: "content", label: "Content", title: "Launch Day Coverage" },
-  { cat: "commercial", label: "Commercial Shoots", title: "Resort Brand Film" },
-  { cat: "commercial", label: "Commercial Shoots", title: "Restaurant Commercial" },
-  { cat: "commercial", label: "Commercial Shoots", title: "Corporate Story" },
-  { cat: "photo", label: "Photography", title: "Product Photography" },
-  { cat: "photo", label: "Photography", title: "Lifestyle Shoot" },
-  { cat: "photo", label: "Photography", title: "Menu Photoshoot" },
-  { cat: "brand", label: "Branding", title: "Fashion Identity" },
-  { cat: "brand", label: "Branding", title: "Packaging Design" },
-  { cat: "brand", label: "Branding", title: "Logo & Brand Kit" },
-  { cat: "social", label: "Social Media", title: "Instagram Revamp" },
-  { cat: "social", label: "Social Media", title: "Content Calendar" },
-  { cat: "social", label: "Social Media", title: "Growth Campaign" },
-  { cat: "web", label: "Websites", title: "Realty Landing Page" },
-  { cat: "web", label: "Websites", title: "Clinic Website" },
-  { cat: "web", label: "Websites", title: "E-commerce Store" },
-];
+/**
+ * Placeholder cards. The brand has not yet approved real client quotes, so the
+ * section ships as "coming soon" — and deliberately emits NO Review /
+ * AggregateRating schema (fabricated ratings violate Google's guidelines).
+ */
+export const TESTIMONIAL_PLACEHOLDERS = [
+  { text: "Client feedback will be added here once approved for publication.", note: "Testimonials in progress" },
+  {
+    text: "We are collecting verified client stories highlighting responsiveness, results, and creative quality.",
+    note: "Verified case studies coming soon",
+  },
+  {
+    text: "Each published testimonial will include the client name, designation, and business name.",
+    note: "Client story archive",
+  },
+] as const;
 
-export const PROCESS = [
-  { n: "01", title: "Discover", body: "We start by understanding your business, your customers and what growth actually means for you — margins, seasons, competitors, what's worked and what hasn't. No strategy gets written before this." },
-  { n: "02", title: "Strategy", body: "You get a customized marketing roadmap: the content pillars, the platforms worth your time, the ad budget split and the numbers we're chasing. Everything is agreed before a single rupee is spent." },
-  { n: "03", title: "Create", body: "Our in-house team shoots, edits and designs everything — reels, product photography, brand films, ad creatives and campaign assets — built to your brand guidelines, not stock templates." },
-  { n: "04", title: "Launch", body: "Ads go live, content gets published on schedule and tracking is set up properly from day one so every lead can be traced back to the campaign that produced it." },
-  { n: "05", title: "Scale", body: "We review performance weekly, kill what isn't working, double down on what is, and report in plain language — what we spent, what it returned, what happens next month." },
+/**
+ * FAQ — the first six are the approved copy from the site. The rest are
+ * answer-first entries built ONLY from facts already stated elsewhere on the
+ * site (services, founders, process, contact, stats) to give AI answer engines
+ * self-contained, citable passages. No new claims, prices or guarantees.
+ */
+export const FAQS: readonly { q: string; a: string }[] = [
+  {
+    q: "What does Hey We Market do?",
+    a: "Hey We Market is a full service digital marketing agency based in Bhopal, Madhya Pradesh. We manage social media, paid advertising, content creation, SEO, branding, and website optimization for businesses looking to grow their online presence.",
+  },
+  {
+    q: "Where is Hey We Market located?",
+    a: "Hey We Market is based in Bhopal, Madhya Pradesh, and works with businesses across India through both in person and remote collaboration.",
+  },
+  {
+    q: "What industries does Hey We Market work with?",
+    a: "Hey We Market works with businesses across a wide range of industries, building strategy and content tailored to each business rather than applying a single generic approach.",
+  },
+  {
+    q: "How is Hey We Market different from other digital marketing agencies?",
+    a: "Hey We Market focuses on understanding each business deeply before creating content or campaigns, rather than applying templated marketing packages. We prioritize honest reporting and long term strategy over vanity metrics.",
+  },
+  {
+    q: "Does Hey We Market help with AI search visibility?",
+    a: "Yes. Hey We Market helps businesses optimize their online presence for AI search tools such as ChatGPT, Perplexity, and Gemini, in addition to traditional Google search visibility.",
+  },
+  {
+    q: "How can I get started with Hey We Market?",
+    a: "Businesses can get started by reaching out through this contact section or by scheduling an initial consultation to discuss goals and current marketing gaps.",
+  },
+  {
+    q: "Which digital marketing services does Hey We Market offer?",
+    a: "Hey We Market offers social media management, paid advertising on Meta and Google, content creation (photography, video, reels and copywriting), SEO and AI search visibility including local SEO and Google Business Profile optimization, branding and positioning, and website and digital presence work.",
+  },
+  {
+    q: "Who founded Hey We Market?",
+    a: "Hey We Market was co founded by Ankita Singh (Co Founder, Strategy & Creative) and Divyansh Singh (Co Founder, Brand & Growth). The agency is backed by Innovativebiz Technologies.",
+  },
+  {
+    q: "What is Hey We Market's process?",
+    a: "Hey We Market works in five steps: Discover (understanding your business, audience, and goals), Strategy (a customized marketing roadmap), Create (professional content, creatives, and campaigns), Launch (ads go live and content gets published), and Scale (optimizing, improving, and growing your business).",
+  },
+  {
+    q: "How many brands has Hey We Market worked with?",
+    a: "Hey We Market has worked with 100+ brands, delivered 500+ projects, and created content that has earned 25M+ views.",
+  },
+  {
+    q: "How do I contact Hey We Market in Bhopal?",
+    a: `You can email ${CONTACT.email}, call ${CONTACT.phoneDisplay}, message the team on WhatsApp, or visit the office at ${CONTACT.addressLine}. The team responds within 24 hours.`,
+  },
 ];
-
-export const WHY = [
-  { n: "01", title: "100% in-house team", body: "Everything from strategy to execution is managed by our dedicated creative team." },
-  { n: "02", title: "Creative + performance", body: "Beautiful content is only valuable when it delivers measurable business results." },
-  { n: "03", title: "Premium production", body: "Cinematic visuals, professional editing, high-quality photography and engaging storytelling." },
-  { n: "04", title: "Data-driven marketing", body: "Every campaign is optimized using real insights, analytics and performance metrics." },
-  { n: "05", title: "Built for scale", body: "Systems and creative pipelines designed to grow with businesses across India." },
-  { n: "06", title: "Fast communication", body: "Quick revisions, transparent workflow, dedicated support at every step." },
-];
-
-export const TESTIMONIALS = [
-  { quote: "They completely transformed our Instagram presence.", who: "Owner · Multi-outlet Restaurant Group" },
-  { quote: "Our business started generating quality leads after working with Hey We Market.", who: "Marketing Head · Real Estate Developer" },
-  { quote: "A creative team that genuinely understands branding and marketing.", who: "Founder · Fashion Label" },
-];
-
-export const FAQS: { q: string; a: string }[] = [
-  { q: "What is a 360-degree digital marketing agency?", a: "A 360-degree digital marketing agency handles every channel a brand needs from one place: search (SEO and AEO), paid advertising (Google Ads and Meta Ads), local search (Google Business Profile), organic social media, content and video production, branding, and the website itself. The advantage is that strategy, creative and media buying stay aligned instead of being split across separate vendors with conflicting priorities." },
-  { q: "Where is Hey We Market located?", a: "Hey We Market is based in Bhopal, Madhya Pradesh, and works with businesses across India through both in person and remote collaboration." },
-  { q: "What services does Hey We Market offer?", a: "Ten services across four groups: Get Found (SEO & AEO, Google Business Profile & local SEO), Get Leads (Google Ads, Meta Ads, analytics & CRO), Get Noticed (content creation, social media management, commercial ad shoots), and Get Built (branding & design, website development). All work is delivered by a 100% in-house team." },
-  { q: "How is Hey We Market different from other digital marketing agencies?", a: "Hey We Market focuses on understanding each business deeply before creating content or campaigns, rather than applying templated marketing packages. The agency also prioritizes honest reporting and long term strategy over vanity metrics." },
-  { q: "How is Google Ads different from Meta Ads, and which should a business use?", a: "Google Ads captures existing demand — someone is already searching for what you sell, so intent is high and cost per lead is usually higher but conversion is faster. Meta Ads creates demand — you interrupt people on Instagram and Facebook with creative, so reach is cheaper but the buying journey is longer. Most businesses need both. A typical starting split is 60% Google for bottom-funnel search and 40% Meta for awareness and retargeting, rebalanced monthly based on actual cost per qualified lead." },
-  { q: "How long does SEO take to show results?", a: "Technical fixes and on-page optimization typically show movement in 4–8 weeks. Competitive keyword rankings usually take 4–6 months of consistent content and link building. Google Business Profile and local SEO move fastest, often producing more calls and direction requests within 30–60 days — which is why we usually start there while longer-term SEO compounds." },
-  { q: "Why does Google Business Profile matter so much for local businesses?", a: "Google Business Profile signals carry roughly 32% of Local Pack ranking weight — the single largest share of any factor group — and review signals add about another 16%. Around 46% of all Google searches now carry local intent. For restaurants, clinics, salons, showrooms and any business with a physical location, an optimized profile with the correct primary category, regular posts, fresh photos and a steady flow of reviews is usually the highest-return marketing work available." },
-  { q: "What is AEO and how is it different from SEO?", a: "SEO optimizes for a ranking position that a person clicks. AEO — answer engine optimization — optimizes to be the source an AI system cites when it writes an answer in ChatGPT, Perplexity, Google AI Overviews, Gemini or Copilot. It relies on structured data, question-shaped headings, self-contained 40–60 word answer blocks, verifiable statistics and third-party mentions. It matters because a large share of searches now end without a click, so a brand can lose visibility even while its rankings stay flat." },
-  { q: "Does Hey We Market help with AI search visibility?", a: "Yes. Hey We Market helps businesses optimize their online presence for AI search tools such as ChatGPT, Perplexity, and Gemini, in addition to traditional Google search visibility." },
-  { q: "What kind of businesses does Hey We Market work with?", a: "Restaurants, cafés, hotels, resorts, healthcare providers and clinics, fashion and D2C brands, real estate developers, education institutes, creators, startups and local service businesses across India. We've worked with 100+ brands and delivered 500+ projects." },
-  { q: "How does Hey We Market's process work?", a: "Five steps: Discover (business, audience and channel audit), Strategy (customized roadmap and KPIs), Create (all content and creative produced in-house), Launch (campaigns live with full conversion tracking), and Scale (weekly optimization and monthly plain-language reporting)." },
-  { q: "How is ad performance tracked and reported?", a: "Every engagement starts with GA4 and Google Tag Manager configured, Meta Pixel and Conversions API connected, and call and form tracking in place — so each lead can be traced to the campaign, ad set and creative that produced it. Reporting is monthly and in plain language: what was spent, what it returned, what's being changed next month." },
-  { q: "What results has Hey We Market delivered for clients?", a: "Representative outcomes include 3.2x weekend footfall and 41% lower cost per lead for a café, 2.4M video views and 58% more direct bookings for a resort, 4.7x qualified enquiries for a real estate developer, and 2.9x appointment requests for a healthcare brand." },
-  { q: "Does Hey We Market require a long-term contract?", a: "Retainers typically run on a three-month minimum, because paid campaigns need roughly 30–45 days of data before optimization decisions are reliable, and SEO and GMB compound over months. One-off projects — brand identity, a commercial shoot, a website build — are scoped and priced as standalone engagements." },
-  { q: "How do I get started with Hey We Market?", a: `Book a free strategy call through the website or email ${CONTACT.email}. We respond within 24 hours with a channel-by-channel view of what's working, what's missing, and what would move first.` },
-];
-
-export function jsonLd() {
-  const a = CONTACT.address;
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["Organization", "LocalBusiness"],
-        "@id": "https://heywemarket.com/#org",
-        name: "Hey We Market",
-        alternateName: "Hey We Market!",
-        url: "https://heywemarket.com/",
-        logo: { "@type": "ImageObject", url: "https://heywemarket.com/logo.jpg", width: 442, height: 404 },
-        description:
-          "Hey We Market is a full service digital marketing agency in Bhopal, Madhya Pradesh — an independent 360° team covering SEO & AEO, Google Ads, Meta Ads, Google Business Profile & local SEO, content creation, social media management, commercial ad shoots, branding and web development.",
-        email: CONTACT.email,
-        telephone: CONTACT.phoneDisplay,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: a.street,
-          addressLocality: a.locality,
-          addressRegion: a.region,
-          postalCode: a.postalCode,
-          addressCountry: a.country,
-        },
-        areaServed: [
-          { "@type": "City", name: "Bhopal" },
-          { "@type": "State", name: "Madhya Pradesh" },
-          { "@type": "Country", name: "India" },
-        ],
-        sameAs: [CONTACT.instagram],
-        parentOrganization: { "@type": "Organization", name: CONTACT.parent.name, url: CONTACT.parent.url },
-        knowsAbout: [
-          "Search Engine Optimization",
-          "Answer Engine Optimization",
-          "Google Ads",
-          "Meta Ads",
-          "Google Business Profile",
-          "Local SEO",
-          "Content Creation",
-          "Social Media Management",
-          "Commercial Ad Shoots",
-          "Branding",
-          "Web Development",
-        ],
-      },
-      {
-        "@type": "ProfessionalService",
-        "@id": "https://heywemarket.com/#service",
-        name: "Hey We Market",
-        url: "https://heywemarket.com/",
-        parentOrganization: { "@id": "https://heywemarket.com/#org" },
-        priceRange: "₹₹",
-        areaServed: { "@type": "Country", name: "India" },
-        hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Digital Marketing Services",
-          itemListElement: SERVICE_GROUPS.flatMap((g) =>
-            g.services.map((s) => ({
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: `${s.title} ${s.underline}`.trim(), description: s.body },
-            }))
-          ),
-        },
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://heywemarket.com/#website",
-        url: "https://heywemarket.com/",
-        name: "Hey We Market",
-        publisher: { "@id": "https://heywemarket.com/#org" },
-        inLanguage: "en-IN",
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://heywemarket.com/#webpage",
-        url: "https://heywemarket.com/",
-        name: "Hey We Market | Digital Marketing Agency in Bhopal, Madhya Pradesh",
-        isPartOf: { "@id": "https://heywemarket.com/#website" },
-        about: { "@id": "https://heywemarket.com/#org" },
-        dateModified: new Date().toISOString().slice(0, 10),
-        description:
-          "Strategy-led digital marketing services in Bhopal including social media, paid advertising, content creation, SEO, branding, and website optimization.",
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://heywemarket.com/#faq",
-        mainEntity: FAQS.map((f) => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.a },
-        })),
-      },
-    ],
-  };
-}

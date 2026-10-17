@@ -1,221 +1,382 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
-
 /*
-  Hey We Market — "Soffit" system. The whole site sits over one fixed animated
-  WebGL2 lavender gradient (see <SiteBackdrop/>); every colour here is pulled
-  from that shader's palette so the UI and the ground read as one thing.
-  Shader stops: #2a2436 bg / #4e4468 / #8f7fc0 / #cfc4e8 / #f5eeff.
-  Serif display (Fraunces), sentence case, hairline borders, soft shadows,
-  gentle radii, generous whitespace, translucent panels. Built to stay legible
-  for a 30–60+ audience.
-*/
+ * Hey We Market — global styles.
+ *
+ * Cascade layers, lowest to highest priority:
+ *   theme      Tailwind design tokens
+ *   base       tiny form-control reset (below)
+ *   site       the site stylesheet (site.css): layout verbatim from the static build, colours from the theme variables
+ *   components shared chrome (theme toggle, vignette, intro video) + careers/form primitives (below)
+ *   utilities  Tailwind utility classes (used for layout on /careers)
+ *
+ * Colour themes live at the top of site.css (light: lime + blue + white, dark: black + lime).
+ * Tailwind's preflight reset is intentionally NOT imported: the site stylesheet is a complete
+ * hand-written design that assumes plain browser defaults, and a second reset would shift its
+ * headings, lists and images.
+ */
+@layer theme, base, site, components, utilities;
 
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "./site.css" layer(site);
+
+/* Tailwind colour utilities (text-accent, bg-lime, border-line…) read the live theme variables. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-ink: var(--ink);
+  --color-lime: var(--lime);
   --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  --color-band: var(--band);
+  --color-line: rgb(var(--ink-rgb) / 0.14);
+  --color-mute: rgb(var(--ink-rgb) / 0.72);
 
-  /* named extras kept so existing utilities keep resolving */
-  --color-ink: #241f2e;          /* near-black plum — strong text */
-  --color-paper: #f2ecfa;        /* light lavender panel */
-  --color-night: #201b2b;        /* deep plum — dark contrast bands */
-  --color-night-fg: #f5eeff;     /* shader colorD */
-  --color-hairline: #ddd2ee;
-  --color-warm: #6d59a6;         /* primary accent (deep lavender) */
-  --color-warm-fg: #ffffff;
-  --color-warm-ink: #3a2d63;
-  --color-lilac: #8f7fc0;        /* shader colorB */
-  --color-orange: var(--color-warm); /* alias — Careers page still references it */
-  --color-orange-ink: var(--color-warm-ink);
-  --color-pink: var(--color-warm);   /* alias — legacy refs */
-  --color-cyan: var(--color-lilac);  /* alias */
-
-  --font-sans: var(--font-space-grotesk);
-  --font-heading: var(--font-bricolage);
-  --font-mono: var(--font-space-mono);
-  --font-serif: var(--font-bricolage);
-
-  --shadow-soft: 0 1px 2px rgba(32, 27, 43, 0.06), 0 10px 30px -12px rgba(32, 27, 43, 0.22);
-  --shadow-soft-lg: 0 2px 6px rgba(32, 27, 43, 0.08), 0 26px 60px -22px rgba(32, 27, 43, 0.32);
-  --shadow-brutal: var(--shadow-soft);
-  --shadow-brutal-sm: 0 1px 2px rgba(32, 27, 43, 0.06), 0 6px 16px -10px rgba(32, 27, 43, 0.18);
-  --shadow-brutal-lg: var(--shadow-soft-lg);
-  --shadow-brutal-pink: var(--shadow-soft);
-
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-2xl: 22px;
-}
-
-:root {
-  --background: #f4eefb;
-  --foreground: #241f2e;
-  --card: #fbf8ff;
-  --card-foreground: #241f2e;
-  --popover: #fbf8ff;
-  --popover-foreground: #241f2e;
-  --primary: #6d59a6;
-  --primary-foreground: #ffffff;
-  --secondary: #8f7fc0;
-  --secondary-foreground: #ffffff;
-  --muted: #ece4f6;
-  --muted-foreground: #43395a;
-  --accent: #8f7fc0;
-  --accent-foreground: #ffffff;
-  --destructive: #b4402e;
-  --border: #ddd2ee;
-  --input: #cfc1e6;
-  --ring: #6d59a6;
-  --radius: 12px;
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-baloo), var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
   }
-  html {
-    font-family: var(--font-sans), system-ui, sans-serif;
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    /* the shader's own base colour — shown until <SiteBackdrop/> paints */
-    background: #2a2436;
-  }
-  body {
-    @apply text-foreground;
-    background: transparent; /* the fixed shader canvas is the ground */
-    font-size: 17px;
-    line-height: 1.65;
-    font-variant-numeric: tabular-nums;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-  h1, h2, h3, h4 {
-    font-family: var(--font-heading), "Segoe UI", system-ui, -apple-system, sans-serif;
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    text-transform: none;
-  }
-  h1 {
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.02;
-  }
-  ::selection { background: var(--color-lilac); color: #201b2b; }
-  :focus-visible { outline: 2px solid var(--color-warm); outline-offset: 2px; border-radius: 3px; }
-  a { color: inherit; text-decoration: none; }
-  ::placeholder { color: var(--muted-foreground); }
 }
 
 @layer components {
-  .wrap {
-    width: min(1240px, 100% - 2 * clamp(20px, 6vw, 72px));
-    margin-inline: auto;
-  }
-  .wrap-narrow {
-    width: min(880px, 100% - 2 * clamp(20px, 6vw, 72px));
-    margin-inline: auto;
-  }
-  /* Content sections carry a light veil over the shader ground. Without it the
-     shader's dark vignette zones sit directly behind dark text and fail contrast
-     (measured ~3.8:1 for muted text). At 74% the worst case is ≥ 5:1 for muted
-     text and ≥ 8:1 for body — and the gradient still reads through. Dark bands
-     override this with their own bg-[…] utility. The hero is not .section-pad,
-     so the shader shows at full strength there. */
-  .section-pad {
-    padding-block: clamp(72px, 12vw, 156px);
-    background: color-mix(in srgb, var(--background) 74%, transparent);
+  /* keyboard focus ring that matches the brand (the static build had none) */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
-  /* the standard surface — a translucent lavender sheet so the shader shows through */
-  .brutal-box,
-  .panel {
-    border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-soft);
-    background: color-mix(in srgb, var(--card) 82%, transparent);
-    backdrop-filter: blur(14px) saturate(1.15);
+  /* intro curtain: never intercept clicks once lifted, and lift on its own if scripts never run */
+  #loader.done {
+    pointer-events: none;
   }
-}
-
-@layer utilities {
-  @media (scripting: enabled) {
-    [data-reveal] {
-      opacity: 0;
-      transform: translateY(14px);
+  #loader {
+    animation: curtain-failsafe 0.9s var(--ease) 4s forwards;
+  }
+  @keyframes curtain-failsafe {
+    to {
+      clip-path: inset(0 0 100% 0);
+      visibility: hidden;
     }
-    [data-reveal][data-inview="true"] {
-      opacity: 1;
+  }
+
+  /* ---------------- Header: tools group + theme toggle ----------------
+     The pill nav now carries ten links. Below ~1200px they no longer fit on one line (the original
+     820px breakpoint left the nav overflowing at tablet and small-laptop widths), so the slide-down
+     menu takes over from 1199px down. */
+  .nav-links {
+    gap: 22px;
+  }
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid rgb(var(--ink-rgb) / 0.16);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition:
+      transform 0.25s var(--ease),
+      background 0.25s;
+  }
+  .theme-toggle:hover {
+    background: rgb(var(--ink-rgb) / 0.08);
+    transform: rotate(14deg);
+  }
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+  /* moon in light mode (click → dark), sun in dark mode (click → light) */
+  .theme-toggle .i-sun {
+    display: none;
+  }
+  :root[data-theme="dark"] .theme-toggle .i-sun {
+    display: block;
+  }
+  :root[data-theme="dark"] .theme-toggle .i-moon {
+    display: none;
+  }
+  /* the labelled row inside the phone menu — only needed when the nav has no room for the round button */
+  .theme-toggle--row {
+    display: none;
+  }
+  @media (max-width: 1199px) {
+    .nav-links,
+    .nav-cta {
+      display: none;
+    }
+    #burger {
+      display: flex;
+    }
+  }
+  @media (max-width: 380px) {
+    .theme-toggle--nav {
+      display: none;
+    }
+    .theme-toggle--row {
+      display: flex;
+      justify-content: flex-start;
+      gap: 12px;
+      width: 100%;
+      height: auto;
+      padding: 13px 12px;
+      border: 0;
+      border-bottom: 1px solid rgb(var(--ink-rgb) / 0.08);
+      border-radius: 0;
+      text-align: left;
+    }
+    .theme-toggle--row:hover {
       transform: none;
-      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    [data-reveal][data-delay="1"][data-inview="true"] { transition-delay: 0.06s; }
-    [data-reveal][data-delay="2"][data-inview="true"] { transition-delay: 0.12s; }
-    [data-reveal][data-delay="3"][data-inview="true"] { transition-delay: 0.18s; }
   }
 
-  .mono-label {
-    font-family: var(--font-mono), monospace;
-    font-size: clamp(11px, 1.3vw, 12.5px);
-    font-weight: 700;
-    letter-spacing: 0.16em;
+  /* Reveal-from-the-side blocks (.rv.left / .rv.right) start 60px off-axis. Clip them at the
+     <main> box so the document never grows a sideways scroll area while they wait to reveal.
+     'clip' (unlike 'hidden') does not create a scroll container, so the sticky service cards keep working. */
+  main {
+    overflow-x: clip;
+  }
+
+  /* ---------------- Intro video (first screen) ----------------
+     Nothing sits on top of the video. It is shown in full (object-fit: contain) below the floating
+     header, on black in both themes; the Music / pause controls sit in the corner. */
+  .landing-video {
+    position: relative;
+    display: block;
+    height: 100svh;
+    min-height: 480px;
+    padding: 0;
+    overflow: hidden;
+    background: #000;
+  }
+  .hero-video {
+    position: absolute;
+    inset: 88px 0 0;
+    background: #000;
+    pointer-events: none;
+  }
+  .hero-video__media {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .hero-controls {
+    position: absolute;
+    left: clamp(16px, 3vw, 32px);
+    bottom: clamp(18px, 3vw, 32px);
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+  }
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 100px;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    background: rgb(0 0 0 / 0.5);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--muted-foreground);
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition:
+      transform 0.2s var(--ease),
+      background 0.2s,
+      color 0.2s;
+  }
+  .hero-btn:hover {
+    background: rgb(255 255 255 / 0.2);
+    transform: translateY(-2px);
+  }
+  .hero-btn--icon {
+    width: 48px;
+    padding: 0;
+  }
+  .hero-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .hero-btn--music[aria-pressed="true"] {
+    background: var(--lime);
+    border-color: transparent;
+    color: #000;
+  }
+  .hero-btn__state {
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: rgb(255 255 255 / 0.18);
+    font-size: 11px;
+  }
+  .hero-btn--music[aria-pressed="true"] .hero-btn__state {
+    background: rgb(0 0 0 / 0.14);
+  }
+  /* Phones: the 16:9 video keeps its full width and natural height; controls sit in a bar below it. */
+  @media (max-width: 760px) {
+    .landing-video {
+      height: auto;
+      min-height: 0;
+      padding: 84px 0 68px;
+    }
+    .hero-video {
+      position: relative;
+      inset: auto;
+      aspect-ratio: 16 / 9;
+    }
+    .hero-controls {
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+    }
   }
 
-  .hl-pink,
-  .hl-warm {
-    background: color-mix(in srgb, var(--color-warm) 22%, transparent);
-    color: var(--color-warm-ink);
-    padding: 0.02em 0.18em;
-    border-radius: 4px;
-    box-decoration-break: clone;
+  /* ---------------- Site-wide vignette ----------------
+     A fixed, click-through overlay that darkens the edges of the viewport on every page (home,
+     careers, 404), tucked under the header, WhatsApp button and intro curtain. The gradient is sized
+     to the farthest corner, so --vignette-edge is exactly how dark the corners get and
+     --vignette-mid is how dark the middle of each screen edge gets (set both to 0 to switch it off).
+     The dark theme's page is already black, so it uses stronger values to stay visible on the
+     panels, cards and video that sit on it. */
+  :root {
+    --vignette-mid: 0.2;
+    --vignette-edge: 0.5;
   }
-  .hl-cyan,
-  .hl-lilac {
-    background: color-mix(in srgb, var(--color-lilac) 26%, transparent);
-    color: #352b57;
-    padding: 0.02em 0.18em;
-    border-radius: 4px;
-    box-decoration-break: clone;
+  :root[data-theme="dark"] {
+    --vignette-mid: 0.34;
+    --vignette-edge: 0.72;
   }
-}
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --vignette-mid: 0.34;
+      --vignette-edge: 0.72;
+    }
+  }
+  @media (max-width: 760px) {
+    :root {
+      --vignette-mid: 0.15;
+      --vignette-edge: 0.4;
+    }
+    :root[data-theme="dark"] {
+      --vignette-mid: 0.28;
+      --vignette-edge: 0.6;
+    }
+  }
+  @media (max-width: 760px) and (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --vignette-mid: 0.28;
+      --vignette-edge: 0.6;
+    }
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse farthest-corner at 50% 50%,
+      rgb(0 0 0 / 0) 38%,
+      rgb(0 0 0 / var(--vignette-mid)) 72%,
+      rgb(0 0 0 / var(--vignette-edge)) 100%
+    );
+  }
+  @media print, (prefers-contrast: more) {
+    body::after {
+      display: none;
+    }
+  }
 
-@keyframes ticker {
-  to { transform: translateX(-50%); }
-}
+  /* "Skip to content" — visible only when focused */
+  .skip-link {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    padding: 12px 20px;
+    border-radius: 100px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    font-weight: 700;
+    transform: translateY(-160%);
+    transition: transform 0.25s var(--ease);
+  }
+  .skip-link:focus {
+    transform: none;
+  }
 
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+  /* ---- careers / form primitives, in the same visual language as the site ---- */
+  .k-card {
+    border: 1px solid rgb(var(--ink-rgb) / 0.12);
+    border-radius: var(--r);
+    background: var(--surface);
+    box-shadow: 0 8px 28px rgb(var(--shadow-rgb) / 0.06);
+  }
+  .k-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgb(var(--ink-rgb) / 0.18);
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .k-chip--lime {
+    background: var(--lime);
+    border-color: transparent;
+    color: #000;
+  }
+  .k-input {
+    width: 100%;
+    border: 1.5px solid rgb(var(--ink-rgb) / 0.22);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 12px 16px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .k-input::placeholder {
+    color: rgb(var(--ink-rgb) / 0.5);
+  }
+  .k-input:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / 0.22);
+  }
+  .k-input[aria-invalid="true"] {
+    border-color: var(--error-line);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--error-line) 18%, transparent);
+  }
+  .k-label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--font-baloo), sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 }

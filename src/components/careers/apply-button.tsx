@@ -19,12 +19,12 @@ export function ApplyButton({ role, className }: { role: string; className?: str
         }
         window.dispatchEvent(new CustomEvent("careers:role", { detail: role }));
       }}
-      className={
-        className ??
-        "inline-flex items-center gap-2 border border-border bg-orange px-5 py-3 font-heading text-[13px]  tracking-[0.02em] text-ink shadow-brutal-sm transition-transform duration-150 hover:-translate-y-[2px] hover:shadow-none"
-      }
+      aria-label={`Apply now for ${role}`}
+      className={className ?? "btn btn-primary magnetic"}
     >
-      Apply Now <ArrowRight className="size-4" />
+      <span className="inline-flex items-center gap-2">
+        Apply Now <ArrowRight className="size-4" aria-hidden="true" />
+      </span>
     </a>
   );
 }
