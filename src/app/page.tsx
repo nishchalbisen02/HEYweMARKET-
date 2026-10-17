@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <>
       <JsonLd data={homeGraph()} />
-      <LandingVideo />
       <Hero />
+      <LandingVideo />
       <ClientMarquee />
       <Showreel />
       <ServiceStrip />

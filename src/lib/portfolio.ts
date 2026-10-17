@@ -82,10 +82,9 @@ export const SHOWREEL = {
 } as const;
 
 /**
- * Hero background loop (public/hero). Built from "herovideo 2.gif" (426×240, 10fps, ~107s) — a GIF cannot
- * carry audio, so the Music button stays hidden until sound exists. To switch it on, either:
- *   - drop a music file at public/hero/ and set `audioSrc` (plays on click, loops), or
- *   - replace hero.mp4 with an encode that has an audio track and set `videoHasSound: true`.
+ * Intro video (public/hero): the agency promo, 109s, re-encoded to 1280×720 H.264 with its own AAC soundtrack.
+ * It autoplays muted; the Music button unmutes it (`videoHasSound`). To use a separate music file instead,
+ * drop it in public/hero/ and set `audioSrc`; with neither, the Music button is not rendered.
  */
 export const HERO_VIDEO: {
   src: string;
@@ -97,8 +96,8 @@ export const HERO_VIDEO: {
 } = {
   src: "/hero/hero.mp4",
   poster: "/hero/hero-poster.webp",
-  width: 854,
-  height: 480,
+  width: 1280,
+  height: 720,
   audioSrc: null,
-  videoHasSound: false,
+  videoHasSound: true,
 };

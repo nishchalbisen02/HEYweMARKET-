@@ -1,8 +1,9 @@
 import { COPY } from "@/lib/site";
 
 /**
- * Intro section — the original hero (headline, paragraph, buttons, floating chips),
- * now the second "page" of the site, right below the full-screen intro video.
+ * First screen: the hero (headline, paragraph, buttons, floating chips). The `rv` blocks ship already
+ * revealed (`in`) so the headline is visible from the first paint, independent of JavaScript.
+ * The full-screen intro video is the second screen, right below.
  */
 export function Hero() {
   return (
@@ -40,9 +41,9 @@ export function Hero() {
         ✦ 100+ Brands
       </div>
       <div className="wrap hero-inner" id="heroInner">
-        <h1 className="rv d1">{COPY.heroTitle}</h1>
-        <p className="hero-sub rv d2">{COPY.heroSub}</p>
-        <div className="hero-ctas rv d3">
+        <h1 className="rv in d1">{COPY.heroTitle}</h1>
+        <p className="hero-sub rv in d2">{COPY.heroSub}</p>
+        <div className="hero-ctas rv in d3">
           <a href="#contact" className="btn btn-primary magnetic">
             <span>Let&apos;s Talk</span>
           </a>

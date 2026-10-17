@@ -52,8 +52,8 @@ npm run lint
 
 ## Intro video, music and vignette
 
-- The intro video is `public/hero/hero.mp4` (made from `herovideo 2.gif`, which has no audio). It plays muted, looped, only while on screen; reduced-motion / data-saver visitors get the poster and a play button.
-- **Music button**: hidden until there is sound. Either drop a track in `public/hero/` and set `HERO_VIDEO.audioSrc` in `src/lib/portfolio.ts` (starts on click, loops), or replace `hero.mp4` with a version that has an audio track and set `videoHasSound: true`. Only one thing makes sound at a time (hero music vs the showreel).
+- Screen 1 is the hero text; screen 2 is the intro video (`public/hero/hero.mp4`: the agency promo, 1280×720 with its own soundtrack). On desktop it fills the whole screen edge to edge (`object-fit: cover`); on portrait phones it keeps its full width so nothing is cropped. It plays muted, looped, only while on screen; reduced-motion / data-saver visitors get the poster and a play button.
+- **Music button**: unmutes the video's own soundtrack (`videoHasSound: true` in `src/lib/portfolio.ts`; or set `audioSrc` to a separate track instead). Hidden if neither is set. Only one thing makes sound at a time (hero music vs the showreel).
 - **Vignette**: a fixed click-through overlay on every page (`body::after` in `src/app/globals.css`). Tune `--vignette-mid` / `--vignette-edge` (0 = off); it is lighter on phones and disabled for print and high-contrast mode.
 
 ## Editing content

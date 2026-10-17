@@ -24,7 +24,7 @@ export function SiteHeader() {
     <>
       <header>
         <nav id="nav" aria-label="Main navigation">
-          <Link href="/#top" className="logo" onClick={close}>
+          <Link href="/#hero" className="logo" onClick={close}>
             <Image
               src="/logo.jpg"
               alt="Hey We Market logo — digital marketing agency"
