@@ -33,7 +33,9 @@ export function SiteHeader() {
               priority
               sizes="38px"
             />
-            hey we <em>market!</em>
+            <span className="logo-text">
+              hey we <em>market!</em>
+            </span>
           </Link>
           <div className="nav-links">
             {NAV.map((item) => (

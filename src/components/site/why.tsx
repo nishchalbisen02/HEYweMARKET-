@@ -1,7 +1,9 @@
-import Image from "next/image";
+import { ChartColumn, Compass, Handshake, ShieldCheck, Target, Users, type LucideIcon } from "lucide-react";
 import { WHY } from "@/lib/site";
-import { WHY_PHOTOS } from "@/lib/portfolio";
 import { SplitHeading } from "./split-heading";
+
+/** One icon per claim, index-aligned with WHY (the claims are abstract, so they get symbols, not photos). */
+const ICONS: readonly LucideIcon[] = [Users, Target, ChartColumn, Handshake, Compass, ShieldCheck];
 
 const DELAYS = ["", " d1", " d2"] as const;
 
@@ -17,21 +19,12 @@ export function Why() {
           <SplitHeading>Why Businesses Choose Hey We Market</SplitHeading>
           <div className="why-grid">
             {WHY.map((w, i) => {
-              const photo = WHY_PHOTOS[i];
+              const Icon = ICONS[i];
               return (
                 <div key={w.n} className={`why rv scale${DELAYS[i % 3]}`}>
-                  {photo && (
-                    <figure className="why-media">
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        width={photo.w}
-                        height={photo.h}
-                        sizes="(max-width: 620px) 90vw, 360px"
-                        unoptimized
-                      />
-                    </figure>
-                  )}
+                  <div className="why-ico" aria-hidden="true">
+                    <Icon strokeWidth={1.8} />
+                  </div>
                   <span className="num">{w.n}</span>
                   <h3>{w.title}</h3>
                   <p>{w.body}</p>

@@ -40,7 +40,7 @@ export default function CareersPage() {
       <JsonLd data={careersGraph()} />
 
       {/* 1 — HERO */}
-      <section aria-label="Careers introduction" className="ambient-band bg-[var(--band)] pb-[100px] pt-[150px] text-white">
+      <section aria-label="Careers introduction" className="band-section pb-[100px] pt-[150px]">
         <div className="wrap grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center">
           <div className="rv in mx-auto w-full max-w-[420px] overflow-hidden rounded-[24px] border border-white/15 shadow-[0_25px_50px_rgb(0_0_0/0.35)] lg:mx-0">
             <picture>
@@ -107,7 +107,7 @@ export default function CareersPage() {
       </section>
 
       {/* 3 — OPPORTUNITIES */}
-      <section id="opportunities" aria-label="Opportunities" className="ambient" style={{ backgroundColor: "var(--bg)" }}>
+      <section id="opportunities" aria-label="Opportunities" className="ambient">
         <div className="wrap">
           <div className="chapter rv">
             <b>Opportunities</b>
@@ -141,7 +141,7 @@ export default function CareersPage() {
       </section>
 
       {/* 4 — FRESHERS */}
-      <section aria-label="For freshers" className="ambient-band bg-[var(--band)] text-white">
+      <section aria-label="For freshers" className="band-section">
         <div className="wrap grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <div className="chapter rv">

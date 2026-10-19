@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { COPY, FOUNDERS, SITE_NAME } from "@/lib/site";
 import { SplitHeading } from "./split-heading";
 
@@ -121,16 +122,21 @@ export function Founders() {
           <div className="why-grid" style={{ marginTop: 42 }}>
             {FOUNDERS.map((f, i) => (
               <div key={f.name} className={`why rv scale${i === 1 ? " d1" : ""}`}>
-                {/* monogram until real portraits are supplied */}
-                <div className="founder-avatar" aria-hidden="true">
-                  {f.name
-                    .split(" ")
-                    .map((part) => part[0])
-                    .join("")}
+                <figure className="founder-photo">
+                  <Image
+                    src={f.photo}
+                    alt={`${f.name}, ${f.jobTitle.split(",")[0]} of ${SITE_NAME}`}
+                    width={900}
+                    height={900}
+                    sizes="(max-width: 620px) 92vw, 568px"
+                    unoptimized
+                  />
+                </figure>
+                <div className="founder-body">
+                  <span className="founder-role">{f.role}</span>
+                  <h3>{f.name}</h3>
+                  <p>{f.bio}</p>
                 </div>
-                <span className="founder-role">{f.role}</span>
-                <h3>{f.name}</h3>
-                <p>{f.bio}</p>
               </div>
             ))}
           </div>

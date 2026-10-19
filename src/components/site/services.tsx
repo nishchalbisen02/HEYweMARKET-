@@ -1,7 +1,8 @@
 import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
+import { MapPin, Search, Sparkles } from "lucide-react";
 import { SERVICES } from "@/lib/site";
-import { SERVICE_PHOTOS } from "@/lib/portfolio";
+import { FEED_POSTS, SERVICE_PHOTOS } from "@/lib/portfolio";
 
 /** Icon drawings, index-aligned with SERVICES (stroke colour comes from site.css). */
 const ICONS: readonly ReactNode[] = [
@@ -27,6 +28,57 @@ const ICONS: readonly ReactNode[] = [
     <path d="M8 21h8" />
   </Fragment>,
 ];
+
+/** The social media card: a feed of real posts — what "strategy, content calendars, design and day to day management" produces. */
+function FeedArt() {
+  return (
+    <div className="feed-art" role="img" aria-label="A social media feed made of nine post designs by Hey We Market">
+      <div className="feed-art__bar">
+        <Image src="/logo.jpg" alt="" width={28} height={28} unoptimized />
+        <b>heywemarket</b>
+        <span>Instagram</span>
+      </div>
+      <div className="feed-art__grid">
+        {FEED_POSTS.map((p) => (
+          <Image key={p.slug} src={`/creative/${p.slug}.webp`} alt="" width={160} height={160} sizes="110px" unoptimized />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** The SEO card has no honest photo, so it draws what the text describes: local search, a business profile, AI answers. */
+function SeoArt() {
+  return (
+    <div
+      className="seo-art"
+      role="img"
+      aria-label="Illustration: a search bar with chips for local SEO, Google Business Profile and AI search tools"
+    >
+      <div className="seo-art__bar">
+        <Search aria-hidden="true" />
+        <span>marketing agency near me</span>
+      </div>
+      <div className="seo-art__row">
+        <span className="seo-art__chip">
+          <MapPin aria-hidden="true" /> Local SEO
+        </span>
+        <span className="seo-art__chip">Google Business Profile</span>
+      </div>
+      <div className="seo-art__row">
+        <span className="seo-art__chip seo-art__chip--ai">
+          <Sparkles aria-hidden="true" /> ChatGPT
+        </span>
+        <span className="seo-art__chip seo-art__chip--ai">
+          <Sparkles aria-hidden="true" /> Perplexity
+        </span>
+        <span className="seo-art__chip seo-art__chip--ai">
+          <Sparkles aria-hidden="true" /> Gemini
+        </span>
+      </div>
+    </div>
+  );
+}
 
 /** Chapter 02 — services as a vertical stack of sticky cards. */
 export function Services() {
@@ -56,8 +108,8 @@ export function Services() {
                       <h3>{s.title}</h3>
                       <p>{s.body}</p>
                     </div>
-                    {photo && (
-                      <figure className="svc-media">
+                    <figure className={`svc-media${photo ? "" : ` svc-media--art${i === 0 ? " svc-media--feed" : ""}`}`}>
+                      {photo ? (
                         <Image
                           src={photo.src}
                           alt={photo.alt}
@@ -66,8 +118,12 @@ export function Services() {
                           sizes="(max-width: 760px) 90vw, 480px"
                           unoptimized
                         />
-                      </figure>
-                    )}
+                      ) : i === 0 ? (
+                        <FeedArt />
+                      ) : (
+                        <SeoArt />
+                      )}
+                    </figure>
                   </article>
                 );
               })}

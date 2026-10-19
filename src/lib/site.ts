@@ -181,12 +181,14 @@ export const FOUNDERS = [
     name: "Ankita Singh",
     role: "Founder · Strategy & Creative",
     jobTitle: "Founder, Strategy & Creative",
+    photo: "/founders/ankita-singh.webp",
     bio: "Founded Hey We Market to build marketing that is strategic first and creative second, helping businesses grow with clarity, consistency, and work that moves the needle.",
   },
   {
     name: "Divyansh Singh",
     role: "Co Founder · Brand & Growth",
     jobTitle: "Co Founder, Brand & Growth",
+    photo: "/founders/divyansh-singh.webp",
     bio: "Works at the intersection of marketing, brand strategy, and business growth.",
   },
 ] as const;

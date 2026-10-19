@@ -146,6 +146,7 @@ function siteNodes(): Json[] {
       "@id": ids.founder(f.name),
       name: f.name,
       jobTitle: f.jobTitle,
+      image: `${SITE_URL}${f.photo}`,
       description: f.bio,
       worksFor: { "@id": ids.org },
       url: `${SITE_URL}/#founders`,

@@ -9,7 +9,7 @@ const DELAYS = ["", " d1", " d2"] as const;
  */
 export function Faq() {
   return (
-    <section id="faq" style={{ background: "var(--bg)" }}>
+    <section id="faq">
       <div className="wrap">
         <div className="chapter rv">
           <b>Good To Know</b>

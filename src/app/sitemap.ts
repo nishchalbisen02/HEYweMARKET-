@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { CREATIVE } from "@/lib/portfolio";
 import { HERO_VIDEO, SHOWREEL } from "@/lib/portfolio";
-import { CONTENT_UPDATED, SITE_NAME, SITE_URL } from "@/lib/site";
+import { CONTENT_UPDATED, FOUNDERS, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -10,7 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: CONTENT_UPDATED,
       changeFrequency: "weekly",
       priority: 1,
-      images: [`${SITE_URL}/logo.jpg`, ...CREATIVE.map((c) => `${SITE_URL}/creative/${c.slug}.webp`)],
+      images: [
+        `${SITE_URL}/logo.jpg`,
+        ...FOUNDERS.map((f) => `${SITE_URL}${f.photo}`),
+        ...CREATIVE.map((c) => `${SITE_URL}/creative/${c.slug}.webp`),
+      ],
       videos: [
         {
           title: `${SITE_NAME} agency film`,

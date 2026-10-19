@@ -10,8 +10,8 @@
  *   2. a frosted backdrop      (--glass-blur)          what shows through is blurred
  *   3. a light edge            (--glass-line, --glass-shine)  a 1px top highlight like a glass rim
  *   4. a soft coloured shadow  (--glass-shadow*)       lifts the pane off the page
- * Blur needs something to blur, so the sections that hold cards get a few soft lime / blue orbs behind them
- * (--glass-orbs), tiled every 780px so a card always has one nearby, wherever it scrolls to.
+ * Blur needs something to blur, so ONE fixed layer of soft lime / blue orbs (--glass-orbs, on body::before) sits behind
+ * the whole page and every section is transparent over it.
  *
  * Text contrast: glass over an orb must keep body text at WCAG AA. The orbs are deliberately dim in the dark theme
  * and under the blue bands, and the near-opaque captions (creative cards) stay at .95 — change with care.
@@ -37,12 +37,10 @@
   --glass-blur: blur(22px) saturate(165%);
   --glass-blur-heavy: blur(30px) saturate(170%);
   --glass-orbs:
-    radial-gradient(circle min(170px, 24vw) at 9% 20%, rgb(205 242 43 / 0.78) 0 42%, rgb(205 242 43 / 0) 100%),
-    radial-gradient(circle min(230px, 32vw) at 92% 58%, rgb(30 69 251 / 0.3) 0 42%, rgb(30 69 251 / 0) 100%),
-    radial-gradient(circle min(110px, 15vw) at 66% 8%, rgb(205 242 43 / 0.55) 0 50%, rgb(205 242 43 / 0) 100%);
-  --glass-orbs-band:
-    radial-gradient(circle min(190px, 26vw) at 12% 30%, rgb(205 242 43 / 0.1) 0 42%, rgb(205 242 43 / 0) 100%),
-    radial-gradient(circle min(240px, 33vw) at 90% 70%, rgb(255 255 255 / 0.08) 0 42%, rgb(255 255 255 / 0) 100%);
+  radial-gradient(circle min(300px, 34vw) at 8% 20%, rgb(205 242 43 / 0.62) 0 22%, rgb(205 242 43 / 0) 100%),
+  radial-gradient(circle min(340px, 38vw) at 94% 54%, rgb(30 69 251 / 0.18) 0 22%, rgb(30 69 251 / 0) 100%),
+  radial-gradient(circle min(190px, 22vw) at 70% 10%, rgb(205 242 43 / 0.45) 0 22%, rgb(205 242 43 / 0) 100%),
+  radial-gradient(circle min(260px, 30vw) at 28% 94%, rgb(205 242 43 / 0.5) 0 22%, rgb(205 242 43 / 0) 100%);
 }
 
 :root[data-theme="dark"] {
@@ -59,12 +57,10 @@
   --glass-shadow: 0 14px 40px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(255 255 255 / 0.02);
   --glass-shadow-hover: 0 24px 56px rgb(0 0 0 / 0.65), 0 0 36px rgb(198 255 51 / 0.07);
   --glass-orbs:
-    radial-gradient(circle min(170px, 24vw) at 9% 20%, rgb(198 255 51 / 0.25) 0 42%, rgb(198 255 51 / 0) 100%),
-    radial-gradient(circle min(230px, 32vw) at 92% 58%, rgb(198 255 51 / 0.14) 0 42%, rgb(198 255 51 / 0) 100%),
-    radial-gradient(circle min(110px, 15vw) at 66% 8%, rgb(198 255 51 / 0.12) 0 38%, rgb(198 255 51 / 0) 100%);
-  --glass-orbs-band:
-    radial-gradient(circle min(190px, 26vw) at 12% 30%, rgb(198 255 51 / 0.2) 0 42%, rgb(198 255 51 / 0) 100%),
-    radial-gradient(circle min(240px, 33vw) at 90% 70%, rgb(198 255 51 / 0.1) 0 40%, rgb(198 255 51 / 0) 100%);
+  radial-gradient(circle min(300px, 34vw) at 8% 20%, rgb(198 255 51 / 0.25) 0 22%, rgb(198 255 51 / 0) 100%),
+  radial-gradient(circle min(340px, 38vw) at 94% 54%, rgb(198 255 51 / 0.14) 0 22%, rgb(198 255 51 / 0) 100%),
+  radial-gradient(circle min(190px, 22vw) at 70% 10%, rgb(198 255 51 / 0.12) 0 22%, rgb(198 255 51 / 0) 100%),
+  radial-gradient(circle min(260px, 30vw) at 28% 94%, rgb(198 255 51 / 0.18) 0 22%, rgb(198 255 51 / 0) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -82,50 +78,56 @@
     --glass-shadow: 0 14px 40px rgb(0 0 0 / 0.55), 0 0 0 1px rgb(255 255 255 / 0.02);
     --glass-shadow-hover: 0 24px 56px rgb(0 0 0 / 0.65), 0 0 36px rgb(198 255 51 / 0.07);
     --glass-orbs:
-      radial-gradient(circle min(170px, 24vw) at 9% 20%, rgb(198 255 51 / 0.25) 0 42%, rgb(198 255 51 / 0) 100%),
-      radial-gradient(circle min(230px, 32vw) at 92% 58%, rgb(198 255 51 / 0.14) 0 42%, rgb(198 255 51 / 0) 100%),
-      radial-gradient(circle min(110px, 15vw) at 66% 8%, rgb(198 255 51 / 0.12) 0 38%, rgb(198 255 51 / 0) 100%);
-    --glass-orbs-band:
-      radial-gradient(circle min(190px, 26vw) at 12% 30%, rgb(198 255 51 / 0.2) 0 42%, rgb(198 255 51 / 0) 100%),
-      radial-gradient(circle min(240px, 33vw) at 90% 70%, rgb(198 255 51 / 0.1) 0 40%, rgb(198 255 51 / 0) 100%);
+  radial-gradient(circle min(300px, 34vw) at 8% 20%, rgb(198 255 51 / 0.25) 0 22%, rgb(198 255 51 / 0) 100%),
+  radial-gradient(circle min(340px, 38vw) at 94% 54%, rgb(198 255 51 / 0.14) 0 22%, rgb(198 255 51 / 0) 100%),
+  radial-gradient(circle min(190px, 22vw) at 70% 10%, rgb(198 255 51 / 0.12) 0 22%, rgb(198 255 51 / 0) 100%),
+  radial-gradient(circle min(260px, 30vw) at 28% 94%, rgb(198 255 51 / 0.18) 0 22%, rgb(198 255 51 / 0) 100%);
   }
 }
 
-/* ---------- something for the glass to blur: soft orbs behind the sections that hold cards ---------- */
+/* ---------- one continuous backdrop ----------
+   The orbs live in ONE fixed layer behind the whole page (not in each section's own background), so a glow is never
+   chopped at a section edge or at a tile boundary, and the glass cards slide over it as you scroll. Every section is
+   therefore transparent. The only exceptions are the blue bands in the LIGHT theme — a band is meant to be a solid
+   block of brand colour; in the DARK theme the bands are transparent too, so nothing reads as a flat, separate page. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--glass-orbs);
+}
+
+#hero,
 #about,
 #vision,
 #services,
 #why,
+#founders,
 #testimonials,
 #faq,
 #contact,
 .showreel-section,
 .creative-marquee,
 .ambient {
-  background-image: var(--glass-orbs);
-  background-size: 100% 780px;
-  background-repeat: repeat-y;
+  background: transparent;
 }
 
-#founders {
-  background-image:
-    var(--glass-orbs),
-    linear-gradient(135deg, var(--bg) 0%, var(--page) 52%, rgb(var(--accent-rgb) / 0.1) 100%);
-  background-size: 100% 780px, 100% 100%;
-  background-repeat: repeat-y, no-repeat;
+/* the blue band as a reusable class (careers); solid blue in light, see-through in dark */
+.band-section {
+  background-color: var(--band);
+  color: #fff;
 }
 
-/* the coloured bands (blue in light, black in dark) get the same backdrop, so no section reads as a flat, separate page */
-#assurance,
-#work,
-#process,
-#stats,
-footer,
-.marquee-sec,
-.ambient-band {
-  background-image: var(--glass-orbs-band);
-  background-size: 100% 520px;
-  background-repeat: repeat-y;
+:root[data-theme="dark"] :is(#assurance, #work, #process, #stats, footer, .marquee-sec, .band-section) {
+  background: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(#assurance, #work, #process, #stats, footer, .marquee-sec, .band-section) {
+    background: transparent;
+  }
 }
 
 /* ---------- light-surface cards ---------- */
@@ -491,7 +493,7 @@ nav {
   box-shadow: var(--glass-shadow);
 }
 
-.svc-media img {
+.svc-media > img {
   position: absolute;
   inset: 0;
   display: block;
@@ -501,52 +503,166 @@ nav {
   transition: transform 0.8s var(--ease);
 }
 
-.svc:hover .svc-media img {
+.svc:hover .svc-media > img {
   transform: scale(1.05);
 }
 
-.why-media {
-  margin: 0 0 22px;
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  border: 1px solid var(--glass-line);
+.why-ico {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 20px;
   border-radius: 16px;
-  box-shadow: var(--glass-shine);
+  background: var(--ico-bg);
+  color: var(--accent);
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
 }
 
-.why-media img {
+.why-ico svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* the card turns into a filled card on hover, so the chip follows the card's own hover colours */
+.why:hover .why-ico {
+  background: rgb(var(--hover-fg-rgb) / 0.14);
+  color: var(--hover-accent);
+}
+
+/* SEO card illustration: drawn from the card's own words, no photo */
+.svc-media--art {
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 30px);
+  background: var(--ico-bg), rgb(var(--surface-rgb) / 0.55);
+}
+
+.seo-art {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.seo-art__bar,
+.seo-art__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--glass-line);
+  background: rgb(var(--surface-rgb) / 0.82);
+  box-shadow: var(--glass-shadow);
+  color: var(--ink);
+}
+
+.seo-art__bar {
+  padding: 14px 18px;
+  border-radius: 100px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.seo-art__bar svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.seo-art__bar span {
+  opacity: 0.72;
+}
+
+.seo-art__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.seo-art__chip {
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.seo-art__chip svg {
+  width: 15px;
+  height: 15px;
+  color: var(--accent);
+}
+
+.seo-art__chip--ai {
+  background: var(--lime);
+  border-color: transparent;
+  color: #000;
+}
+
+.seo-art__chip--ai svg {
+  color: #000;
+}
+
+/* Founder cards: the portrait fills the top of the card edge to edge, the text sits under it.
+   (The cards are .why cards, so the glass, the hover fill and the corner circle all still apply.) */
+#founders .why {
+  padding: 0;
+  min-height: 0;
+}
+
+/* the card's own accent bar moves inside the text block (.founder-body::after), under the photo */
+#founders .why::after {
+  display: none;
+}
+
+.founder-photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 1 / 0.88;
+  background: rgb(var(--ink-rgb) / 0.08);
+}
+
+.founder-photo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s var(--ease);
+  object-position: 50% 18%;
+  transition: transform 0.9s var(--ease);
 }
 
-.why:hover .why-media img {
-  transform: scale(1.06);
+/* a soft fade into the card, so the photo does not end in a hard line */
+.founder-photo::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 28%;
+  background: linear-gradient(to top, rgb(var(--surface-rgb) / 0.55), transparent);
+  pointer-events: none;
 }
 
-.founder-avatar {
-  display: grid;
-  place-items: center;
-  width: 64px;
-  height: 64px;
-  margin-bottom: 22px;
-  border: 1px solid var(--glass-line);
-  border-radius: 50%;
-  background: var(--lime);
-  color: #000;
-  box-shadow: var(--glass-shadow);
-  font-family: var(--font-baloo), sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+#founders .why:hover .founder-photo img {
+  transform: scale(1.04);
 }
 
-#founders .why:hover .founder-avatar {
-  background: var(--hover-accent);
-  color: var(--hover-bg);
+.founder-body {
+  padding: 26px 34px 32px;
+}
+
+.founder-body::after {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 4px;
+  margin-top: 26px;
+  border-radius: 4px;
+  background: var(--grad);
+  transition: width 0.5s var(--ease);
+}
+
+#founders .why:hover .founder-body::after {
+  width: 92px;
 }
 
 @media (max-width: 760px) {
@@ -602,4 +718,97 @@ nav {
   align-items: flex-start;
   justify-content: flex-end;
   gap: 4px;
+}
+
+/* ---------- creative strip captions: the real titles are longer, so stack them (title, then type) instead of truncating ---------- */
+.creative-card-caption {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.creative-card-caption b {
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: normal;
+  line-height: 1.25;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.creative-card-caption small {
+  max-width: 100%;
+}
+
+
+/* Logo: "hey we" and "market!" are ONE text run (.logo-text), so only the natural word space sits between them —
+   as separate flex items they picked up the .logo gap (10px) on top of the space. The gap stays between the icon and the name. */
+.logo-text {
+  white-space: nowrap;
+}
+
+/* Social media card: an Instagram-style feed of nine real post designs (no follower counts or other made-up numbers) */
+.feed-art {
+  width: 100%;
+  max-width: 360px;
+  overflow: hidden;
+  border: 1px solid var(--glass-line);
+  border-radius: 18px;
+  background: rgb(var(--surface-rgb) / 0.86);
+  box-shadow: var(--glass-shadow);
+}
+
+.feed-art__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgb(var(--ink-rgb) / 0.1);
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.feed-art__bar img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.feed-art__bar b {
+  font-weight: 800;
+}
+
+.feed-art__bar span {
+  margin-left: auto;
+  color: rgb(var(--ink-rgb) / 0.66);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.feed-art__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: rgb(var(--ink-rgb) / 0.1);
+}
+
+.feed-art__grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  .svc-media--feed {
+    aspect-ratio: auto;
+  }
+  .feed-art {
+    max-width: 300px;
+  }
 }

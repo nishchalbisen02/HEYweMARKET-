@@ -18,7 +18,9 @@ export function SiteFooter() {
               height={404}
               sizes="38px"
             />
-            hey we <em>market!</em>
+            <span className="logo-text">
+              hey we <em>market!</em>
+            </span>
           </span>
           <p>
             hey we market! is a creative digital marketing agency helping brands grow through strategic content,
