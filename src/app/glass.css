@@ -800,6 +800,7 @@ nav {
 .feed-art__grid img {
   display: block;
   width: 100%;
+  height: auto; /* the img has a height attribute; without this it beats aspect-ratio and the grid gets 160px rows */
   aspect-ratio: 1;
   object-fit: cover;
 }
@@ -810,5 +811,47 @@ nav {
   }
   .feed-art {
     max-width: 300px;
+  }
+}
+
+/* ---------- stacked service cards: ALL the same height ----------
+   The cards stick at the same spot and slide over each other, so a card that is taller than the next one leaks out
+   underneath it (the feed thumbnails were peeking out below the Paid Advertising card). grid-auto-rows: 1fr makes
+   every row as tall as the tallest card, so they always cover each other exactly, whatever their content or the
+   screen size. The min-height leaves room for the tallest content (the feed card) on laptops too. */
+.htrack {
+  grid-auto-rows: 1fr;
+}
+
+.svc {
+  min-height: clamp(480px, 58vh, 560px);
+}
+
+.svc-media--art {
+  padding: 18px;
+}
+
+.feed-art {
+  max-width: 300px;
+}
+
+@media (max-width: 760px) {
+  .svc {
+    min-height: 0;
+  }
+  /* one fixed picture height on phones, so photo / illustration / feed cards line up */
+  .svc {
+    padding: 28px 22px;
+  }
+  .svc-media {
+    height: 252px;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+  .svc-media--art {
+    padding: 4px;
+  }
+  .feed-art {
+    max-width: 190px;
   }
 }
