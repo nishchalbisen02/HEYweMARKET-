@@ -1,6 +1,5 @@
 import { JsonLd } from "@/components/json-ld";
 import { homeGraph } from "@/lib/schema";
-import { LandingVideo } from "@/components/site/landing-video";
 import { Hero } from "@/components/site/hero";
 import { ClientMarquee } from "@/components/site/client-marquee";
 import { Showreel } from "@/components/site/showreel";
@@ -21,7 +20,6 @@ export default function Home() {
     <>
       <JsonLd data={homeGraph()} />
       <Hero />
-      <LandingVideo />
       <ClientMarquee />
       <Showreel />
       <ServiceStrip />

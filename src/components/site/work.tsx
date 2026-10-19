@@ -1,13 +1,14 @@
 import { WORK, WORK_CATEGORIES } from "@/lib/portfolio";
 import { SplitHeading } from "./split-heading";
 import { LazyVideo } from "./lazy-video";
+import { FeaturedFilm } from "./featured-film";
 
-/** Chapter 04 — the work: a masonry of looping reel previews. */
+/** Chapter 04 — the work: the featured DB-pride film, then a masonry of looping reel previews. */
 export function Work() {
   return (
     <section
       id="work"
-      style={{ contentVisibility: "auto", containIntrinsicSize: "1400px" }}
+      style={{ contentVisibility: "auto", containIntrinsicSize: "auto 3000px" }}
       className="dark"
     >
       <div className="wrap">
@@ -16,6 +17,7 @@ export function Work() {
         </div>
         <div style={{ paddingTop: 70 }}>
           <SplitHeading>Work That Speaks For Itself.</SplitHeading>
+          <FeaturedFilm />
           <div className="masonry" id="masonry">
             {WORK.map((w) => (
               <div className="tile" data-c={w.category} key={w.slug}>

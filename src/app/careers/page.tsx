@@ -40,7 +40,7 @@ export default function CareersPage() {
       <JsonLd data={careersGraph()} />
 
       {/* 1 — HERO */}
-      <section aria-label="Careers introduction" className="bg-[var(--band)] pb-[100px] pt-[150px] text-white">
+      <section aria-label="Careers introduction" className="ambient-band bg-[var(--band)] pb-[100px] pt-[150px] text-white">
         <div className="wrap grid gap-[clamp(32px,5vw,72px)] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center">
           <div className="rv in mx-auto w-full max-w-[420px] overflow-hidden rounded-[24px] border border-white/15 shadow-[0_25px_50px_rgb(0_0_0/0.35)] lg:mx-0">
             <picture>
@@ -77,7 +77,7 @@ export default function CareersPage() {
       </section>
 
       {/* 2 — WHY JOIN */}
-      <section aria-label="Why join us">
+      <section aria-label="Why join us" className="ambient">
         <div className="wrap">
           <div className="chapter rv">
             <b>Why Hey We Market</b>
@@ -93,7 +93,7 @@ export default function CareersPage() {
             {VALUES.map((v, i) => {
               const Icon = VALUE_ICONS[i];
               return (
-                <div key={v.title} className={`k-card rv scale flex flex-col gap-3 p-6${DELAYS[i]}`}>
+                <div key={v.title} className={`k-card rv scale flex flex-col gap-3 p-6 ${DELAYS[i]}`}>
                   <span className="grid size-12 place-items-center rounded-2xl bg-[var(--lime)] text-black">
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
@@ -107,7 +107,7 @@ export default function CareersPage() {
       </section>
 
       {/* 3 — OPPORTUNITIES */}
-      <section id="opportunities" aria-label="Opportunities" style={{ background: "var(--bg)" }}>
+      <section id="opportunities" aria-label="Opportunities" className="ambient" style={{ backgroundColor: "var(--bg)" }}>
         <div className="wrap">
           <div className="chapter rv">
             <b>Opportunities</b>
@@ -117,7 +117,7 @@ export default function CareersPage() {
 
           <div className="mt-[clamp(36px,5vw,60px)] grid gap-6 md:grid-cols-2">
             {JOBS.map((job, i) => (
-              <article key={job.slug} className={`k-card rv scale flex flex-col p-7 sm:p-9${DELAYS[i % 2 + 1]}`}>
+              <article key={job.slug} className={`k-card rv scale flex flex-col p-7 sm:p-9 ${DELAYS[i % 2 + 1]}`}>
                 <h3 className="text-[clamp(1.35rem,2.4vw,1.8rem)] leading-tight">{job.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <span className="k-chip k-chip--lime">{job.employment}</span>
@@ -141,7 +141,7 @@ export default function CareersPage() {
       </section>
 
       {/* 4 — FRESHERS */}
-      <section aria-label="For freshers" className="bg-[var(--band)] text-white">
+      <section aria-label="For freshers" className="ambient-band bg-[var(--band)] text-white">
         <div className="wrap grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
             <div className="chapter rv">
@@ -163,7 +163,7 @@ export default function CareersPage() {
       </section>
 
       {/* 5 — APPLICATION FORM */}
-      <section id="apply" aria-label="Application form" className="scroll-mt-[80px]">
+      <section id="apply" aria-label="Application form" className="ambient scroll-mt-[80px]">
         <div className="wrap" style={{ maxWidth: 900 }}>
           <div className="chapter rv">
             <b>Apply</b>

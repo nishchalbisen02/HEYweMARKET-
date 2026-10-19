@@ -121,6 +121,13 @@ export function Founders() {
           <div className="why-grid" style={{ marginTop: 42 }}>
             {FOUNDERS.map((f, i) => (
               <div key={f.name} className={`why rv scale${i === 1 ? " d1" : ""}`}>
+                {/* monogram until real portraits are supplied */}
+                <div className="founder-avatar" aria-hidden="true">
+                  {f.name
+                    .split(" ")
+                    .map((part) => part[0])
+                    .join("")}
+                </div>
                 <span className="founder-role">{f.role}</span>
                 <h3>{f.name}</h3>
                 <p>{f.bio}</p>

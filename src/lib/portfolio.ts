@@ -69,6 +69,31 @@ export const CLIENTS: readonly { slug: string; name: string; w: number; h: numbe
   { slug: "mp-india", name: "MP Tours India", w: 283, h: 160 },
 ];
 
+/**
+ * Photos inside the cards (all already-optimised files in /public). Index-aligned with SERVICES / WHY in site.ts.
+ * The founders' cards take a `photo` once real portraits exist — until then they show a monogram.
+ */
+export type CardPhoto = { src: string; alt: string; w: number; h: number };
+
+export const SERVICE_PHOTOS: readonly CardPhoto[] = [
+  { src: "/creative/ai-video-poster.webp", alt: "Weekly specials social media post designed by Hey We Market", w: 640, h: 640 },
+  { src: "/creative/snack-spread.webp", alt: "Launch announcement ad creative made for a real-estate client", w: 640, h: 640 },
+  { src: "/creative/food-photography.webp", alt: "Food photography shot by the Hey We Market content team", w: 640, h: 640 },
+  { src: "/creative/footer-campaign.webp", alt: "Hey We Market, an AI-first marketplace for a smarter tomorrow", w: 640, h: 640 },
+  { src: "/creative/interior-motion-artwork.webp", alt: "Hey We Market branded tote bag", w: 640, h: 640 },
+  { src: "/work/launch-clip.webp", alt: "Website design mockup — a story of luxury, serenity and elegance", w: 480, h: 540 },
+];
+
+export const WHY_PHOTOS: readonly CardPhoto[] = [
+  { src: "/creative/lifestyle-photography.webp", alt: "Hey We Market hiring poster — join our team", w: 640, h: 640 },
+  { src: "/creative/tit-udaipur-artwork.webp", alt: "Campaign creative made for DB-pride", w: 640, h: 640 },
+  { src: "/creative/product-photography.webp", alt: "Janmashtami creative with the project numbers up front", w: 640, h: 640 },
+  { src: "/creative/restaurant-photography.webp", alt: "Hey We Market office featured in a social creative", w: 640, h: 640 },
+  { src: "/creative/creative-artwork-two.webp", alt: "Vision — a creative for a storytelling brand", w: 640, h: 640 },
+  { src: "/creative/animaterr-artwork.webp", alt: "Hey We Market logo printed on a sweatshirt", w: 640, h: 640 },
+];
+
+/** The DB-pride Ganpati film: featured in the "Work That Speaks For Itself" section (and described in the VideoObject schema). */
 export const SHOWREEL = {
   src: "/showreel.mp4",
   poster: "/showreel-poster.webp",
@@ -82,22 +107,27 @@ export const SHOWREEL = {
 } as const;
 
 /**
- * Intro video (public/hero): the agency promo, 109s, re-encoded to 1280×720 H.264 with its own AAC soundtrack.
- * It autoplays muted; the Music button unmutes it (`videoHasSound`). To use a separate music file instead,
- * drop it in public/hero/ and set `audioSrc`; with neither, the Music button is not rendered.
+ * Agency film (public/hero), shown in the Showreel section: ~107s, 1920×1080 H.264 with its own AAC soundtrack.
+ * The source is an upscale, so by default the section shows ONE crisp still (`poster`, the services frame)
+ * with a "Watch our film" button; the film is only downloaded when it is pressed and then plays with sound.
+ * Set `autoplay: true` to get the old behaviour (muted loop while on screen; the Music button unmutes it).
+ * To use a separate music file instead of the film's own soundtrack, drop it in public/hero/ and set `audioSrc`;
+ * with neither `audioSrc` nor `videoHasSound`, the Music button is not rendered.
  */
 export const HERO_VIDEO: {
   src: string;
   poster: string;
   width: number;
   height: number;
+  autoplay: boolean;
   audioSrc: string | null;
   videoHasSound: boolean;
 } = {
   src: "/hero/hero.mp4",
   poster: "/hero/hero-poster.webp",
-  width: 1280,
-  height: 720,
+  width: 1920,
+  height: 1080,
+  autoplay: false,
   audioSrc: null,
   videoHasSound: true,
 };

@@ -28,6 +28,7 @@ npm run lint
 | Path | What |
 |---|---|
 | `src/app/site.css` | the site stylesheet: layout ported verbatim from the static build, **colours come from the theme variables at its top**; imported into the `site` cascade layer by `globals.css` |
+| `src/app/glass.css` | glassmorphism for every card (translucent surface + blur + light rim + soft shadow), theme-aware; sits in the same `site` layer, right after `site.css`, so the original hover states keep working |
 | `src/app/globals.css` | layer order, Tailwind utilities, theme toggle + header tools, vignette, intro video, focus ring / skip link, careers + form primitives |
 | `src/app/layout.tsx` | fonts, site-wide metadata (canonical, hreflang en-IN, Open Graph, Twitter), page chrome |
 | `src/app/page.tsx` | the home page — sections composed from `src/components/site/*` + JSON-LD |
@@ -36,7 +37,7 @@ npm run lint
 | `src/app/robots.ts` · `sitemap.ts` | crawler rules (search + AI bots allowed) and sitemap with image/video entries |
 | `src/app/llms.txt/` · `llms-full.txt/` | plain-text renditions for LLM crawlers, generated from the data modules |
 | `src/components/site/` | one component per section; `effects.tsx` is the behaviour layer (curtain, reveal, counters, parallax…) |
-| `src/components/site/landing-video.tsx` · `hero-video.tsx` | the first screen is the clean intro video (`public/hero`) with pause + optional Music button; the headline hero is the second screen |
+| `src/components/site/showreel.tsx` · `hero-video.tsx` · `featured-film.tsx` | the Showreel section (a line about what we do + the agency film: a still with a "Watch our film" button) and the DB-pride Ganpati film featured at the top of the Work grid |
 | `src/lib/site.ts` | **single source of truth**: contact details, nav, services, FAQ, long-form copy |
 | `src/lib/portfolio.ts` | work reels, design artwork, client logos, showreel |
 | `src/lib/schema.ts` | schema.org JSON-LD (ProfessionalService, Services, Persons, FAQPage, VideoObject, JobPosting) |
@@ -52,8 +53,13 @@ npm run lint
 
 ## Intro video, music and vignette
 
-- Screen 1 is the hero text; screen 2 is the intro video (`public/hero/hero.mp4`: the agency promo, 1280×720 with its own soundtrack). On desktop it fills the whole screen edge to edge (`object-fit: cover`); on portrait phones it keeps its full width so nothing is cropped. It plays muted, looped, only while on screen; reduced-motion / data-saver visitors get the poster and a play button.
-- **Music button**: unmutes the video's own soundtrack (`videoHasSound: true` in `src/lib/portfolio.ts`; or set `audioSrc` to a separate track instead). Hidden if neither is set. Only one thing makes sound at a time (hero music vs the showreel).
+- **Agency film** (`public/hero/hero.mp4`, 1920×1080 with its own soundtrack) lives in the **Showreel** section, under the line "We plan it. We shoot it. We grow it." (copy: `SHOWREEL_COPY` in `src/lib/site.ts`). The source is an upscale, so the frame shows **one crisp still** (`public/hero/hero-poster.webp`) with a glass **"Watch our film"** button; nothing is downloaded until it is pressed, then the film plays **with sound** from that click. Once started it pauses when scrolled away and resumes when it comes back.
+- To go back to a muted autoplay loop instead, set `autoplay: true` in `HERO_VIDEO` (`src/lib/portfolio.ts`). To swap the still, replace `hero-poster.webp` (1920×1080).
+- The **DB-pride Ganpati film** (`public/showreel.mp4`, `SHOWREEL` in `portfolio.ts`) is featured at the top of "Work That Speaks For Itself": muted loop while on screen, with pause / mute buttons.
+- **Music button** (shown once the agency film has started): mutes / unmutes the film's own soundtrack (`videoHasSound: true`; or set `audioSrc` to a separate track instead). Hidden if neither is set. Only one thing makes sound at a time (hero music vs the showreel).
+- **One continuous backdrop**: the same soft lime / blue orbs sit behind *every* section (cards sections, bands, marquee strip, showreel, careers, 404), and in the dark theme every section is the same black (`--bg` / `--page-2` are flattened to `--page`), so nothing looks like a separately added page.
+- **Cards with photos**: service cards and "why" cards show a photo (`SERVICE_PHOTOS` / `WHY_PHOTOS` in `portfolio.ts`); founder cards show a monogram until real portraits are added.
+- **Glassmorphism** (`src/app/glass.css`): every card — services, why, founders, testimonials, FAQ, contact panel, about card, stats, work tiles, creative cards, nav, chips, pills, careers cards — is a translucent, blurred pane with a light rim. Tokens `--glass-*` sit at the top of the file per theme; soft lime / blue orbs (`--glass-orbs`) are tiled behind the card sections so there is something to blur. The header and the stacked service cards are deliberately near-opaque (they float over black / over each other). Phones skip the live blur on the moving marquee and video tiles; `prefers-reduced-transparency` and browsers without `backdrop-filter` get solid surfaces. Text on glass was checked at ≥4.5:1 (pixel-based, both themes, desktop + phone) — re-check if you raise the orb opacity.
 - **Vignette**: a fixed click-through overlay on every page (`body::after` in `src/app/globals.css`). Tune `--vignette-mid` / `--vignette-edge` (0 = off); it is lighter on phones and disabled for print and high-contrast mode.
 
 ## Editing content

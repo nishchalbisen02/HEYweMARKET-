@@ -1,5 +1,7 @@
 import { Fragment, type ReactNode } from "react";
+import Image from "next/image";
 import { SERVICES } from "@/lib/site";
+import { SERVICE_PHOTOS } from "@/lib/portfolio";
 
 /** Icon drawings, index-aligned with SERVICES (stroke colour comes from site.css). */
 const ICONS: readonly ReactNode[] = [
@@ -40,18 +42,35 @@ export function Services() {
           </div>
           <div className="htrack-wrap">
             <div className="htrack" id="hTrack">
-              {SERVICES.map((s, i) => (
-                <article className="svc" key={s.idx}>
-                  <span className="idx">{s.idx}</span>
-                  <div className="ico">
-                    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" aria-hidden="true">
-                      {ICONS[i]}
-                    </svg>
-                  </div>
-                  <h3>{s.title}</h3>
-                  <p>{s.body}</p>
-                </article>
-              ))}
+              {SERVICES.map((s, i) => {
+                const photo = SERVICE_PHOTOS[i];
+                return (
+                  <article className="svc" key={s.idx}>
+                    <div className="svc-copy">
+                      <span className="idx">{s.idx}</span>
+                      <div className="ico">
+                        <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" aria-hidden="true">
+                          {ICONS[i]}
+                        </svg>
+                      </div>
+                      <h3>{s.title}</h3>
+                      <p>{s.body}</p>
+                    </div>
+                    {photo && (
+                      <figure className="svc-media">
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          width={photo.w}
+                          height={photo.h}
+                          sizes="(max-width: 760px) 90vw, 480px"
+                          unoptimized
+                        />
+                      </figure>
+                    )}
+                  </article>
+                );
+              })}
             </div>
           </div>
           <div className="hprogress" aria-hidden="true">

@@ -24,7 +24,7 @@ import {
   SITE_TITLE,
   SITE_URL,
 } from "./site";
-import { SHOWREEL } from "./portfolio";
+import { HERO_VIDEO, SHOWREEL } from "./portfolio";
 import { JOBS } from "./careers";
 
 type Json = Record<string, unknown>;
@@ -37,7 +37,8 @@ export const ids = {
   webpage: `${SITE_URL}/#webpage`,
   faq: `${SITE_URL}/#faq`,
   logo: `${SITE_URL}/#logo`,
-  video: `${SITE_URL}/#showreel`,
+  video: `${SITE_URL}/#featured-film`,
+  agencyFilm: `${SITE_URL}/#showreel`,
   careersPage: `${SITE_URL}/careers#webpage`,
   founder: (name: string) => `${SITE_URL}/#${slug(name)}`,
   service: (title: string) => `${SITE_URL}/#service-${slug(title)}`,
@@ -181,7 +182,7 @@ export function homeGraph(): Json {
       {
         "@type": "VideoObject",
         "@id": ids.video,
-        name: `${SITE_NAME} showreel — ${SHOWREEL.title}`,
+        name: `${SITE_NAME} film — ${SHOWREEL.title}`,
         description: SHOWREEL.description,
         thumbnailUrl: [`${SITE_URL}${SHOWREEL.poster}`],
         contentUrl: `${SITE_URL}${SHOWREEL.src}`,
@@ -189,6 +190,21 @@ export function homeGraph(): Json {
         duration: SHOWREEL.duration,
         width: SHOWREEL.width,
         height: SHOWREEL.height,
+        inLanguage: "en-IN",
+        publisher: { "@id": ids.org },
+      },
+      {
+        "@type": "VideoObject",
+        "@id": ids.agencyFilm,
+        name: `${SITE_NAME} agency film`,
+        description:
+          "Agency film from Hey We Market, a full service digital marketing agency in Bhopal: social media, paid advertising, content, SEO, branding and websites.",
+        thumbnailUrl: [`${SITE_URL}${HERO_VIDEO.poster}`],
+        contentUrl: `${SITE_URL}${HERO_VIDEO.src}`,
+        uploadDate: CONTENT_UPDATED,
+        duration: "PT1M47S",
+        width: HERO_VIDEO.width,
+        height: HERO_VIDEO.height,
         inLanguage: "en-IN",
         publisher: { "@id": ids.org },
       },

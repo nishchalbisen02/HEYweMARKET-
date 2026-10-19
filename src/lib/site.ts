@@ -10,7 +10,7 @@
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://heywemarket.com").replace(/\/+$/, "");
 export const SITE_NAME = "Hey We Market";
 /** Bump when page content materially changes — feeds sitemap lastmod and schema dateModified. */
-export const CONTENT_UPDATED = "2026-10-17";
+export const CONTENT_UPDATED = "2026-10-19";
 export const SITE_TITLE = "Hey We Market | Digital Marketing Agency in Bhopal, Madhya Pradesh";
 export const SITE_DESCRIPTION =
   "Hey We Market is a full service digital marketing agency in Bhopal helping businesses grow through strategy led social media, ads, content, and search visibility. Get in touch for a free consultation.";
@@ -87,6 +87,13 @@ export const COPY = {
     title: "Our Promise",
     body: "Working with us should feel different from working with an agency. We think before we act, tell you the truth when something is not working, protect your voice and story, and say no when we cannot genuinely do the work justice.",
   },
+} as const;
+
+/** Text above the showreel film (replaces the old "Watch the work" title). Only restates the services the site already lists. */
+export const SHOWREEL_COPY = {
+  /** Three short lines; each stays together on one row, so the headline wraps between them, never inside one. */
+  lines: ["We plan it.", "We shoot it.", "We grow it."],
+  sub: "Social media, paid ads, content, shoots, SEO and branding — one Bhopal team behind every frame.",
 } as const;
 
 /** Chips in the scrolling strip under the showreel. */
@@ -172,9 +179,9 @@ export const STATS = [
 export const FOUNDERS = [
   {
     name: "Ankita Singh",
-    role: "Co Founder · Strategy & Creative",
-    jobTitle: "Co Founder, Strategy & Creative",
-    bio: "Co founded Hey We Market to build marketing that is strategic first and creative second, helping businesses grow with clarity, consistency, and work that moves the needle.",
+    role: "Founder · Strategy & Creative",
+    jobTitle: "Founder, Strategy & Creative",
+    bio: "Founded Hey We Market to build marketing that is strategic first and creative second, helping businesses grow with clarity, consistency, and work that moves the needle.",
   },
   {
     name: "Divyansh Singh",
@@ -238,7 +245,7 @@ export const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Who founded Hey We Market?",
-    a: "Hey We Market was co founded by Ankita Singh (Co Founder, Strategy & Creative) and Divyansh Singh (Co Founder, Brand & Growth). The agency is backed by Innovativebiz Technologies.",
+    a: "Hey We Market was founded by Ankita Singh (Founder, Strategy & Creative) together with Divyansh Singh (Co Founder, Brand & Growth). The agency is backed by Innovativebiz Technologies.",
   },
   {
     q: "What is Hey We Market's process?",

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 /** Branded 404 — shares the site chrome (header, footer, WhatsApp button) from the root layout. */
 export default function NotFound() {
   return (
-    <section style={{ minHeight: "100svh", display: "flex", alignItems: "center", background: "var(--bg)" }}>
+    <section className="ambient" style={{ minHeight: "100svh", display: "flex", alignItems: "center", backgroundColor: "var(--bg)" }}>
       <div className="wrap" style={{ textAlign: "center" }}>
         <div className="chapter">
           <b>Error 404</b>
